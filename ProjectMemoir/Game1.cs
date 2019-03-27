@@ -12,10 +12,18 @@ namespace ProjectMemoir
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private Player _player;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+
         }
 
         /// <summary>
@@ -40,6 +48,8 @@ namespace ProjectMemoir
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            _player = new Player(Content.Load<Texture2D>("sprite"), new Vector2(0, 0));
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -57,14 +67,12 @@ namespace ProjectMemoir
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+        protected override void Update(GameTime _gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
-            // TODO: Add your update logic here
+            _player.Update(_gameTime);
 
-            base.Update(gameTime);
+            base.Update(_gameTime);
         }
 
         /// <summary>
@@ -75,7 +83,13 @@ namespace ProjectMemoir
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+
+            spriteBatch.Begin();
+
+            _player.Draw(spriteBatch);
+            
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

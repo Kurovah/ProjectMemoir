@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Sprites\Animation.cs" />
-    <Compile Include="Character.cs" />
+    <Compile Include="Sprites\Character.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects.cs" />

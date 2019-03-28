@@ -9,16 +9,17 @@ namespace ProjectMemoir.Sprites
 {
     public class Sprite
     {
-        Animation anim;
+        public Animation anim;
         public Sprite(ContentManager _con, Vector2 _pos)
         {
-
+            
         }
 
-        public virtual void Update()
+        public virtual void Update(GameTime _gt, List<Sprite> _sl)
         {
-
+            anim.Update(_gt);
         }
+
 
         public virtual void Draw(SpriteBatch _sb)
         {

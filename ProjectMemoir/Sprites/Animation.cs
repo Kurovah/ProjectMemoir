@@ -7,11 +7,11 @@ namespace ProjectMemoir.Sprites
 {
     public class Animation
     {
-        Rectangle sourceRect, desRect;
-        Vector2 spriteSize, position;
-        int frames;
-        float delay = 15f;
-        Texture2D tex;
+        public Rectangle sourceRect, desRect;
+        public Vector2 spriteSize, position;
+        public int frames;
+        public float delay = 15f;
+        public Texture2D tex;
         public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 position, int _frameNo)
         {
             tex = _tex;

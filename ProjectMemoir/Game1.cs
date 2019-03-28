@@ -90,7 +90,9 @@ namespace ProjectMemoir
 
             spriteBatch.Begin();
 
-            player.Draw(spriteBatch);
+            foreach(Sprite _s in spriteList) {
+                _s.Draw(spriteBatch);
+            }
             
 
             spriteBatch.End();

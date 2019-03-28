@@ -44,24 +44,11 @@ namespace ProjectMemoir.Sprites
                 velocity.X = 0;
             }
 
-            //vertical movement (gravity an jumping)
-            foreach(Sprite _s in _sl)
+            //gravity
+            if(velocity.Y < 12f)
             {
-                if(_s == this) { continue; }
-                if (!checkTopCol(_s))
-                {
-                    //apply gravity if not touching the top of another sprite
-                    if (velocity.Y < 12f) { velocity.Y += grav; }
-                } else
-                {
-                    //jumping
-                    if (currentKS.IsKeyDown(Keys.J))
-                    {
-                        velocity.Y = -12f;
-                    }
-                }
+                velocity.Y += grav;
             }
-
         }
         public void Collision(List<Sprite> _sl)
         {
@@ -101,30 +88,30 @@ namespace ProjectMemoir.Sprites
         {
             return anim.desRect.Left < _s.anim.desRect.Left &&
                 anim.desRect.Right+velocity.X > _s.anim.desRect.Left &&
-                anim.desRect.Top < _s.anim.desRect.Top &&
-                anim.desRect.Bottom > _s.anim.desRect.Bottom
+                anim.desRect.Top < _s.anim.desRect.Bottom &&
+                anim.desRect.Bottom > _s.anim.desRect.Top
                 ;
         }
         public bool checkRightCol(Sprite _s)
         {
             return anim.desRect.Right > _s.anim.desRect.Right &&
                 anim.desRect.Left + velocity.X > _s.anim.desRect.Right &&
-                anim.desRect.Top < _s.anim.desRect.Top &&
-                anim.desRect.Bottom > _s.anim.desRect.Bottom
+                anim.desRect.Top < _s.anim.desRect.Bottom &&
+                anim.desRect.Bottom > _s.anim.desRect.Top
                 ;
         }
         public bool checkTopCol(Sprite _s)
         {
-            return anim.desRect.Left > _s.anim.desRect.Left &&
-                anim.desRect.Right < _s.anim.desRect.Right &&
+            return anim.desRect.Right > _s.anim.desRect.Left &&
+                anim.desRect.Left < _s.anim.desRect.Right &&
                 anim.desRect.Top < _s.anim.desRect.Top &&
                 anim.desRect.Bottom +velocity.Y > _s.anim.desRect.Top
                 ;
         }
         public bool checkBottomCol(Sprite _s)
         {
-            return anim.desRect.Left < _s.anim.desRect.Left &&
-                anim.desRect.Right > _s.anim.desRect.Right &&
+            return anim.desRect.Right > _s.anim.desRect.Left &&
+                anim.desRect.Left < _s.anim.desRect.Right &&
                 anim.desRect.Top+velocity.Y < _s.anim.desRect.Bottom &&
                 anim.desRect.Bottom > _s.anim.desRect.Bottom
                 ;

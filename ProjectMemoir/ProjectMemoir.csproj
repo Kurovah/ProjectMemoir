@@ -51,6 +51,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\DummyEn.cs" />
+    <Compile Include="Sprites\PhysObject.cs" />
     <Compile Include="Sprites\Solid.cs" />
     <Compile Include="Sprites\Sprite.cs" />
   </ItemGroup>

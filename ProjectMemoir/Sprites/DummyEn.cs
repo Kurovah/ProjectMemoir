@@ -20,7 +20,24 @@ namespace ProjectMemoir.Sprites
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-           
+            foreach (Sprite _s in _sl)
+            {
+                if (_s == this || _s.GetType() == typeof(Player)) { continue; }
+                //apply gravity if not touching ground
+                if (!checkTopCol(_s))
+                {
+                    if (velocity.Y < 12f)
+                    {
+                        velocity.Y += grav;
+                    }
+                }
+                else
+                {
+                    if(velocity.Y < 0)
+                    velocity.Y = 0;
+                    anim.position.Y = _s.anim.desRect.Top - anim.spriteSize.Y-10;
+                }
+            }
             //chase if player gets close enough
             if (distanceToTarget() < 100f) { isAlert = true; } else { isAlert = false; }
 

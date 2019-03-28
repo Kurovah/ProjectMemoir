@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\Cam.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Sprites\Character.cs" />
     <Compile Include="Component.cs" />

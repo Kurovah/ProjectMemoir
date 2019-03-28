@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectMemoir.Sprites;
+using ProjectMemoir.Components;
 using System.Collections.Generic;
 
 namespace ProjectMemoir
@@ -16,6 +17,7 @@ namespace ProjectMemoir
 
         private Player player;
         private DummyEn den;
+        private Cam cam;
         private List<Sprite> spriteList;
         
         public Game1()
@@ -62,6 +64,8 @@ namespace ProjectMemoir
             spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(640,3)));
             spriteList.Add(new Solid(this.Content, new Vector2(0,360), new Vector2(640, 3)));
             spriteList.Add(new Solid(this.Content, new Vector2(640,0), new Vector2(3, 360)));
+            cam = new Cam(player, new Vector2(1000), new Vector2(1000));
+            
         }
 
         /// <summary>
@@ -83,6 +87,7 @@ namespace ProjectMemoir
 
             player.Update(_gameTime, spriteList);
             den.Update(_gameTime, spriteList);
+            cam.Update(_gameTime);
 
             base.Update(_gameTime);
         }
@@ -96,7 +101,7 @@ namespace ProjectMemoir
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: cam.trans);
 
             foreach(Sprite _s in spriteList) {
                 _s.Draw(spriteBatch);

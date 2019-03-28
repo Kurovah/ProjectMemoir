@@ -18,6 +18,7 @@ namespace ProjectMemoir
         private Player player;
         private DummyEn den;
         private Cam cam;
+        private HUD hud;
         private List<Sprite> spriteList;
         
         public Game1()
@@ -65,6 +66,7 @@ namespace ProjectMemoir
             spriteList.Add(new Solid(this.Content, new Vector2(0,360), new Vector2(640, 3)));
             spriteList.Add(new Solid(this.Content, new Vector2(640,0), new Vector2(3, 360)));
             cam = new Cam(player, new Vector2(1000), new Vector2(1000));
+            hud = new HUD(player, this.Content);
             
         }
 
@@ -88,7 +90,7 @@ namespace ProjectMemoir
             player.Update(_gameTime, spriteList);
             den.Update(_gameTime, spriteList);
             cam.Update(_gameTime);
-
+            hud.Update(_gameTime);
             base.Update(_gameTime);
         }
 
@@ -99,15 +101,15 @@ namespace ProjectMemoir
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-
             spriteBatch.Begin(transformMatrix: cam.trans);
-
             foreach(Sprite _s in spriteList) {
                 _s.Draw(spriteBatch);
             }
-            
+            spriteBatch.End();
 
+            //so the HUD isn't moved by the trans matrix
+            spriteBatch.Begin();
+            hud.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

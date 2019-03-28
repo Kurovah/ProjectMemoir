@@ -11,18 +11,30 @@ namespace ProjectMemoir.Sprites
     {
         KeyboardState currentKS;
         float spd = 5f;
-
+        public int hp = 100, maxHp = 100;
 
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
         {
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), _pos, 0);
+            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(32), _pos, 0, Color.Red);
         }
 
         public override void  Update(GameTime _gt, List<Sprite> _sl)
         {
             currentKS = Keyboard.GetState();
+            DebugHealthChange();
             Move(_sl);
             base.Update(_gt, _sl);
+        }
+        public void DebugHealthChange()
+        {
+            if (currentKS.IsKeyDown(Keys.I))
+            {
+                hp -= 1;
+            }
+            if (currentKS.IsKeyDown(Keys.O))
+            {
+                hp += 1;
+            }
         }
         public void Move(List<Sprite> _sl)
         {

@@ -42,8 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components\Cam.cs" />
+    <Compile Include="Components\HUD.cs" />
     <Compile Include="Sprites\Animation.cs" />
-    <Compile Include="Sprites\Character.cs" />
+    <Compile Include="Sprites\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Program.cs" />

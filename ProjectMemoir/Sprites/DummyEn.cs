@@ -13,7 +13,7 @@ namespace ProjectMemoir.Sprites
         public DummyEn(ContentManager _con, Vector2 _pos, Sprite _target):base(_con, _pos)
         {
             target = _target;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), _pos, 0);
+            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(32), _pos, 0, Color.Aqua);
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)

@@ -30,25 +30,24 @@ namespace ProjectMemoir.Sprites
         {
             if (!IsGrounded(_sl) && velocity.Y < 12f) {
                 velocity.Y += grav;
-            } else
-            {
-                velocity.Y = 0;
             }
         }
         public bool IsGrounded(List<Sprite> _sl)
         {
+            bool ret = false;
             foreach(Sprite _s in _sl)
             {
-                if(_s == this) { continue; }
-                return checkTopCol(_s);
+                if(_s.GetType() != typeof(Solid)) { continue; }
+                ret = checkTopCol(_s);
+                if (ret) { break; }
             }
-            return false;
+            return ret;
         }
         public void Collision(List<Sprite> _sl)
         {
             foreach (Sprite _s in _sl)
             {
-                if (_s == this) { continue; }
+                if (_s.GetType() != typeof(Solid)) { continue; }
                 //lateral
                 if (velocity.X > 0 && checkLeftCol(_s))
                 {

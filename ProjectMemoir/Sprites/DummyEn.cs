@@ -10,12 +10,10 @@ namespace ProjectMemoir.Sprites
     {
         bool isAlert;
         Sprite target;
-        float grav = 0.5f;
         public DummyEn(ContentManager _con, Vector2 _pos, Sprite _target):base(_con, _pos)
         {
             target = _target;
             anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), _pos, 0);
-            velocity = new Vector2(0);
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)

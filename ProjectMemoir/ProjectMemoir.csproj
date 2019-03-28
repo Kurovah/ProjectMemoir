@@ -44,9 +44,7 @@
     <Compile Include="Components\Cam.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Sprites\Character.cs" />
-    <Compile Include="Component.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="GameObjects.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

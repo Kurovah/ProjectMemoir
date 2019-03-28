@@ -12,11 +12,12 @@ namespace ProjectMemoir.Sprites
         public int frames;
         public float delay = 15f;
         public Texture2D tex;
-        public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 position, int _frameNo)
+        public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 _position, int _frameNo)
         {
             tex = _tex;
             frames = _frameNo;
             spriteSize = _spritesize;
+            position = _position;
             sourceRect = new Rectangle(0,0, (int)spriteSize.X, (int)spriteSize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);
         }

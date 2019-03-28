@@ -15,6 +15,7 @@ namespace ProjectMemoir
         SpriteBatch spriteBatch;
 
         private Player player;
+        private DummyEn den;
         private List<Sprite> spriteList;
         
         public Game1()
@@ -22,8 +23,8 @@ namespace ProjectMemoir
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 360;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
 
@@ -54,7 +55,13 @@ namespace ProjectMemoir
 
             // TODO: use this.Content to load your game content here
             spriteList = new List<Sprite>();
-            spriteList.Add(player = new Player(this.Content, new Vector2(32)));
+            spriteList.Add(player = new Player(this.Content, new Vector2(40)));
+            spriteList.Add(den = new DummyEn(this.Content, new Vector2(400,200), player));
+            //solids to collide with
+            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(3, 360)));
+            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(640,3)));
+            spriteList.Add(new Solid(this.Content, new Vector2(0,360), new Vector2(640, 3)));
+            spriteList.Add(new Solid(this.Content, new Vector2(640,0), new Vector2(3, 360)));
         }
 
         /// <summary>
@@ -75,6 +82,7 @@ namespace ProjectMemoir
         {
 
             player.Update(_gameTime, spriteList);
+            den.Update(_gameTime, spriteList);
 
             base.Update(_gameTime);
         }

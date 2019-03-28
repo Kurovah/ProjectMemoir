@@ -10,6 +10,7 @@ namespace ProjectMemoir.Sprites
     public class Sprite
     {
         public Animation anim;
+        public Vector2 velocity;
         public Sprite(ContentManager _con, Vector2 _pos)
         {
             
@@ -17,6 +18,7 @@ namespace ProjectMemoir.Sprites
 
         public virtual void Update(GameTime _gt, List<Sprite> _sl)
         {
+            anim.position += velocity;
             anim.Update(_gt);
         }
 
@@ -25,5 +27,40 @@ namespace ProjectMemoir.Sprites
         {
             anim.Draw(_sb);
         }
+        # region collision
+        //checking if you touching the corresponding side of sprite "_S"
+        public bool checkLeftCol(Sprite _s)
+        {
+            return anim.desRect.Left < _s.anim.desRect.Left &&
+                anim.desRect.Right + velocity.X > _s.anim.desRect.Left &&
+                anim.desRect.Top < _s.anim.desRect.Bottom &&
+                anim.desRect.Bottom > _s.anim.desRect.Top
+                ;
+        }
+        public bool checkRightCol(Sprite _s)
+        {
+            return anim.desRect.Right > _s.anim.desRect.Right &&
+                anim.desRect.Left + velocity.X < _s.anim.desRect.Right &&
+                anim.desRect.Top < _s.anim.desRect.Bottom &&
+                anim.desRect.Bottom > _s.anim.desRect.Top
+                ;
+        }
+        public bool checkTopCol(Sprite _s)
+        {
+            return anim.desRect.Right > _s.anim.desRect.Left &&
+                anim.desRect.Left < _s.anim.desRect.Right &&
+                anim.desRect.Top < _s.anim.desRect.Top &&
+                anim.desRect.Bottom + velocity.Y > _s.anim.desRect.Top
+                ;
+        }
+        public bool checkBottomCol(Sprite _s)
+        {
+            return anim.desRect.Right > _s.anim.desRect.Left &&
+                anim.desRect.Left < _s.anim.desRect.Right &&
+                anim.desRect.Top + velocity.Y < _s.anim.desRect.Bottom &&
+                anim.desRect.Bottom > _s.anim.desRect.Bottom
+                ;
+        }
+        #endregion
     }
 }

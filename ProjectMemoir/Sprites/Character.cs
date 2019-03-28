@@ -9,10 +9,8 @@ namespace ProjectMemoir.Sprites
 {
     public class Player:Sprite
     {
-        private Texture2D _texture;
-        public Vector2 velocity;
         KeyboardState currentKS;
-        float spd = 5f, grav = 0.5f;
+        float spd = 5f, grav = 0.25f;
 
 
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
@@ -26,28 +24,42 @@ namespace ProjectMemoir.Sprites
             currentKS = Keyboard.GetState();
             Move(_sl);
             Collision(_sl);
-            anim.position += velocity;
             base.Update(_gt, _sl);
         }
         public void Move(List<Sprite> _sl)
         {
             //lateral movement
-            if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D))//left move
+            if (currentKS.IsKeyDown(Keys.A))//left move
             {
                 velocity.X = -spd;
             }
-            else if(currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A))//right move
+            if(currentKS.IsKeyDown(Keys.D))//right move
             {
                 velocity.X = spd;
-            } else
+            }
+            if(!currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
             {
                 velocity.X = 0;
             }
 
-            //gravity
-            if(velocity.Y < 12f)
+            foreach (Sprite _s in _sl)
             {
-                velocity.Y += grav;
+                if (_s == this || _s.GetType() == typeof(DummyEn)) { continue; }
+                //apply gravity if not touching ground
+                if (!checkTopCol(_s))
+                {
+                    if (velocity.Y < 12f)
+                    {
+                        velocity.Y += grav;
+                    }
+                } else
+                {
+                    //can jump if grounded
+                    if (currentKS.IsKeyDown(Keys.J))
+                    {
+                        velocity.Y = -12;
+                    }
+                }
             }
         }
         public void Collision(List<Sprite> _sl)
@@ -58,64 +70,30 @@ namespace ProjectMemoir.Sprites
                 if(velocity.X > 0 && checkLeftCol(_s))
                 {
                     velocity.X = 0;
-                    anim.desRect.X = _s.anim.desRect.Left - anim.desRect.Width;
+                    anim.position.X = _s.anim.desRect.Left - anim.desRect.Width;
                 }
 
                 if (velocity.X < 0 && checkRightCol(_s))
                 {
                     velocity.X = 0;
-                    anim.desRect.X = _s.anim.desRect.Right;
+                    anim.position.X = _s.anim.desRect.Right;
                 }
 
                 //vertical
                 if (velocity.Y > 0 && checkTopCol(_s))
                 {
                     velocity.Y = 0;
-                    anim.desRect.Y = _s.anim.desRect.Top - anim.desRect.Height;
+                    anim.position.Y = _s.anim.desRect.Top - anim.desRect.Height;
                 }
 
                 if (velocity.Y < 0 && checkBottomCol(_s))
                 {
                     velocity.Y = 0;
-                    anim.desRect.Y = _s.anim.desRect.Bottom;
+                    anim.position.Y = _s.anim.desRect.Bottom;
                 }
             }
         }
 
-# region collision
-        //checking if you touching the corresponding side of sprite "_S"
-        public bool checkLeftCol(Sprite _s)
-        {
-            return anim.desRect.Left < _s.anim.desRect.Left &&
-                anim.desRect.Right+velocity.X > _s.anim.desRect.Left &&
-                anim.desRect.Top < _s.anim.desRect.Bottom &&
-                anim.desRect.Bottom > _s.anim.desRect.Top
-                ;
-        }
-        public bool checkRightCol(Sprite _s)
-        {
-            return anim.desRect.Right > _s.anim.desRect.Right &&
-                anim.desRect.Left + velocity.X > _s.anim.desRect.Right &&
-                anim.desRect.Top < _s.anim.desRect.Bottom &&
-                anim.desRect.Bottom > _s.anim.desRect.Top
-                ;
-        }
-        public bool checkTopCol(Sprite _s)
-        {
-            return anim.desRect.Right > _s.anim.desRect.Left &&
-                anim.desRect.Left < _s.anim.desRect.Right &&
-                anim.desRect.Top < _s.anim.desRect.Top &&
-                anim.desRect.Bottom +velocity.Y > _s.anim.desRect.Top
-                ;
-        }
-        public bool checkBottomCol(Sprite _s)
-        {
-            return anim.desRect.Right > _s.anim.desRect.Left &&
-                anim.desRect.Left < _s.anim.desRect.Right &&
-                anim.desRect.Top+velocity.Y < _s.anim.desRect.Bottom &&
-                anim.desRect.Bottom > _s.anim.desRect.Bottom
-                ;
-        }
-#endregion
+
     }
 }

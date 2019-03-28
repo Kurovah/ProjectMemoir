@@ -13,13 +13,11 @@ namespace ProjectMemoir.Sprites
         public Vector2 velocity;
         KeyboardState currentKS;
         float spd = 5f, grav = 0.5f;
-        bool hasJumped;
 
 
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
         {
             anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), _pos, 0);
-            hasJumped = true;
             velocity = new Vector2(0);
         }
 
@@ -50,9 +48,17 @@ namespace ProjectMemoir.Sprites
             foreach(Sprite _s in _sl)
             {
                 if(_s == this) { continue; }
-                if (!checkTopCol(_s) & velocity.Y < 10f)
+                if (!checkTopCol(_s))
                 {
-                    velocity.Y += grav;
+                    //apply gravity if not touching the top of another sprite
+                    if (velocity.Y < 12f) { velocity.Y += grav; }
+                } else
+                {
+                    //jumping
+                    if (currentKS.IsKeyDown(Keys.J))
+                    {
+                        velocity.Y = -12f;
+                    }
                 }
             }
 
@@ -75,16 +81,16 @@ namespace ProjectMemoir.Sprites
                 }
 
                 //vertical
-                if (velocity.Y > 0 && checkLeftCol(_s))
+                if (velocity.Y > 0 && checkTopCol(_s))
                 {
-                    velocity.X = 0;
-                    anim.desRect.X = _s.anim.desRect.Left - anim.desRect.Width;
+                    velocity.Y = 0;
+                    anim.desRect.Y = _s.anim.desRect.Top - anim.desRect.Height;
                 }
 
-                if (velocity.X < 0 && checkRightCol(_s))
+                if (velocity.Y < 0 && checkBottomCol(_s))
                 {
-                    velocity.X = 0;
-                    anim.desRect.X = _s.anim.desRect.Right;
+                    velocity.Y = 0;
+                    anim.desRect.Y = _s.anim.desRect.Bottom;
                 }
             }
         }

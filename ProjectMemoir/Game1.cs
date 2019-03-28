@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ProjectMemoir.Sprites;
+using System.Collections.Generic;
 
 namespace ProjectMemoir
 {
@@ -12,7 +14,8 @@ namespace ProjectMemoir
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private Player _player;
+        private Player player;
+        private List<Sprite> spriteList;
         
         public Game1()
         {
@@ -48,9 +51,10 @@ namespace ProjectMemoir
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _player = new Player(Content.Load<Texture2D>("sprite"), new Vector2(0, 0));
 
             // TODO: use this.Content to load your game content here
+            spriteList = new List<Sprite>();
+            spriteList.Add(player = new Player(this.Content, new Vector2(32)));
         }
 
         /// <summary>
@@ -70,7 +74,7 @@ namespace ProjectMemoir
         protected override void Update(GameTime _gameTime)
         {
 
-            _player.Update(_gameTime);
+            player.Update(_gameTime, spriteList);
 
             base.Update(_gameTime);
         }
@@ -86,7 +90,7 @@ namespace ProjectMemoir
 
             spriteBatch.Begin();
 
-            _player.Draw(spriteBatch);
+            player.Draw(spriteBatch);
             
 
             spriteBatch.End();

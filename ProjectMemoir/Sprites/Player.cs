@@ -12,14 +12,17 @@ namespace ProjectMemoir.Sprites
         KeyboardState currentKS;
         float spd = 5f;
         public int hp = 100, maxHp = 100;
-
+        SpriteFont txt;
+        bool g;
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
         {
             anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(32), _pos, 0, Color.Red);
+            txt = _con.Load<SpriteFont>("Font");
         }
 
         public override void  Update(GameTime _gt, List<Sprite> _sl)
         {
+            g = IsGrounded(_sl); 
             currentKS = Keyboard.GetState();
             DebugHealthChange();
             Move(_sl);
@@ -53,8 +56,8 @@ namespace ProjectMemoir.Sprites
             }
 
             if (IsGrounded(_sl)) {
-                if (currentKS.IsKeyDown(Keys.J)) {
-                    velocity.Y = -20f;
+                if (currentKS.IsKeyDown(Keys.W)) {
+                    velocity.Y += -8f;
                 }
             } else
             {
@@ -63,6 +66,10 @@ namespace ProjectMemoir.Sprites
         }
         public override void Draw(SpriteBatch _sb)
         {
+            //text for debugging
+            _sb.DrawString(txt, "Xvel:" + velocity.X, anim.position - new Vector2(0, 35), Color.Black);
+            _sb.DrawString(txt, "Yvel:" + velocity.Y, anim.position - new Vector2(0, 25), Color.Black);
+            _sb.DrawString(txt, "Grounded:" + g, anim.position - new Vector2(0, 15), Color.Black);
             base.Draw(_sb);
         }
     }

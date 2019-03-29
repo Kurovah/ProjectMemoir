@@ -33,19 +33,19 @@ namespace ProjectMemoir.Sprites
         }
         public bool IsGrounded(List<Sprite> _sl)
         {
-            bool ret = false;
             foreach(Sprite _s in _sl)
             {
                 if(_s.GetType() != typeof(Solid)) { continue; }
-                ret = checkTopCol(_s);
-                if (ret) { break; }
+                if (checkGroundCol(_s)) { return true; }
+                
             }
-            return ret;
+            return false;
         }
         public void Collision(List<Sprite> _sl)
         {
             foreach (Sprite _s in _sl)
             {
+                //dont' collide with non solid sprites
                 if (_s.GetType() != typeof(Solid)) { continue; }
                 //lateral
                 if (velocity.X > 0 && checkLeftCol(_s))
@@ -100,12 +100,23 @@ namespace ProjectMemoir.Sprites
                 anim.desRect.Bottom + velocity.Y > _s.anim.desRect.Top
                 ;
         }
+
         public bool checkBottomCol(Sprite _s)
         {
             return anim.desRect.Right > _s.anim.desRect.Left &&
                 anim.desRect.Left < _s.anim.desRect.Right &&
                 anim.desRect.Top + velocity.Y < _s.anim.desRect.Bottom &&
                 anim.desRect.Bottom > _s.anim.desRect.Bottom
+                ;
+        }
+
+        //need this to check for ground
+        public bool checkGroundCol(Sprite _s)
+        {
+            return anim.desRect.Right > _s.anim.desRect.Left &&
+                anim.desRect.Left < _s.anim.desRect.Right &&
+                anim.desRect.Top < _s.anim.desRect.Top &&
+                anim.desRect.Bottom + 1f > _s.anim.desRect.Top
                 ;
         }
         #endregion

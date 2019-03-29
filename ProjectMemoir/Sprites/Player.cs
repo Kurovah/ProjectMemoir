@@ -56,7 +56,7 @@ namespace ProjectMemoir.Sprites
             }
 
             if (IsGrounded(_sl)) {
-                if (currentKS.IsKeyDown(Keys.W)) {
+                if (currentKS.IsKeyDown(Keys.J)) {
                     velocity.Y += -8f;
                 }
             } else

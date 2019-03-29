@@ -10,7 +10,7 @@ namespace ProjectMemoir.Sprites
     public class Sprite
     {
         public Animation anim;
-        public Vector2 velocity;
+        
         public Sprite(ContentManager _con, Vector2 _pos)
         {
             

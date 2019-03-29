@@ -26,8 +26,8 @@ namespace ProjectMemoir
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 640;
-            graphics.PreferredBackBufferHeight = 360;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
 
@@ -61,11 +61,11 @@ namespace ProjectMemoir
             spriteList.Add(player = new Player(this.Content, new Vector2(40)));
             spriteList.Add(den = new DummyEn(this.Content, new Vector2(400,200), player));
             //solids to collide with
-            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(3, 360)));
-            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(640,3)));
-            spriteList.Add(new Solid(this.Content, new Vector2(0,360), new Vector2(640, 3)));
-            spriteList.Add(new Solid(this.Content, new Vector2(640,0), new Vector2(3, 360)));
-            cam = new Cam(player, new Vector2(1000), new Vector2(1000));
+            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(3, 720)));
+            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(1280,3)));
+            spriteList.Add(new Solid(this.Content, new Vector2(0,720), new Vector2(1280, 3)));
+            spriteList.Add(new Solid(this.Content, new Vector2(1280,0), new Vector2(3, 720)));
+            cam = new Cam(player, new Vector2(0,620), new Vector2(0,360));
             hud = new HUD(player, this.Content);
             
         }

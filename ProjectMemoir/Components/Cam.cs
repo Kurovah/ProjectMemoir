@@ -32,8 +32,8 @@ namespace ProjectMemoir.Components
             currentPos.X = MathHelper.Clamp(currentPos.X, camBoundsH.X ,camBoundsH.Y);
             currentPos.Y = MathHelper.Clamp(currentPos.Y, camBoundsV.X, camBoundsV.Y);
             var position = Matrix.CreateTranslation(
-        -targetPos.X - (target.anim.spriteSize.X / 2),
-        -targetPos.Y - (target.anim.spriteSize.Y / 2),
+        -currentPos.X - (target.anim.spriteSize.X / 2),
+        -currentPos.Y - (target.anim.spriteSize.Y / 2),
         0);
 
             var offset = Matrix.CreateTranslation(

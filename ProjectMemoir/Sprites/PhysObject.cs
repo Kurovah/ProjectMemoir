@@ -28,8 +28,8 @@ namespace ProjectMemoir.Sprites
         }
         public  void Applygravity(List<Sprite> _sl)
         {
-            if (!IsGrounded(_sl) && velocity.Y < 12f) {
-                velocity.Y += grav;
+            if (!IsGrounded(_sl)) {
+                if (velocity.Y < 12f) { velocity.Y += grav; }
             }
         }
         public bool IsGrounded(List<Sprite> _sl)

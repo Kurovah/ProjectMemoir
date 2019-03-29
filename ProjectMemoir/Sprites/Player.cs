@@ -52,7 +52,14 @@ namespace ProjectMemoir.Sprites
                 velocity.X = 0;
             }
 
-            if (IsGrounded(_sl) && currentKS.IsKeyDown(Keys.J)) { velocity.Y = -12f; }
+            if (IsGrounded(_sl)) {
+                if (currentKS.IsKeyDown(Keys.J)) {
+                    velocity.Y = -20f;
+                }
+            } else
+            {
+                Applygravity();
+            }
         }
         public override void Draw(SpriteBatch _sb)
         {

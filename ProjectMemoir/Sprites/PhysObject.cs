@@ -17,7 +17,6 @@ namespace ProjectMemoir.Sprites
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-            Applygravity(_sl);
             Collision(_sl);
             anim.position += velocity;
             base.Update(_gt, _sl);
@@ -26,11 +25,11 @@ namespace ProjectMemoir.Sprites
         {
             base.Draw(_sb);
         }
-        public  void Applygravity(List<Sprite> _sl)
+        public  void Applygravity()
         {
-            if (!IsGrounded(_sl)) {
-                if (velocity.Y < 12f) { velocity.Y += grav; }
-            }
+
+           if (velocity.Y < 12f) { velocity.Y += grav; }
+
         }
         public bool IsGrounded(List<Sprite> _sl)
         {

@@ -30,6 +30,10 @@ namespace ProjectMemoir.Sprites
                     velocity.X = 0;
                     break;
             }
+            if (!IsGrounded(_sl))
+            {
+                Applygravity();
+            }
             base.Update(_gt, _sl);
         }
         public float distanceToTarget()

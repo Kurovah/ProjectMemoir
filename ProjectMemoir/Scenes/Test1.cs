@@ -14,7 +14,7 @@ namespace ProjectMemoir.Scenes
         private DummyEn den;
         private Cam cam;
         private HUD hud;
-        private List<Sprite> spriteList;
+        
 
         public Test1(Game1 _game, ContentManager _con):base(_game, _con)
         {
@@ -37,8 +37,11 @@ namespace ProjectMemoir.Scenes
 
         public override void Update(GameTime _gt)
         {
-            player.Update(_gt, spriteList);
-            den.Update(_gt, spriteList);
+            checkToRemoveSprite();
+            foreach (Sprite _s in spriteList)
+            {
+                _s.Update(_gt, spriteList);
+            }
             cam.Update(_gt);
             hud.Update(_gt);
         }

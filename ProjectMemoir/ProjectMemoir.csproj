@@ -46,6 +46,10 @@
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\Test1.cs" />
     <Compile Include="Sprites\Animation.cs" />
+    <Compile Include="Sprites\Enemies\Charger.cs" />
+    <Compile Include="Sprites\Enemies\Prowler.cs" />
+    <Compile Include="Sprites\Enemies\Sentry.cs" />
+    <Compile Include="Sprites\Enemies\SentryProjectile.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Input.cs" />

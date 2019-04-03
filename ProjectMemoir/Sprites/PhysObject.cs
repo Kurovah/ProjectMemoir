@@ -9,8 +9,8 @@ namespace ProjectMemoir.Sprites
 {
     public class PhysObject:Sprite
     {
-        float grav = 0.35f;
-        public Vector2 velocity, targetVelocity;
+        protected float grav = 0.35f;
+        public Vector2 velocity;
         public PhysObject(ContentManager _con, Vector2 _pos) : base(_con, _pos)
         {
             velocity = new Vector2(0);

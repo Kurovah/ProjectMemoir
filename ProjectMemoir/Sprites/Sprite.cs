@@ -10,10 +10,10 @@ namespace ProjectMemoir.Sprites
     public class Sprite
     {
         public Animation anim;
-        
+        public bool isVisible;
         public Sprite(ContentManager _con, Vector2 _pos)
         {
-            
+            isVisible = true;
         }
 
         public virtual void Update(GameTime _gt, List<Sprite> _sl)

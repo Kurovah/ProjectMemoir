@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Components\Cam.cs" />
     <Compile Include="Components\HUD.cs" />
+    <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scenes\Test1.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Game1.cs" />

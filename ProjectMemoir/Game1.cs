@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using ProjectMemoir.Sprites;
 using ProjectMemoir.Components;
 using System.Collections.Generic;
+using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir
 {
@@ -15,12 +16,10 @@ namespace ProjectMemoir
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private Player player;
-        private DummyEn den;
-        private Cam cam;
-        private HUD hud;
-        private List<Sprite> spriteList;
         
+
+        public Scene currentScene, nextScene;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -57,16 +56,9 @@ namespace ProjectMemoir
 
 
             // TODO: use this.Content to load your game content here
-            spriteList = new List<Sprite>();
-            spriteList.Add(player = new Player(this.Content, new Vector2(40)));
-            spriteList.Add(den = new DummyEn(this.Content, new Vector2(400,200), player));
-            //solids to collide with
-            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(3, 720)));
-            spriteList.Add(new Solid(this.Content, new Vector2(0), new Vector2(1280,3)));
-            spriteList.Add(new Solid(this.Content, new Vector2(0,720), new Vector2(1280, 3)));
-            spriteList.Add(new Solid(this.Content, new Vector2(1280,0), new Vector2(3, 720)));
-            cam = new Cam(player, new Vector2(0,620), new Vector2(0,360));
-            hud = new HUD(player, this.Content);
+            currentScene = new Test1(this, this.Content);
+            currentScene.Load();
+            
             
         }
 
@@ -86,11 +78,14 @@ namespace ProjectMemoir
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime _gameTime)
         {
+            if(nextScene != null)
+            {
+                currentScene = nextScene;
+                currentScene.Load();
+                nextScene = null;
+            }
 
-            player.Update(_gameTime, spriteList);
-            den.Update(_gameTime, spriteList);
-            cam.Update(_gameTime);
-            hud.Update(_gameTime);
+            currentScene.Update(_gameTime);
             base.Update(_gameTime);
         }
 
@@ -101,16 +96,7 @@ namespace ProjectMemoir
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(transformMatrix: cam.trans);
-            foreach(Sprite _s in spriteList) {
-                _s.Draw(spriteBatch);
-            }
-            spriteBatch.End();
-
-            //so the HUD isn't moved by the trans matrix
-            spriteBatch.Begin();
-            hud.Draw(spriteBatch);
-            spriteBatch.End();
+            currentScene.Draw(spriteBatch, gameTime);
 
             base.Draw(gameTime);
         }

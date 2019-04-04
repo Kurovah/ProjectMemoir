@@ -12,7 +12,7 @@ namespace ProjectMemoir.Scenes
     public class Test1:Scene
     {
         private Player player;
-        private Sentry sen;
+        private Charger sen;
         private Cam cam;
         private HUD hud;
         
@@ -27,7 +27,7 @@ namespace ProjectMemoir.Scenes
             spriteList = new List<Sprite>();
             spriteList.Add(player = new Player(this.con, new Vector2(40)));
             //spriteList.Add(den = new DummyEn(this.con, new Vector2(400, 200), player));
-            spriteList.Add(sen = new Sentry(this.con, new Vector2(400, 400), player));
+            spriteList.Add(sen = new Charger(this.con, new Vector2(400, 400), player));
             //solids to collide with
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(3, 720)));
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1280, 3)));

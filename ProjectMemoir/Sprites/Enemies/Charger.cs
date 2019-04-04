@@ -22,7 +22,7 @@ namespace ProjectMemoir.Sprites.Enemies
         public Charger(ContentManager _con, Vector2 _pos, Player _target) :base(_con, _pos)
         {
             target = _target;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(128), new Vector2(32), _pos, 0, Color.Maroon);
+            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(50), new Vector2(32), _pos, 0, Color.Maroon);
             charge = 500;
             currentState = States.idle;
             facing = 1;

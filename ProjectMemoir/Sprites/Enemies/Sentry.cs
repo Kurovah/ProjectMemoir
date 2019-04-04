@@ -9,11 +9,11 @@ namespace ProjectMemoir.Sprites.Enemies
     class Sentry:PhysObject
     {
         bool isAlert;
-        Sprite target;
+        Player target;
         float delay = 500;
         ContentManager con;
         List<SentryProjectile> spl;
-        public Sentry(ContentManager _con, Vector2 _pos, Sprite _target) : base(_con, _pos)
+        public Sentry(ContentManager _con, Vector2 _pos, Player _target) : base(_con, _pos)
         {
             grav = 0;
             isAlert = false;
@@ -31,11 +31,11 @@ namespace ProjectMemoir.Sprites.Enemies
                 case true:
                     if (delay > 0)
                     {
-                        delay -= 100;
+                        delay -= 10f;
                     } else
                     {
                         anim.col = Color.Red;
-                        spl.Add(new SentryProjectile(con, anim.position, new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.15f));
+                        spl.Add(new SentryProjectile(con, anim.position, new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
                         delay = 500;
                     }
                     break;

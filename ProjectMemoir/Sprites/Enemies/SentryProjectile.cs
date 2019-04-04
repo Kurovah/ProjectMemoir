@@ -10,25 +10,30 @@ namespace ProjectMemoir.Sprites.Enemies
 {
     public class SentryProjectile:PhysObject
     {
-        public SentryProjectile(ContentManager _con, Vector2 _pos, Vector2 _vel) :base(_con, _pos)
+        Player target;
+        public SentryProjectile(ContentManager _con, Vector2 _pos, Vector2 _vel, Player _target) :base(_con, _pos)
         {
             grav = 0;
             velocity = _vel;
+            target = _target;
             anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(10), _pos, 0, Color.PaleVioletRed);
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-            foreach(Player _s in _sl)
+
+            if (anim.desRect.Intersects(target.anim.desRect))
             {
-                if(_s.GetType() != typeof(Player))
-                {
-                    if (anim.desRect.Intersects(_s.anim.desRect))
-                    {
-                        _s.hp -= 5;
-                        isVisible = false;
-                    }
-                }
+                target.hp -= 5;
+                isVisible = false;
+            }
+
+            //destroy if you touch a solid
+            foreach(Sprite _s in _sl)
+            {
+                if(_s.GetType() != typeof(Solid)) { continue; }
+                if (checkLeftCol(_s) || checkRightCol(_s) || checkTopCol(_s) || checkBottomCol(_s))
+                    isVisible = false;
             }
             base.Update(_gt, _sl);
         }

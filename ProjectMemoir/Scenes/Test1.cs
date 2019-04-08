@@ -37,7 +37,7 @@ namespace ProjectMemoir.Scenes
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1280, 32)));
             spriteList.Add(new Solid(this.con, new Vector2(0, 720), new Vector2(1280, 32)));
             spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 720)));
-            spriteList.Add(new SceneChanger(this.con, new Vector2(1000,720),player,this.game, "s", new Vector2(32,720)));
+            spriteList.Add(new SceneChanger(this.con, new Vector2(1000,630),player,this.game, "s", new Vector2(32,630)));
             cam = new Cam(player, new Vector2(0, 620), new Vector2(0, 360));
             hud = new HUD(player, this.con);
         }

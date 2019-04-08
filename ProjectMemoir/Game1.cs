@@ -56,7 +56,7 @@ namespace ProjectMemoir
 
 
             // TODO: use this.Content to load your game content here
-            currentScene = new Test1(this, this.Content, new Vector2(32, 718));
+            currentScene = new Test1(this, this.Content, new Vector2(32, 630));
             currentScene.Load();
             
             

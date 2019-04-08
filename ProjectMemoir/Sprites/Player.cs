@@ -24,20 +24,8 @@ namespace ProjectMemoir.Sprites
         {
             g = IsGrounded(_sl); 
             currentKS = Keyboard.GetState();
-            DebugHealthChange();
             Move(_sl);
             base.Update(_gt, _sl);
-        }
-        public void DebugHealthChange()
-        {
-            if (currentKS.IsKeyDown(Keys.I))
-            {
-                hp -= 1;
-            }
-            if (currentKS.IsKeyDown(Keys.O))
-            {
-                hp += 1;
-            }
         }
         public void Move(List<Sprite> _sl)
         {

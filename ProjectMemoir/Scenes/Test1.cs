@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using ProjectMemoir.Sprites;
 using ProjectMemoir.Sprites.Enemies;
 using ProjectMemoir.Components;
@@ -16,10 +17,13 @@ namespace ProjectMemoir.Scenes
         private Cam cam;
         private HUD hud;
         private Vector2 newPos;
+        private bool pause;
+        private KeyboardState currentK, lastK;
 
         public Test1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con)
         {
             newPos = _playerpos;
+            pause = false;
         }
 
         public override void Load()
@@ -29,10 +33,10 @@ namespace ProjectMemoir.Scenes
             //spriteList.Add(den = new DummyEn(this.con, new Vector2(400, 200), player));
             spriteList.Add(sen = new Charger(this.con, new Vector2(400, 400), player));
             //solids to collide with
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(3, 720)));
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1280, 3)));
-            spriteList.Add(new Solid(this.con, new Vector2(0, 720), new Vector2(1280, 3)));
-            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(3, 720)));
+            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 720)));
+            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1280, 32)));
+            spriteList.Add(new Solid(this.con, new Vector2(0, 720), new Vector2(1280, 32)));
+            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 720)));
             spriteList.Add(new SceneChanger(this.con, new Vector2(1000,720),player,this.game, "s", new Vector2(32,720)));
             cam = new Cam(player, new Vector2(0, 620), new Vector2(0, 360));
             hud = new HUD(player, this.con);
@@ -40,14 +44,20 @@ namespace ProjectMemoir.Scenes
 
         public override void Update(GameTime _gt)
         {
-            
-            foreach (Sprite _s in spriteList)
+            currentK = Keyboard.GetState();
+            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause;}//if P is "pressed" pause the game 
+            if (!pause)
             {
-                _s.Update(_gt, spriteList);
+                foreach (Sprite _s in spriteList)
+                {
+                    _s.Update(_gt, spriteList);
+                }
+                checkToRemoveSprite();
+                cam.Update(_gt);
+                hud.Update(_gt);
             }
-            checkToRemoveSprite();
-            cam.Update(_gt);
-            hud.Update(_gt);
+
+            lastK = currentK;
         }
 
         public override void Draw(SpriteBatch _sb, GameTime _gt)
@@ -62,7 +72,11 @@ namespace ProjectMemoir.Scenes
             //so the HUD isn't moved by the trans matrix
             _sb.Begin();
                 hud.Draw(_sb);
+                if (pause) {
+                //the black background
+                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black*0.75f); }
             _sb.End();
+
         }
     }
 }

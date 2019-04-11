@@ -12,6 +12,7 @@ namespace ProjectMemoir.Scenes
         protected Game1 game;
         protected ContentManager con;
         public List<Sprite> spriteList;
+        public bool pause;
         protected Scene(Game1 _game, ContentManager _con)
         {
             con = _con;

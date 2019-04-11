@@ -19,22 +19,20 @@ namespace ProjectMemoir.Scenes
         private Cam cam;
         private HUD hud;
         private Vector2 newPos;
-        private bool pause;
         private KeyboardState currentK, lastK;
+        PauseMenu pmenu;
 
         public Test1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con)
         {
             newPos = _playerpos;
             pause = false;
+            pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), _game, this);
         }
 
         public override void Load()
         {
             spriteList = new List<Sprite>();
             spriteList.Add(player = new Player(this.con, newPos));
-            //spriteList.Add(den = new DummyEn(this.con, new Vector2(400, 200), player));
-            //spriteList.Add(sen = new Charger(this.con, new Vector2(400, 400), player));
-            //spriteList.Add(en = new Sentry(this.con, new Vector2(400, 500), player));
             spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
             //solids to collide with
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 720)));
@@ -59,6 +57,9 @@ namespace ProjectMemoir.Scenes
                 checkToRemoveSprite();
                 cam.Update(_gt);
                 hud.Update(_gt);
+            } else
+            {
+                pmenu.Update(_gt);
             }
 
             lastK = currentK;
@@ -78,7 +79,10 @@ namespace ProjectMemoir.Scenes
                 hud.Draw(_sb);
                 if (pause) {
                 //the black background
-                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black*0.75f); }
+                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black*0.75f);
+                //draw Pause menu
+                pmenu.Draw(_sb);
+                }
             _sb.End();
 
         }

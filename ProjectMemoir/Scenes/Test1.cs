@@ -13,8 +13,8 @@ namespace ProjectMemoir.Scenes
     public class Test1:Scene
     {
         private Player player;
-        private Charger sen;
-        private Sentry en;
+       // private Charger sen;
+       // private Sentry en;
         private Prowler pro;
         private Cam cam;
         private HUD hud;

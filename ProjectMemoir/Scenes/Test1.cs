@@ -14,6 +14,8 @@ namespace ProjectMemoir.Scenes
     {
         private Player player;
         private Charger sen;
+        private Sentry en;
+        private Prowler pro;
         private Cam cam;
         private HUD hud;
         private Vector2 newPos;
@@ -31,7 +33,9 @@ namespace ProjectMemoir.Scenes
             spriteList = new List<Sprite>();
             spriteList.Add(player = new Player(this.con, newPos));
             //spriteList.Add(den = new DummyEn(this.con, new Vector2(400, 200), player));
-            spriteList.Add(sen = new Charger(this.con, new Vector2(400, 400), player));
+            //spriteList.Add(sen = new Charger(this.con, new Vector2(400, 400), player));
+            //spriteList.Add(en = new Sentry(this.con, new Vector2(400, 500), player));
+            spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
             //solids to collide with
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 720)));
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1280, 32)));

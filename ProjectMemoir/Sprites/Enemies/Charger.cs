@@ -22,8 +22,8 @@ namespace ProjectMemoir.Sprites.Enemies
         public Charger(ContentManager _con, Vector2 _pos, Player _target) :base(_con, _pos)
         {
             target = _target;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(50), new Vector2(32), _pos, 0, Color.Maroon);
-            charge = 500;
+            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(50), new Vector2(32), _pos, 0, Color.Aqua);
+            charge = 400;
             currentState = States.idle;
             facing = 1;
         }
@@ -34,11 +34,13 @@ namespace ProjectMemoir.Sprites.Enemies
             {
                 case States.idle:
 
+                    anim.col = Color.Aqua;
                     if (distanceToTarget() < 400f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f) {
                         facing = Math.Sign(target.anim.position.X - anim.position.X); currentState = States.chargeup;
                     }
                     break;
                 case States.chargeup:
+                    anim.col = Color.Maroon;
                     if(charge > 0)
                     {
                         charge -= 15;
@@ -48,7 +50,8 @@ namespace ProjectMemoir.Sprites.Enemies
                     }
                     break;
                 case States.charging:
-                    velocity.X = facing*50f;
+                    anim.col = Color.Red;
+                    velocity.X = facing*20f;
 
                     
                     foreach(Sprite _s in _sl)

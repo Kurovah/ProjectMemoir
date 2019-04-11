@@ -37,8 +37,8 @@ namespace ProjectMemoir.Components
         0);
 
             var offset = Matrix.CreateTranslation(
+                500,
                 320,
-                180,
                 0);
 
             trans = position * offset;

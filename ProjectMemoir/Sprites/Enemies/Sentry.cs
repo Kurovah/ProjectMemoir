@@ -40,6 +40,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     }
                     break;
                 case false:
+                    anim.col = Color.Aqua;
                     delay = 500;
                     break;
             }

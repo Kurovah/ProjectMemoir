@@ -15,7 +15,7 @@ namespace ProjectMemoir.Components
         List<Animation> tiles;
         public bool active = true;
         Texture2D tex;
-        Vector2 tSize;
+        Vector2 tSize,texCoord;
         public Autotiler(ContentManager _con, String _tileset,Vector2 _roomsize)
         {
             roomSize = _roomsize;
@@ -38,14 +38,112 @@ namespace ProjectMemoir.Components
                         //check to see if a solid is being touched
                         foreach (Sprite _s in _sl)
                         {
+                            int bw = 0;
                             if (_s.GetType() != typeof(Solid)) { continue; }
                             if (checkRect.Intersects(_s.anim.desRect))
                             {
-                                tiles.Add(new Animation(tex, tSize, tSize, new Vector2(j, i), 0, Color.White));
+                                //check again for bw calc to get the new tile
+                                #region checksides for bitwise collisions
+                                foreach (Sprite _s2 in _sl)
+                                {
+                                    if (_s2.GetType() != typeof(Solid)) { continue; }
+                                    Rectangle Checkrect2 = new Rectangle(checkRect.X, checkRect.Y, tilesize, tilesize);
+                                    #region side checks
+                                    //left side
+                                    Checkrect2.X = checkRect.X - 32;
+                                    Checkrect2.Y = checkRect.Y;
+                                    if (Checkrect2.Intersects(_s2.anim.desRect))
+                                    {
+                                        bw += 2;
+                                    }//right side
+                                    Checkrect2.X = checkRect.X + 32;
+                                    Checkrect2.Y = checkRect.Y;
+                                    if (Checkrect2.Intersects(_s2.anim.desRect))
+                                    {
+                                        bw += 4;
+                                    }
+                                    //up side
+                                    Checkrect2.X = checkRect.X ;
+                                    Checkrect2.Y = checkRect.Y - 32;
+                                    if (Checkrect2.Intersects(_s2.anim.desRect))
+                                    {
+                                        bw += 1;
+                                    }
+                                    //down side
+                                    Checkrect2.X = checkRect.X;
+                                    Checkrect2.Y = checkRect.Y+32;
+                                    if (Checkrect2.Intersects(_s2.anim.desRect))
+                                    {
+                                        bw += 8;
+                                    }
+                                    #endregion
+                                }
+                                #endregion
+                                #region create tex coord depending on bw calculation
+                                switch (bw)
+                                {
+                                    case 0:
+                                        texCoord = new Vector2(96);
+                                        break;
+                                    case 1:
+                                        texCoord = new Vector2(96,64);
+                                        break;
+                                    case 2:
+                                        texCoord = new Vector2(64,96);
+                                        break;
+                                    case 3:
+                                        texCoord = new Vector2(64);
+                                        break;
+                                    case 4:
+                                        texCoord = new Vector2(0,96);
+                                        break;
+                                    case 5:
+                                        texCoord = new Vector2(0,64);
+                                        break;
+                                    case 6:
+                                        texCoord = new Vector2(32,96);
+                                        break;
+                                    case 7:
+                                        texCoord = new Vector2(32,64);
+                                        break;
+                                    case 8:
+                                        texCoord = new Vector2(96,0);
+                                        break;
+                                    case 9:
+                                        texCoord = new Vector2(96,32);
+                                        break;
+                                    case 10:
+                                        texCoord = new Vector2(64,0);
+                                        break;
+                                    case 11:
+                                        texCoord = new Vector2(64,32);
+                                        break;
+                                    case 12:
+                                        texCoord = new Vector2(0);
+                                        break;
+                                    case 13:
+                                        texCoord = new Vector2(0,32);
+                                        break;
+                                    case 14:
+                                        texCoord = new Vector2(32,0);
+                                        break;
+                                    case 15:
+                                        texCoord = new Vector2(32);
+                                        break;
+                                }
+                                #endregion
+                                Animation a = new Animation(tex, tSize, tSize, new Vector2(j, i), 0, Color.White);
+                                a.sourcePos = texCoord;
+                                tiles.Add(a);
                             }
                         }
                     }
                 }
+            }
+            //update the tiles so that they are the correct sprites
+            foreach (Animation _a in tiles)
+            {
+                _a.Update(_gt);
             }
             //when finished show that
             active = false;

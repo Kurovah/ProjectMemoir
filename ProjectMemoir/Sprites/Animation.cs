@@ -8,7 +8,7 @@ namespace ProjectMemoir.Sprites
     public class Animation
     {
         public Rectangle sourceRect, desRect;
-        public Vector2 spriteSize, sourcesize ,position;
+        public Vector2 spriteSize, sourcesize ,position, sourcePos;
         public int frames;
         public float delay = 15f;
         public Texture2D tex;
@@ -21,12 +21,14 @@ namespace ProjectMemoir.Sprites
             position = _position;
             col = _col;
             sourcesize = _sourceSize;
+            sourcePos = new Vector2(0);
             //rememeber the change source rects xy to 0 0
-            sourceRect = new Rectangle(32,0, (int)sourcesize.X, (int)sourcesize.Y);
+            sourceRect = new Rectangle((int)sourcePos.X,(int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);
         }
         public void Update(GameTime _gt)
         {
+            sourceRect = new Rectangle((int)sourcePos.X, (int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);
         }
 

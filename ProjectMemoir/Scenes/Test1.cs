@@ -35,12 +35,12 @@ namespace ProjectMemoir.Scenes
         {
             spriteList = new List<Sprite>();
             spriteList.Add(player = new Player(this.con, newPos));
-            spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
+            //spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
             //solids to collide with
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 736)));
+            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 768)));
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1312, 32)));
-            spriteList.Add(new Solid(this.con, new Vector2(0, 704), new Vector2(1312, 64)));
-            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 736)));
+            spriteList.Add(new Solid(this.con, new Vector2(0, 768), new Vector2(1312, 128)));
+            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 768)));
             spriteList.Add(new SceneChanger(this.con, new Vector2(1000,630),player,this.game, "s", new Vector2(32,630)));
             
             hud = new HUD(player, this.con);
@@ -48,19 +48,23 @@ namespace ProjectMemoir.Scenes
             //checking the size of the room
             foreach(Sprite _s in spriteList)
             {
-                if(roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X; }
-                if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y; }
+                if(roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X-16; }
+                if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y-16; }
             }
             //put anything that's dependant on the roomsize here
-            cam = new Cam(player, new Vector2(game.GraphicsDevice.Viewport.Width/2,roomSize.X/2), 
-                                  new Vector2(game.GraphicsDevice.Viewport.Height/2, roomSize.Y/2));
-            at = new Autotiler(con, "TileTemplate", roomSize);
+            cam = new Cam(player, new Vector2(game.GraphicsDevice.Viewport.Width/2-16,roomSize.X- game.GraphicsDevice.Viewport.Width / 2), 
+                                  new Vector2(game.GraphicsDevice.Viewport.Height/2-16, roomSize.Y - game.GraphicsDevice.Viewport.Height / 2));
+            at = new Autotiler(con, "VillageTiles", roomSize);
             
         }
 
         public override void Update(GameTime _gt)
         {
-            at.Update(_gt, spriteList);
+            //nothing moves while the level is being tiled
+            while (at.active)
+            {
+                at.Update(_gt, spriteList);
+            }
             currentK = Keyboard.GetState();
             if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause;}//if P is "pressed" pause the game 
             if (!pause)

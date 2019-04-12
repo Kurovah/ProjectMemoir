@@ -21,6 +21,7 @@ namespace ProjectMemoir.Scenes
         private Vector2 newPos;
         private KeyboardState currentK, lastK;
         PauseMenu pmenu;
+        Autotiler at;
 
         public Test1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con)
         {
@@ -36,10 +37,10 @@ namespace ProjectMemoir.Scenes
             spriteList.Add(player = new Player(this.con, newPos));
             spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
             //solids to collide with
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 720)));
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1280, 32)));
-            spriteList.Add(new Solid(this.con, new Vector2(0, 720), new Vector2(1280, 32)));
-            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 720)));
+            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 736)));
+            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1312, 32)));
+            spriteList.Add(new Solid(this.con, new Vector2(0, 704), new Vector2(1312, 64)));
+            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 736)));
             spriteList.Add(new SceneChanger(this.con, new Vector2(1000,630),player,this.game, "s", new Vector2(32,630)));
             
             hud = new HUD(player, this.con);
@@ -53,10 +54,13 @@ namespace ProjectMemoir.Scenes
             //put anything that's dependant on the roomsize here
             cam = new Cam(player, new Vector2(game.GraphicsDevice.Viewport.Width/2,roomSize.X/2), 
                                   new Vector2(game.GraphicsDevice.Viewport.Height/2, roomSize.Y/2));
+            at = new Autotiler(con, "TileTemplate", roomSize);
+            
         }
 
         public override void Update(GameTime _gt)
         {
+            at.Update(_gt, spriteList);
             currentK = Keyboard.GetState();
             if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause;}//if P is "pressed" pause the game 
             if (!pause)
@@ -83,6 +87,7 @@ namespace ProjectMemoir.Scenes
             {
                 _s.Draw(_sb);
             }
+            at.Draw(_sb);
             _sb.End();
 
             //so the HUD isn't moved by the trans matrix

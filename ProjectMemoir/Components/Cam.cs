@@ -8,16 +8,16 @@ namespace ProjectMemoir.Components
     {
         public Sprite target;
         public Matrix trans;
-        public Vector2 targetPos, currentPos, camBoundsH, camBoundsV;
-        public Cam(Sprite _target, Vector2 _camBoundsH, Vector2 _camBoundsV)
+        public Vector2 targetPos, currentPos, camMax,screenSize;
+        float zoom = 1.5f;
+        public Cam(Sprite _target, Vector2 _camMax, Vector2 _camSize)
         {
             target = _target;
-            targetPos = new Vector2(target.anim.position.X, target.anim.position.Y);
-            currentPos = new Vector2(target.anim.position.X, target.anim.position.Y);
-
+            targetPos = new Vector2(target.anim.position.X , target.anim.position.Y );
+            currentPos = new Vector2(target.anim.position.X , target.anim.position.Y );
+            screenSize = _camSize;
             //note that the cam is at the BOTTOM LEFT of the screen so the min is room size + screen width and the max size is the room width
-            camBoundsH = _camBoundsH;
-            camBoundsV = _camBoundsV;
+            camMax = _camMax;
         }
         private float Lerp(float x1, float x2, float i)
         {
@@ -26,26 +26,23 @@ namespace ProjectMemoir.Components
         public void Update(GameTime gt)
         {
             //changing the target position
-            targetPos = new Vector2(target.anim.position.X, target.anim.position.Y);
-            double dis = Math.Sqrt((Math.Pow(Math.Abs(targetPos.X - currentPos.X), 2) + Math.Pow(Math.Abs(targetPos.Y - currentPos.Y),2)));
+            targetPos = new Vector2(target.anim.position.X + target.anim.spriteSize.X/2, target.anim.position.Y + target.anim.spriteSize.Y / 2) ;
+            double dis = Math.Sqrt((Math.Pow(Math.Abs(targetPos.X - currentPos.X), 2) + 
+                Math.Pow(Math.Abs(targetPos.Y - currentPos.Y),2)));
 
             //moving the current position the match the player's position
-            if (dis >= 5) { currentPos = new Vector2(Lerp(currentPos.X, targetPos.X, 0.1f), Lerp(currentPos.Y, targetPos.Y, 0.1f)); }
+            if (dis >= 2) { currentPos = new Vector2(Lerp(currentPos.X, targetPos.X, 0.1f), Lerp(currentPos.Y, targetPos.Y, 0.1f)) ; }
 
             //setting the camera bounds
-            currentPos.X = MathHelper.Clamp(currentPos.X, camBoundsH.X ,camBoundsH.Y);
-            currentPos.Y = MathHelper.Clamp(currentPos.Y, camBoundsV.X, camBoundsV.Y);
-            var position = Matrix.CreateTranslation(
-        -currentPos.X - (target.anim.spriteSize.X / 2),
-        -currentPos.Y - (target.anim.spriteSize.Y / 2),
-        0);
+            currentPos.X = MathHelper.Clamp(currentPos.X , screenSize.X / (2*zoom), camMax.X - screenSize.X / (2 * zoom));
+            currentPos.Y = MathHelper.Clamp(currentPos.Y , screenSize.Y / (2*zoom), camMax.Y - screenSize.Y/(2*zoom));
+            //new
+            trans = Matrix.CreateTranslation(new Vector3(-currentPos.X, -currentPos.Y, 0)) *
+                Matrix.CreateScale(new Vector3(zoom, zoom, 0))*
+                Matrix.CreateTranslation(new Vector3(screenSize.X/2, screenSize.Y/2, 0));
+                
 
-            var offset = Matrix.CreateTranslation(
-                640,
-                360,
-                0);
-
-            trans = position * offset;
+           
         }
     }
 }

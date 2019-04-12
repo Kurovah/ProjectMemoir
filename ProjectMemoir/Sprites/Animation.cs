@@ -9,7 +9,7 @@ namespace ProjectMemoir.Sprites
     {
         public Rectangle sourceRect, desRect;
         public Vector2 spriteSize, sourcesize ,position, sourcePos;
-        public int frames;
+        public int frames,currentframe;
         public float delay = 15f;
         public Texture2D tex;
         public Color col;
@@ -28,8 +28,28 @@ namespace ProjectMemoir.Sprites
         }
         public void Update(GameTime _gt)
         {
+            if (frames > 0)
+            {
+                Animate();
+            }
             sourceRect = new Rectangle((int)sourcePos.X, (int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);
+        }
+        private void Animate()
+        {
+            if (delay == 0)
+            {
+                if (currentframe < frames)
+                {
+                    currentframe++;
+                }
+                else
+                {
+                    currentframe = 0;
+                }
+            }
+            else { delay -= 0.5f; }
+            sourcePos.X = spriteSize.X * currentframe;
         }
 
         public void Draw(SpriteBatch _sb)

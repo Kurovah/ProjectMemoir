@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using ProjectMemoir.Sprites;
+using ProjectMemoir.Components;
 
 namespace ProjectMemoir.Scenes
 {
@@ -11,6 +12,7 @@ namespace ProjectMemoir.Scenes
     {
         protected Game1 game;
         protected ContentManager con;
+        public Cam cam;
         public List<Sprite> spriteList;
         public bool pause;
         public Vector2 roomSize;

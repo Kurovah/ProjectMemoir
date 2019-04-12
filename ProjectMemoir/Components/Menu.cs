@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectMemoir.Sprites;
 using ProjectMemoir.Scenes;
+using ProjectMemoir.Components;
 
 namespace ProjectMemoir.Components
 {
@@ -65,6 +66,10 @@ namespace ProjectMemoir.Components
                 _sb.DrawString(txt, _s, startPos + new Vector2(30, P*32), Color.White);
                 P++;
             }
+            _sb.DrawString(txt, "CamB Max X:" + scene.cam.camMax.X + " CamB Max Y:" + scene.cam.camMax.Y,
+                                startPos + new Vector2(10, 5 * 32), 
+                                Color.White);
+            _sb.DrawString(txt, "Cam X:" + scene.cam.currentPos.X+ "Cam Y:" + scene.cam.currentPos.Y, startPos + new Vector2(10, 6 * 32), Color.White);
             _sb.DrawString(txt, "Roomsize X:" + scene.roomSize.X+" Y:" + scene.roomSize.Y, startPos + new Vector2(10, 7 * 32), Color.White);
             _sb.DrawString(txt, "Pos:"+pos, startPos + new Vector2(10, 8 * 32), Color.White);
             pointer.Draw(_sb);

@@ -16,7 +16,7 @@ namespace ProjectMemoir.Sprites
         bool g;
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
         {
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(32), _pos, 0, Color.Red);
+            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(64), new Vector2(32), _pos, 0, Color.Red);
             txt = _con.Load<SpriteFont>("Font");
         }
 
@@ -56,6 +56,8 @@ namespace ProjectMemoir.Sprites
         public override void Draw(SpriteBatch _sb)
         {
             //text for debugging
+            _sb.DrawString(txt, "XPos:" + anim.position.X, anim.position - new Vector2(0, 55), Color.Black);
+            _sb.DrawString(txt, "YPos:" + anim.position.Y, anim.position - new Vector2(0, 45), Color.Black);
             _sb.DrawString(txt, "Xvel:" + velocity.X, anim.position - new Vector2(0, 35), Color.Black);
             _sb.DrawString(txt, "Yvel:" + velocity.Y, anim.position - new Vector2(0, 25), Color.Black);
             _sb.DrawString(txt, "Grounded:" + g, anim.position - new Vector2(0, 15), Color.Black);

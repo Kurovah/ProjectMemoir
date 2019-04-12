@@ -65,6 +65,7 @@ namespace ProjectMemoir.Components
                 _sb.DrawString(txt, _s, startPos + new Vector2(30, P*32), Color.White);
                 P++;
             }
+            _sb.DrawString(txt, "Roomsize X:" + scene.roomSize.X+" Y:" + scene.roomSize.Y, startPos + new Vector2(10, 7 * 32), Color.White);
             _sb.DrawString(txt, "Pos:"+pos, startPos + new Vector2(10, 8 * 32), Color.White);
             pointer.Draw(_sb);
         }

@@ -52,3 +52,7 @@ C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\obj\x86\Debug\Pr
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.csproj.CopyComplete
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.exe
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.pdb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\hellscape.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\Icetileset.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\TileTemplate.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\VillageTiles.xnb

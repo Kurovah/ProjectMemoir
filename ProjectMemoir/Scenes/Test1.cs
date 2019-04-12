@@ -27,6 +27,7 @@ namespace ProjectMemoir.Scenes
             newPos = _playerpos;
             pause = false;
             pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), _game, this);
+            roomSize = new Vector2(0);
         }
 
         public override void Load()
@@ -40,8 +41,18 @@ namespace ProjectMemoir.Scenes
             spriteList.Add(new Solid(this.con, new Vector2(0, 720), new Vector2(1280, 32)));
             spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 720)));
             spriteList.Add(new SceneChanger(this.con, new Vector2(1000,630),player,this.game, "s", new Vector2(32,630)));
-            cam = new Cam(player, new Vector2(0, 620), new Vector2(0, 360));
+            
             hud = new HUD(player, this.con);
+
+            //checking the size of the room
+            foreach(Sprite _s in spriteList)
+            {
+                if(roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X; }
+                if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y; }
+            }
+            //put anything that's dependant on the roomsize here
+            cam = new Cam(player, new Vector2(game.GraphicsDevice.Viewport.Width/2,roomSize.X/2), 
+                                  new Vector2(game.GraphicsDevice.Viewport.Height/2, roomSize.Y/2));
         }
 
         public override void Update(GameTime _gt)

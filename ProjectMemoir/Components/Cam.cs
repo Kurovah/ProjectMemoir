@@ -14,6 +14,8 @@ namespace ProjectMemoir.Components
             target = _target;
             targetPos = new Vector2(target.anim.position.X, target.anim.position.Y);
             currentPos = new Vector2(target.anim.position.X, target.anim.position.Y);
+
+            //note that the cam is at the BOTTOM LEFT of the screen so the min is room size + screen width and the max size is the room width
             camBoundsH = _camBoundsH;
             camBoundsV = _camBoundsV;
         }
@@ -26,8 +28,10 @@ namespace ProjectMemoir.Components
             //changing the target position
             targetPos = new Vector2(target.anim.position.X, target.anim.position.Y);
             double dis = Math.Sqrt((Math.Pow(Math.Abs(targetPos.X - currentPos.X), 2) + Math.Pow(Math.Abs(targetPos.Y - currentPos.Y),2)));
+
             //moving the current position the match the player's position
             if (dis >= 5) { currentPos = new Vector2(Lerp(currentPos.X, targetPos.X, 0.1f), Lerp(currentPos.Y, targetPos.Y, 0.1f)); }
+
             //setting the camera bounds
             currentPos.X = MathHelper.Clamp(currentPos.X, camBoundsH.X ,camBoundsH.Y);
             currentPos.Y = MathHelper.Clamp(currentPos.Y, camBoundsV.X, camBoundsV.Y);
@@ -37,8 +41,8 @@ namespace ProjectMemoir.Components
         0);
 
             var offset = Matrix.CreateTranslation(
-                500,
-                320,
+                640,
+                360,
                 0);
 
             trans = position * offset;

@@ -22,7 +22,7 @@ namespace ProjectMemoir.Sprites.Enemies
         public Charger(ContentManager _con, Vector2 _pos, Player _target) :base(_con, _pos)
         {
             target = _target;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(50), new Vector2(32), _pos, 0, Color.Aqua);
+            anim = new Animation(_con.Load<Texture2D>("enemySprites/charger_idle"), new Vector2(80), new Vector2(64), _pos, 0, Color.White);
             charge = 400;
             currentState = States.idle;
             facing = 1;
@@ -33,24 +33,29 @@ namespace ProjectMemoir.Sprites.Enemies
             switch (currentState)
             {
                 case States.idle:
-
+                    anim.tex = con.Load<Texture2D>("enemySprites/charger_idle");
+                    anim.frames = 0;
                     anim.col = Color.Aqua;
                     if (distanceToTarget() < 400f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f) {
-                        facing = Math.Sign(target.anim.position.X - anim.position.X); currentState = States.chargeup;
+                        facing = Math.Sign(target.anim.position.X - anim.position.X);
+                        anim.currentframe = 0;
+                        currentState = States.chargeup;
                     }
                     break;
+
                 case States.chargeup:
-                    anim.col = Color.Maroon;
-                    if(charge > 0)
+                    anim.tex = con.Load<Texture2D>("enemySprites/charger_charge_up");
+                    anim.frames = 6;
+                    if (anim.isFinished())
                     {
-                        charge -= 15;
-                    } else
-                    {
+                        anim.currentframe = 0;
                         currentState = States.charging;
                     }
                     break;
+
                 case States.charging:
-                    anim.col = Color.Red;
+                    anim.tex = con.Load<Texture2D>("enemySprites/charger_attack");
+                    anim.frames = 0;
                     velocity.X = facing*20f;
 
                     
@@ -76,13 +81,13 @@ namespace ProjectMemoir.Sprites.Enemies
                        
                     //crash into player
                     if (checkRightCol(target) || checkLeftCol(target) || checkTopCol(target) || checkBottomCol(target)) {
-                        charge = 500;
                         target.velocity.Y = -20;
                         target.hp = -20;
 
                     }
                     break;
             }
+            if(facing == -1) { anim.mirrored = SpriteEffects.None; } else { anim.mirrored = SpriteEffects.FlipHorizontally; }
             Applygravity();
             base.Update(_gt, _sl);
         }

@@ -9,10 +9,11 @@ namespace ProjectMemoir.Sprites
     {
         public Rectangle sourceRect, desRect;
         public Vector2 spriteSize, sourcesize ,position, sourcePos;
-        public int frames,currentframe;
-        public float delay = 15f;
+        public int frames, currentframe, mirrorval = 1;
+        public float delay = 0.5f;
         public Texture2D tex;
         public Color col;
+        public SpriteEffects mirrored;
         public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 _sourceSize,Vector2 _position, int _frameNo, Color _col)
         {
             tex = _tex;
@@ -22,9 +23,10 @@ namespace ProjectMemoir.Sprites
             col = _col;
             sourcesize = _sourceSize;
             sourcePos = new Vector2(0);
+            mirrored = SpriteEffects.None;
             //rememeber the change source rects xy to 0 0
             sourceRect = new Rectangle((int)sourcePos.X,(int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
-            desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);
+            desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X , (int)spriteSize.Y);
         }
         public void Update(GameTime _gt)
         {
@@ -47,14 +49,18 @@ namespace ProjectMemoir.Sprites
                 {
                     currentframe = 0;
                 }
+                delay = 0.5f;
             }
             else { delay -= 0.5f; }
-            sourcePos.X = spriteSize.X * currentframe;
+            sourcePos.X = sourcesize.X * currentframe;
         }
-
+        public bool isFinished()
+        {
+            return currentframe == frames;
+        }
         public void Draw(SpriteBatch _sb)
         {
-            _sb.Draw(tex, desRect, sourceRect, col);
+            _sb.Draw(tex, desRect, sourceRect, col, 0.0f, new Vector2(0, 0), mirrored, 0.0f);
         }
     }
 }

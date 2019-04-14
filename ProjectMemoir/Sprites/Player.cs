@@ -16,7 +16,7 @@ namespace ProjectMemoir.Sprites
         bool g;
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
         {
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(64), new Vector2(32), _pos, 0, Color.Red);
+            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(40), new Vector2(32), _pos, 0, Color.Red);
             txt = _con.Load<SpriteFont>("Font");
         }
 

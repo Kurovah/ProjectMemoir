@@ -13,9 +13,9 @@ namespace ProjectMemoir.Scenes
     public class Test1:Scene
     {
         private Player player;
-       // private Charger sen;
+        private Charger sen;
        // private Sentry en;
-        private Prowler pro;
+        //private Prowler pro;
        
         private HUD hud;
         private Vector2 newPos;
@@ -36,6 +36,7 @@ namespace ProjectMemoir.Scenes
             spriteList = new List<Sprite>();
             spriteList.Add(player = new Player(this.con, newPos));
             //spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
+            spriteList.Add(sen = new Charger(this.con, new Vector2(600, 600), player));
             //solids to collide with
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 768)));
             spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1312, 32)));
@@ -53,7 +54,7 @@ namespace ProjectMemoir.Scenes
             }
             //put anything that's dependant on the roomsize here
             cam = new Cam(player,roomSize,new Vector2(1280,720));
-            at = new Autotiler(con, "VillageTiles", roomSize);
+            at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
             
         }
 

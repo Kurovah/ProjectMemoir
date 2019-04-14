@@ -10,8 +10,10 @@ namespace ProjectMemoir.Sprites
     {
         public Animation anim;
         public bool isVisible;
+        protected ContentManager con;
         public Sprite(ContentManager _con, Vector2 _pos)
         {
+            con = _con;
             isVisible = true;
         }
 

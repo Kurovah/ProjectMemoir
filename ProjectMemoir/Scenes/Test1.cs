@@ -86,7 +86,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {
-            _sb.Begin(transformMatrix: cam.trans);
+            _sb.Begin(SpriteSortMode.Deferred,null, null, null, null, null,cam.trans);
             foreach (Sprite _s in spriteList)
             {
                 _s.Draw(_sb);

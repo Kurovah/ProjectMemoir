@@ -33,6 +33,9 @@ namespace ProjectMemoir.Sprites
             if (frames > 0)
             {
                 Animate();
+            } else
+            {
+                currentframe = 0;
             }
             sourceRect = new Rectangle((int)sourcePos.X, (int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);

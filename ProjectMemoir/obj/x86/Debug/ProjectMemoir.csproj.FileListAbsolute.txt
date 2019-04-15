@@ -59,3 +59,5 @@ C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\charger_attack.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\charger_charge_up.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\charger_idle.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_idle.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_run.xnb

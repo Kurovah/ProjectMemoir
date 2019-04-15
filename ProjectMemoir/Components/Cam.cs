@@ -9,7 +9,7 @@ namespace ProjectMemoir.Components
         public Sprite target;
         public Matrix trans;
         public Vector2 targetPos, currentPos, camMax,screenSize;
-        float zoom = 1.5f;
+        float zoom = 2f;
         public Cam(Sprite _target, Vector2 _camMax, Vector2 _camSize)
         {
             target = _target;

@@ -17,15 +17,14 @@ namespace ProjectMemoir.Sprites.Enemies
             charging
         };
         private Player target;
-        private int charge,facing;
+        private int facing;
         private States currentState;
         public Charger(ContentManager _con, Vector2 _pos, Player _target) :base(_con, _pos)
         {
             target = _target;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/charger_idle"), new Vector2(80), new Vector2(64), _pos, 0, Color.White);
-            charge = 400;
             currentState = States.idle;
-            facing = 1;
+            facing = -1;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
@@ -36,7 +35,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     anim.tex = con.Load<Texture2D>("enemySprites/charger_idle");
                     anim.frames = 0;
                     anim.col = Color.Aqua;
-                    if (distanceToTarget() < 400f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f) {
+                    if (distanceToTarget() < 200f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f) {
                         facing = Math.Sign(target.anim.position.X - anim.position.X);
                         anim.currentframe = 0;
                         currentState = States.chargeup;
@@ -64,14 +63,12 @@ namespace ProjectMemoir.Sprites.Enemies
                         if(_s.GetType() != typeof(Solid)) { continue; }
                         //crash into wall
                         if(checkLeftCol(_s)) {
-                            charge = 500;
                             currentState = States.idle;
                             velocity.X = 0;
                             anim.position.X = _s.anim.desRect.Left - anim.spriteSize.X;
                         }
                         else if (checkRightCol(_s))
                         {
-                            charge = 500;
                             currentState = States.idle;
                             velocity.X = 0;
                             anim.position.X = _s.anim.desRect.Right;
@@ -82,8 +79,9 @@ namespace ProjectMemoir.Sprites.Enemies
                     //crash into player
                     if (checkRightCol(target) || checkLeftCol(target) || checkTopCol(target) || checkBottomCol(target)) {
                         target.velocity.Y = -20;
+                        velocity.X = 0;
                         target.hp = -20;
-
+                        currentState = States.idle;
                     }
                     break;
             }

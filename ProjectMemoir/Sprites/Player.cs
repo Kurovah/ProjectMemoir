@@ -9,14 +9,28 @@ namespace ProjectMemoir.Sprites
 {
     public class Player:PhysObject
     {
+        enum playerStates
+        {
+            normal,
+            upspecial,
+            downspecial,
+            sidespecial,
+            nuetralspecial,
+            hurt
+        };
+
         KeyboardState currentKS;
         float spd = 5f;
         public int hp = 100, maxHp = 100;
         SpriteFont txt;
         bool g;
+        playerStates currentState = playerStates.normal;
+
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
         {
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(40), new Vector2(32), _pos, 0, Color.Red);
+            currentState = playerStates.normal;
+            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55), _pos, 4, Color.White);
+            anim.maxDelay = 3f;
             txt = _con.Load<SpriteFont>("Font");
         }
 
@@ -24,7 +38,15 @@ namespace ProjectMemoir.Sprites
         {
             g = IsGrounded(_sl); 
             currentKS = Keyboard.GetState();
-            Move(_sl);
+
+            //state machine
+            switch (currentState)
+            {
+                case playerStates.normal:
+                    Move(_sl);
+                    break;
+            }
+            
             base.Update(_gt, _sl);
         }
         public void Move(List<Sprite> _sl)
@@ -32,14 +54,32 @@ namespace ProjectMemoir.Sprites
             //lateral movement
             if (currentKS.IsKeyDown(Keys.A))//left move
             {
+                //changing animation
+                anim.tex = con.Load<Texture2D>("playersprites/player_run");
+                anim.frames = 8;
+                anim.maxDelay = 2f;
+                if (velocity.X >= 0) { anim.currentframe = 0; }
+
                 velocity.X = -spd;
+                anim.mirrored = SpriteEffects.FlipHorizontally;
             }
             if(currentKS.IsKeyDown(Keys.D))//right move
             {
+                //changing animation
+                anim.tex = con.Load<Texture2D>("playersprites/player_run");
+                anim.frames = 8;
+                anim.maxDelay = 2f;
+                if(velocity.X <= 0) { anim.currentframe = 0; }
+
                 velocity.X = spd;
+                anim.mirrored = SpriteEffects.None;
             }
             if(!currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
             {
+                anim.tex = con.Load<Texture2D>("playersprites/player_idle");
+                anim.frames = 4;
+                anim.maxDelay = 3f;
+                if (velocity.X != 0) { anim.currentframe = 0; }
                 velocity.X = 0;
             }
 

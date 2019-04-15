@@ -10,7 +10,7 @@ namespace ProjectMemoir.Sprites
         public Rectangle sourceRect, desRect;
         public Vector2 spriteSize, sourcesize ,position, sourcePos;
         public int frames, currentframe, mirrorval = 1;
-        public float delay = 0.5f;
+        public float delay = 0f,maxDelay = 1f;
         public Texture2D tex;
         public Color col;
         public SpriteEffects mirrored;
@@ -39,7 +39,7 @@ namespace ProjectMemoir.Sprites
         }
         private void Animate()
         {
-            if (delay == 0)
+            if (delay >= maxDelay)
             {
                 if (currentframe < frames)
                 {
@@ -49,9 +49,9 @@ namespace ProjectMemoir.Sprites
                 {
                     currentframe = 0;
                 }
-                delay = 0.5f;
+                delay = 0f;
             }
-            else { delay -= 0.5f; }
+            else { delay += 0.5f; }
             sourcePos.X = sourcesize.X * currentframe;
         }
         public bool isFinished()

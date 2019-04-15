@@ -20,10 +20,11 @@ namespace ProjectMemoir.Sprites
         };
 
         KeyboardState currentKS;
-        float spd = 5f;
+        float spd = 5f, delay = 0;
         public int hp = 100, maxHp = 100;
+        int jumpCount = 0, triggerCount = 0;
         SpriteFont txt;
-        bool g;
+        bool g, trigger = false;
         playerStates currentState = playerStates.normal;
 
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
@@ -44,12 +45,34 @@ namespace ProjectMemoir.Sprites
             {
                 case playerStates.normal:
                     Move(_sl);
+
+                    if (jumpCount >= 1)
+                        jumpCount = 0;
+                    if (triggerCount > 0)
+                        triggerCount -= 1;
+
+                    if (currentKS.IsKeyDown(Keys.W) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For double jump
+                    {
+                        currentState = playerStates.upspecial;
+                        triggerCount = 64;
+                    }
+                    break;
+
+                case playerStates.upspecial:
+                    
+                    while (jumpCount < 1)
+                    {                      
+                        velocity.Y += -7f;                           
+                        jumpCount++;                      
+                    }
+
+                    currentState = playerStates.normal;
                     break;
             }
-            
+
             base.Update(_gt, _sl);
         }
-        
+
         public void Move(List<Sprite> _sl)
         {
 

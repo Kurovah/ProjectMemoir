@@ -15,7 +15,7 @@ namespace ProjectMemoir.Sprites
             upspecial,
             downspecial,
             sidespecial,
-            nuetralspecial,
+            neutralspecial,
             hurt
         };
 
@@ -56,6 +56,25 @@ namespace ProjectMemoir.Sprites
                         currentState = playerStates.upspecial;
                         triggerCount = 64;
                     }
+
+                    if (currentKS.IsKeyDown(Keys.S) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For dive
+                    {
+                        currentState = playerStates.downspecial;
+                        triggerCount = 64;
+                    }
+
+                    if ((currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For roll
+                    {
+                        currentState = playerStates.sidespecial;
+                        triggerCount = 64;
+                    }
+
+                    if (currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For projectile
+                    {
+                        currentState = playerStates.neutralspecial;
+                        triggerCount = 64;
+                    }
+
                     break;
 
                 case playerStates.upspecial:
@@ -65,6 +84,21 @@ namespace ProjectMemoir.Sprites
                         velocity.Y += -7f;                           
                         jumpCount++;                      
                     }
+
+                    currentState = playerStates.normal;
+                    break;
+
+                case playerStates.downspecial:
+
+                    currentState = playerStates.normal;
+                    break;
+
+                case playerStates.neutralspecial:
+
+                    currentState = playerStates.normal;
+                    break;
+
+                case playerStates.sidespecial:
 
                     currentState = playerStates.normal;
                     break;

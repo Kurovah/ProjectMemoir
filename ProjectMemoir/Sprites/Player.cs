@@ -24,7 +24,7 @@ namespace ProjectMemoir.Sprites
         public int hp = 100, maxHp = 100;
         int jumpCount = 0, triggerCount = 0;
         SpriteFont txt;
-        bool g, trigger = false;
+        bool g, trigger= false;
         playerStates currentState = playerStates.normal;
 
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
@@ -51,6 +51,7 @@ namespace ProjectMemoir.Sprites
                     if (triggerCount > 0)
                         triggerCount -= 1;
 
+                    #region using abilities
                     if (currentKS.IsKeyDown(Keys.W) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For double jump
                     {
                         currentState = playerStates.upspecial;
@@ -74,14 +75,14 @@ namespace ProjectMemoir.Sprites
                         currentState = playerStates.neutralspecial;
                         triggerCount = 64;
                     }
-
+                    #endregion;
                     break;
 
                 case playerStates.upspecial:
                     
                     while (jumpCount < 1)
                     {                      
-                        velocity.Y += -7f;                           
+                        velocity.Y = -10f;                           
                         jumpCount++;                      
                     }
 

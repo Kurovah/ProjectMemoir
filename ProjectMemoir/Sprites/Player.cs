@@ -80,8 +80,9 @@ namespace ProjectMemoir.Sprites
 
                 case playerStates.upspecial:
                     
-                    while (jumpCount < 1)
-                    {                      
+                    if(jumpCount < 1)
+                    {
+                        anim.currentframe = 0;
                         velocity.Y = -10f;                           
                         jumpCount++;                      
                     }
@@ -104,85 +105,108 @@ namespace ProjectMemoir.Sprites
                     currentState = playerStates.normal;
                     break;
             }
-
+            animControl(_sl);
             base.Update(_gt, _sl);
         }
 
+        //animation control
+        private void animControl(List<Sprite> _sl)
+        {
+            switch (currentState)
+            {
+                case playerStates.normal:
+                    if (IsGrounded(_sl))
+                    {
+                        if (currentKS.IsKeyDown(Keys.A) && currentKS.IsKeyDown(Keys.D) ||
+                            !currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D))
+                        {
+                            if(velocity.X != 0) { anim.currentframe = 0; }
+                            anim.tex = con.Load<Texture2D>("playersprites/player_idle");
+                            anim.frames = 4;
+                            anim.maxDelay = 2f;
+                        } else
+                        {
+                            if (currentKS.IsKeyDown(Keys.A))
+                            {
+                                if (velocity.X >= 0) { anim.currentframe = 0; }
+                                anim.tex = con.Load<Texture2D>("playersprites/player_run");
+                                anim.frames = 8;
+                                anim.mirrored = SpriteEffects.FlipHorizontally;
+                                anim.maxDelay = 2f;
+                            }
+                            if (currentKS.IsKeyDown(Keys.D))
+                            {
+                                if (velocity.X <= 0) { anim.currentframe = 0; }
+                                anim.tex = con.Load<Texture2D>("playersprites/player_run");
+                                anim.frames = 8;
+                                anim.mirrored = SpriteEffects.None;
+                                anim.maxDelay = 2f;
+                            }
+                        }
+                    } else
+                    {
+                        anim.tex = con.Load<Texture2D>("playersprites/player_air");
+                        anim.frames = 0;
+                        anim.currentframe = 0;
+                    }
+                    break;
+
+                case playerStates.upspecial:
+                    
+                    break;
+
+                case playerStates.downspecial:
+
+                    break;
+
+                case playerStates.neutralspecial:
+
+                    break;
+
+                case playerStates.sidespecial:
+
+                    break;
+            }
+        }
+
+
         public void Move(List<Sprite> _sl)
         {
-
-            if (IsGrounded(_sl)) {
-                if (currentKS.IsKeyDown(Keys.J)) {
-                    velocity.Y += -8f;
-                    anim.currentframe = 0;
-                }
-                #region movement
-                //lateral movement
+            //lateral movement
+            if (!currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A) ||
+                currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
+            {
+                velocity.X = 0;
+            } else
+            {
                 if (currentKS.IsKeyDown(Keys.A))//left move
                 {
-                    //changing animation
-                    anim.tex = con.Load<Texture2D>("playersprites/player_run");
-                    anim.frames = 8;
-                    anim.maxDelay = 2f;
-                    if (velocity.X >= 0) { anim.currentframe = 0; }
-
                     velocity.X = -spd;
-                    anim.mirrored = SpriteEffects.FlipHorizontally;
                 }
                 if (currentKS.IsKeyDown(Keys.D))//right move
                 {
-                    //changing animation
-                    anim.tex = con.Load<Texture2D>("playersprites/player_run");
-                    anim.frames = 8;
-                    anim.maxDelay = 2f;
-                    if (velocity.X <= 0) { anim.currentframe = 0; }
-
                     velocity.X = spd;
-                    anim.mirrored = SpriteEffects.None;
                 }
-                if (!currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
-                {
-                    anim.tex = con.Load<Texture2D>("playersprites/player_idle");
-                    anim.frames = 4;
-                    anim.maxDelay = 3f;
-                    if (velocity.X != 0) { anim.currentframe = 0; }
-                    velocity.X = 0;
+            }
+
+
+            if (IsGrounded(_sl)) {
+                //jumping
+                if (currentKS.IsKeyDown(Keys.J)) {
+                    velocity.Y += -8f;
                 }
-                #endregion
             }
             else
             {
-                anim.currentframe = 0;
-                anim.tex = con.Load<Texture2D>("playersprites/player_air");
-                anim.frames = 0;
-                #region movement in air
-                //lateral movement
-                if (currentKS.IsKeyDown(Keys.A))//left move
-                {
-                    velocity.X = -spd * 0.75f;
-                    anim.mirrored = SpriteEffects.FlipHorizontally;
-                }
-                if (currentKS.IsKeyDown(Keys.D))//right move
-                {
-                    velocity.X = spd * 0.75f;
-                    anim.mirrored = SpriteEffects.None;
-                }
-                if (!currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
-                {
-                    velocity.X = 0;
-                }
-                #endregion
                 Applygravity();
             }
         }
         public override void Draw(SpriteBatch _sb)
         {
             //text for debugging
-            _sb.DrawString(txt, "AnimFrame:" + anim.currentframe, anim.position - new Vector2(0, 65), Color.Black);
-            _sb.DrawString(txt, "XPos:" + anim.position.X, anim.position - new Vector2(0, 55), Color.Black);
-            _sb.DrawString(txt, "YPos:" + anim.position.Y, anim.position - new Vector2(0, 45), Color.Black);
-            _sb.DrawString(txt, "Xvel:" + velocity.X, anim.position - new Vector2(0, 35), Color.Black);
-            _sb.DrawString(txt, "Yvel:" + velocity.Y, anim.position - new Vector2(0, 25), Color.Black);
+            _sb.DrawString(txt, "anim rect data SourceRectX:"+anim.sourceRect.X+" SourceRect Y:" + anim.sourceRect.Y, anim.position - new Vector2(0, 45), Color.Black);
+            _sb.DrawString(txt, "AnimData Frame:" + anim.currentframe+ " currentTex:" + anim.tex, anim.position - new Vector2(0, 35), Color.Black);
+            _sb.DrawString(txt, "XPos:" + anim.position.X + " YPos:" + anim.position.Y + " Yvel:" + velocity.Y+ " Xvel:" + velocity.X, anim.position - new Vector2(0, 25), Color.Black);
             _sb.DrawString(txt, "Grounded:" + g, anim.position - new Vector2(0, 15), Color.Black);
             base.Draw(_sb);
         }

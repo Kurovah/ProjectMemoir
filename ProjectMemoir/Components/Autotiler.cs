@@ -134,6 +134,7 @@ namespace ProjectMemoir.Components
                                 #endregion
                                 Animation a = new Animation(tex, tSize, tSize, new Vector2(j, i), 0, Color.White);
                                 a.sourcePos = texCoord;
+                                a.needsChange = false;
                                 tiles.Add(a);
                             }
                         }

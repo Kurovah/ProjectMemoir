@@ -14,6 +14,7 @@ namespace ProjectMemoir.Sprites
         public Texture2D tex;
         public Color col;
         public SpriteEffects mirrored;
+        public bool needsChange = true;// if the source pos x needs to snap back to the original position
         public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 _sourceSize,Vector2 _position, int _frameNo, Color _col)
         {
             tex = _tex;
@@ -33,15 +34,17 @@ namespace ProjectMemoir.Sprites
             if (frames > 0)
             {
                 Animate();
-            } else
+            } else if(needsChange)
             {
-                currentframe = 0;
+                if (sourcePos.X >= sourcesize.X * frames) { currentframe = 0; }
+                sourcePos.X = sourcesize.X * currentframe;
             }
             sourceRect = new Rectangle((int)sourcePos.X, (int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X, (int)spriteSize.Y);
         }
         private void Animate()
         {
+            
             if (delay >= maxDelay)
             {
                 if (currentframe < frames)

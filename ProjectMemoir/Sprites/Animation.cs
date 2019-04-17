@@ -33,6 +33,7 @@ namespace ProjectMemoir.Sprites
         {
             if (frames > 0)
             {
+                if (sourcePos.X > sourcesize.X * frames) { sourcePos.X = (int)sourcesize.X * frames; }
                 Animate();
             } else if(needsChange)
             {

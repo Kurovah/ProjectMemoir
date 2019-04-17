@@ -19,7 +19,8 @@ namespace ProjectMemoir.Sprites.Enemies
             isAlert = false;
             target = _target;
             con = _con;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(32), _pos, 0, Color.Aqua);
+            anim = new Animation(_con.Load<Texture2D>("enemySprites/sentry_idle"), new Vector2(71,45), new Vector2(71,45), _pos, 5, Color.White);
+            anim.maxDelay = 1.5f;
             spl = new List < SentryProjectile >();
         }
 
@@ -34,13 +35,11 @@ namespace ProjectMemoir.Sprites.Enemies
                         delay -= 10f;
                     } else
                     {
-                        anim.col = Color.Red;
                         spl.Add(new SentryProjectile(con, anim.position, new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
                         delay = 500;
                     }
                     break;
                 case false:
-                    anim.col = Color.Aqua;
                     delay = 500;
                     break;
             }

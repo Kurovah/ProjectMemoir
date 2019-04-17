@@ -97,3 +97,4 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.csproj.CopyComplete
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.exe
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.pdb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\sentry_idle.xnb

@@ -8,15 +8,22 @@ namespace ProjectMemoir.Sprites.Enemies
 {
     class Sentry:PhysObject
     {
-        bool isAlert;
+        enum states
+        {
+            idle,
+            alert,
+            stunned
+        };
+
+        bool shot = false;
+        states currentState;
         Player target;
-        float delay = 500;
         ContentManager con;
         List<SentryProjectile> spl;
         public Sentry(ContentManager _con, Vector2 _pos, Player _target) : base(_con, _pos)
         {
             grav = 0;
-            isAlert = false;
+            currentState = states.idle;
             target = _target;
             con = _con;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/sentry_idle"), new Vector2(71,45), new Vector2(71,45), _pos, 5, Color.White);
@@ -26,23 +33,28 @@ namespace ProjectMemoir.Sprites.Enemies
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-            if (distanceToTarget() < 200f) { isAlert = true; } else { isAlert = false; }
-            switch (isAlert)
+            switch (currentState)
             {
-                case true:
-                    if (delay > 0)
-                    {
-                        delay -= 10f;
-                    } else
-                    {
-                        spl.Add(new SentryProjectile(con, anim.position, new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
-                        delay = 500;
-                    }
+                case states.idle:
+                    anim.tex = con.Load<Texture2D>("enemySprites/sentry_idle");
+                    anim.frames = 5;
+                    if (distanceToTarget() < 200f) { currentState = states.alert; anim.currentframe = 0; }
                     break;
-                case false:
-                    delay = 500;
+                case states.alert:
+                    
+                    if (distanceToTarget() >= 200f) { currentState = states.idle; anim.currentframe = 0; }
+                    anim.tex = con.Load<Texture2D>("enemySprites/sentry_shoot");
+                    anim.frames = 5;
+
+                    if (anim.currentframe == 4 && !shot)
+                    {
+                        shot = true;
+                        spl.Add(new SentryProjectile(con, anim.position, new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
+                    }
+                    if(anim.currentframe == 0) { shot = false; }
                     break;
             }
+           
             foreach(SentryProjectile _sp in spl)
             {
                 _sp.Update(_gt, _sl);

@@ -20,11 +20,11 @@ namespace ProjectMemoir.Sprites
         };
 
         KeyboardState currentKS;
-        float spd = 5f, delay = 0;
+        float spd = 5f;
         public int hp = 100, maxHp = 100;
         int jumpCount = 0, triggerCount = 0;
         SpriteFont txt;
-        bool g, trigger= false;
+        bool g;
         playerStates currentState = playerStates.normal;
 
         public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
@@ -129,7 +129,8 @@ namespace ProjectMemoir.Sprites
                             anim.tex = con.Load<Texture2D>("playersprites/player_idle");
                             anim.frames = 4;
                             anim.maxDelay = 2f;
-                        } else
+                        }
+                        else
                         {
                             if (currentKS.IsKeyDown(Keys.A))
                             {
@@ -148,11 +149,23 @@ namespace ProjectMemoir.Sprites
                                 anim.maxDelay = 2f;
                             }
                         }
-                    } else
+                    }
+                    else
                     {
-                        anim.tex = con.Load<Texture2D>("playersprites/player_air");
-                        anim.frames = 0;
-                        anim.currentframe = 0;
+                        if (currentKS.IsKeyDown(Keys.A))
+                        {
+                            anim.tex = con.Load<Texture2D>("playersprites/player_air");
+                            anim.frames = 0;
+                            anim.currentframe = 0;
+                            anim.mirrored = SpriteEffects.FlipHorizontally;
+                        }
+                        else
+                        {
+                            anim.tex = con.Load<Texture2D>("playersprites/player_air");
+                            anim.frames = 0;
+                            anim.currentframe = 0;
+                            anim.mirrored = SpriteEffects.None;
+                        }
                     }
                     break;
 

@@ -52,21 +52,26 @@ namespace ProjectMemoir.Sprites
                         triggerCount -= 1;
 
                     #region using abilities
-                    if (currentKS.IsKeyDown(Keys.W) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For double jump
+                    if (IsGrounded(_sl))
                     {
-                        currentState = playerStates.upspecial;
-                        triggerCount = 64;
+                        if ((currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For roll
+                        {
+                            currentState = playerStates.sidespecial;
+                            triggerCount = 64;
+                        }
+                    }
+                    else
+                    {
+                        if (currentKS.IsKeyDown(Keys.W) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For double jump
+                        {
+                            currentState = playerStates.upspecial;
+                            triggerCount = 64;
+                        }
                     }
 
                     if (currentKS.IsKeyDown(Keys.S) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For dive
                     {
                         currentState = playerStates.downspecial;
-                        triggerCount = 64;
-                    }
-
-                    if ((currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) && currentKS.IsKeyDown(Keys.K) && triggerCount == 0) //For roll
-                    {
-                        currentState = playerStates.sidespecial;
                         triggerCount = 64;
                     }
 

@@ -102,3 +102,6 @@ C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\sentry_idle.xnb
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\sentry_shoot.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_up_special.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_dash_ground.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_dash_air.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\sentry_projectile.xnb

@@ -49,7 +49,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     if (anim.currentframe == 4 && !shot)
                     {
                         shot = true;
-                        spl.Add(new SentryProjectile(con, anim.position, new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
+                        spl.Add(new SentryProjectile(con, anim.position + new Vector2(20,17), new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
                     }
                     if(anim.currentframe == 0) { shot = false; }
                     break;

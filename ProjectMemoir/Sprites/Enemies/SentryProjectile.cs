@@ -16,7 +16,7 @@ namespace ProjectMemoir.Sprites.Enemies
             grav = 0;
             velocity = _vel;
             target = _target;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(10), _pos, 0, Color.PaleVioletRed);
+            anim = new Animation(_con.Load<Texture2D>("enemySprites/sentry_projectile"), new Vector2(15), new Vector2(10), _pos, 5, Color.White);
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)

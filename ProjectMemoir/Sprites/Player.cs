@@ -21,7 +21,7 @@ namespace ProjectMemoir.Sprites
 
         KeyboardState currentKS;
         float spd = 5f;
-        public int hp = 100, maxHp = 100;
+        public int hp = 100, maxHp = 100, facing = 1;
         SpriteFont txt;
         bool g, UScanuse = true, SScanuse = true, DScanuse = true, NScanuse = true;
         playerStates currentState = playerStates.normal;
@@ -48,7 +48,7 @@ namespace ProjectMemoir.Sprites
 
                 case playerStates.upspecial:
                     
-                    playerUpSpecial(_sl);
+                    playerUpSpecial();
                     break;
 
                 case playerStates.downspecial:
@@ -62,16 +62,51 @@ namespace ProjectMemoir.Sprites
                     break;
 
                 case playerStates.sidespecial:
-
-                    currentState = playerStates.normal;
+                    playerSideSpecial(_sl);
                     break;
+            }
+
+            //flip the sprite based on facing value
+            if(facing == 1)
+            {
+                anim.mirrored = SpriteEffects.None;
+            } else
+            {
+                anim.mirrored = SpriteEffects.FlipHorizontally;
             }
             base.Update(_gt, _sl);
         }
 
-
-        private void playerUpSpecial(List<Sprite> _sl)
+        private void playerSideSpecial(List<Sprite> _sl)
         {
+            SScanuse = false;
+            if (IsGrounded(_sl))
+            {
+                anim.tex = con.Load<Texture2D>("playersprites/player_dash_ground");
+            }
+            else
+            {
+                anim.tex = con.Load<Texture2D>("playersprites/player_dash_air");
+            }
+            
+            anim.frames = 12;
+
+            if(anim.currentframe < 5 || anim.currentframe > 10)
+            {
+                velocity = new Vector2(0);
+            } else
+            {
+                velocity.X = 10 * facing;
+            }
+
+            if (anim.isFinished())
+            {
+                currentState = playerStates.normal;
+            }
+        }
+        private void playerUpSpecial()
+        {
+            UScanuse = false;
             anim.tex = con.Load<Texture2D>("playersprites/player_up_special");
             anim.sourcesize = anim.spriteSize = new Vector2(70);
             anim.frames = 5;
@@ -107,11 +142,11 @@ namespace ProjectMemoir.Sprites
                 anim.currentframe = 0;
                 if (currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) //For roll
                 {
+                    if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) { facing = -1; } else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1; }
                     currentState = playerStates.sidespecial;
                 }
                 else if (currentKS.IsKeyDown(Keys.W) && UScanuse) //For double jump
                 {
-                    UScanuse = false;
                     currentState = playerStates.upspecial;
                 }
                 else if (currentKS.IsKeyDown(Keys.S)) //For dive
@@ -140,7 +175,7 @@ namespace ProjectMemoir.Sprites
                     if (velocity.X >= 0) { anim.currentframe = 0; }
                     anim.tex = con.Load<Texture2D>("playersprites/player_run");
                     anim.frames = 8;
-                    anim.mirrored = SpriteEffects.FlipHorizontally;
+                    facing = -1;
                     anim.maxDelay = 2f;
                 }
                 if (currentKS.IsKeyDown(Keys.D))//right move
@@ -149,7 +184,7 @@ namespace ProjectMemoir.Sprites
                     if (velocity.X <= 0) { anim.currentframe = 0; }
                     anim.tex = con.Load<Texture2D>("playersprites/player_run");
                     anim.frames = 8;
-                    anim.mirrored = SpriteEffects.None;
+                    facing = 1;
                     anim.maxDelay = 2f;
                 }
             }
@@ -168,7 +203,7 @@ namespace ProjectMemoir.Sprites
                 anim.tex = con.Load<Texture2D>("playersprites/player_air");
                 anim.frames = 0;
                 anim.currentframe = 0;
-                if (currentKS.IsKeyDown(Keys.A)) {anim.mirrored = SpriteEffects.FlipHorizontally;} else {anim.mirrored = SpriteEffects.None;}
+                if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) {facing = -1;} else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1;}
                 Applygravity();
             }
             #endregion
@@ -177,11 +212,12 @@ namespace ProjectMemoir.Sprites
         }
         public override void Draw(SpriteBatch _sb)
         {
-            //text for debugging
+            /*/text for debugging
             _sb.DrawString(txt, "anim rect data SourceRectX:"+anim.sourceRect.X+" SourceRect Y:" + anim.sourceRect.Y, anim.position - new Vector2(0, 45), Color.Black);
             _sb.DrawString(txt, "AnimData Frame:" + anim.currentframe+ " currentTex:" + anim.tex, anim.position - new Vector2(0, 35), Color.Black);
             _sb.DrawString(txt, "XPos:" + anim.position.X + " YPos:" + anim.position.Y + " Yvel:" + velocity.Y+ " Xvel:" + velocity.X + " stateCurrent:"+currentState, anim.position - new Vector2(0, 25), Color.Black);
             _sb.DrawString(txt, "Grounded:" + g, anim.position - new Vector2(0, 15), Color.Black);
+            //*/
             base.Draw(_sb);
         }
     }

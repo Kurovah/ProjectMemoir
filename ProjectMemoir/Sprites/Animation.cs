@@ -8,7 +8,7 @@ namespace ProjectMemoir.Sprites
     public class Animation
     {
         public Rectangle sourceRect, desRect;
-        public Vector2 spriteSize, sourcesize ,position, sourcePos;
+        public Vector2 spriteSize, sourcesize ,position, sourcePos,spriteOrigin = new Vector2(0,0);
         public int frames, currentframe, mirrorval = 1;
         public float delay = 0f,maxDelay = 1f;
         public Texture2D tex;
@@ -67,7 +67,7 @@ namespace ProjectMemoir.Sprites
         }
         public void Draw(SpriteBatch _sb)
         {
-            _sb.Draw(tex, desRect, sourceRect, col, 0.0f, new Vector2(0, 0), mirrored, 0.0f);
+            _sb.Draw(tex, desRect, sourceRect, col, 0.0f,spriteOrigin, mirrored, 0.0f);
         }
     }
 }

@@ -105,3 +105,4 @@ C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_dash_ground.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_dash_air.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\sentry_projectile.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\prowler_walk.xnb

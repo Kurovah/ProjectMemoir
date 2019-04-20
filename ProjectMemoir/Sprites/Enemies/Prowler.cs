@@ -31,7 +31,8 @@ namespace ProjectMemoir.Sprites.Enemies
             facing = 1;
             jumpcount = 0;
             currentstate = States.wander;
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32), new Vector2(32), _pos, 0, Color.Black);
+            anim = new Animation(_con.Load<Texture2D>("enemySprites/prowler_walk"), new Vector2(55), new Vector2(55), _pos, 6, Color.White);
+            anim.maxDelay = 2f;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
@@ -89,6 +90,14 @@ namespace ProjectMemoir.Sprites.Enemies
                         velocity.X = 0f; currentstate = States.wander;
                     }
                     break;
+            }
+
+            if(velocity.X > 0)
+            {
+                anim.mirrored = SpriteEffects.FlipHorizontally;
+            } else if (velocity.X < 0)
+            {
+                anim.mirrored = SpriteEffects.None;
             }
             Applygravity();
             base.Update(_gt, _sl);

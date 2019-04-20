@@ -9,7 +9,7 @@ namespace ProjectMemoir.Sprites
     {
         public Rectangle sourceRect, desRect;
         public Vector2 spriteSize, sourcesize ,position, sourcePos,spriteOrigin = new Vector2(0,0);
-        public int frames, currentframe, mirrorval = 1;
+        public int frames, currentframe;
         public float delay = 0f,maxDelay = 1f;
         public Texture2D tex;
         public Color col;

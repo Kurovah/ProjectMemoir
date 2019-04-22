@@ -46,6 +46,7 @@
     <Compile Include="Components\HUD.cs" />
     <Compile Include="Components\Menu.cs" />
     <Compile Include="Components\PauseMenu.cs" />
+    <Compile Include="Scenes\Gamescene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\Test1.cs" />
     <Compile Include="Sprites\Animation.cs" />

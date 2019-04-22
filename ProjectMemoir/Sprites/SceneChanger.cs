@@ -14,9 +14,9 @@ namespace ProjectMemoir.Sprites
         String sceneTo;
         Vector2 playerpos;
         ContentManager con;
-        public SceneChanger(ContentManager _con, Vector2 _pos, Player _target, Game1 _game, String _sceneId, Vector2 _newPos):base(_con, _pos)
+        public SceneChanger(ContentManager _con, Vector2 _pos, Vector2 _size, Player _target, Game1 _game, String _sceneId ,Vector2 _newPos):base(_con, _pos)
         {
-            anim = new Animation(_con.Load<Texture2D>("forP"), new Vector2(32,60), new Vector2(32), _pos, 0, Color.Black);
+            anim = new Animation(_con.Load<Texture2D>("forP"), _size, new Vector2(32), _pos, 0, Color.Black);
             target = _target;
             game = _game;
             sceneTo = _sceneId;

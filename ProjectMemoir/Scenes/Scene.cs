@@ -13,7 +13,7 @@ namespace ProjectMemoir.Scenes
         protected Game1 game;
         protected ContentManager con;
         public Cam cam;
-        public List<Sprite> spriteList;
+        public List<Sprite> spriteList = new List<Sprite>();
         public bool pause;
         public Vector2 roomSize;
         protected Scene(Game1 _game, ContentManager _con)

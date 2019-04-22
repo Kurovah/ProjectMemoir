@@ -41,7 +41,7 @@ namespace ProjectMemoir.Sprites.Enemies
             {
                 case States.wander:
                     {
-                        anim.col = Color.Aqua;
+                        anim.maxDelay = 2f;
                         pos += velocity;
                         if (distance <= 0)
                         {
@@ -70,26 +70,24 @@ namespace ProjectMemoir.Sprites.Enemies
                     }
 
                 case States.follow:
-                    targetDistance = target.anim.position.X - anim.position.X;
-                    anim.col = Color.Red;
-                    if (targetDistance < facing)
-                        velocity.X = -2f;
-                    else if (targetDistance >= facing)
-                        velocity.X = 2f;
-                    else if (targetDistance == 0)
-                        velocity.X = 0f;
-
-                    if(Math.Abs(target.anim.position.Y - anim.position.Y) > 30 && IsGrounded(_sl))
                     {
-                        velocity.Y = -6f;
-                    }
+                        anim.maxDelay = 1f;
+                        targetDistance = target.anim.position.X - anim.position.X;
+                        anim.col = Color.Red;
+                        if (targetDistance < facing)
+                            velocity.X = -3f;
+                        else if (targetDistance >= facing)
+                            velocity.X = 3f;
+                        else if (targetDistance == 0)
+                            velocity.X = 0f;
 
+                        if (distanceToTarget() >= 400f || Math.Abs(target.anim.position.Y - anim.position.Y) > 70f)
+                        {
+                            velocity.X = 0f; currentstate = States.wander;
+                        }
 
-                    if (distanceToTarget() >= 400f || Math.Abs(target.anim.position.Y - anim.position.Y) > 70f)
-                    {
-                        velocity.X = 0f; currentstate = States.wander;
+                        break;
                     }
-                    break;
             }
 
             if(velocity.X > 0)

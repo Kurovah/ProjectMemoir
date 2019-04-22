@@ -10,102 +10,37 @@ using ProjectMemoir.Components;
 
 namespace ProjectMemoir.Scenes
 {
-    public class Test1:Scene
+    public class Test1:Gamescene
     {
-        private Player player;
         //private Charger cha;
         //private Sentry sen;
         private Prowler pro;
        
-        private HUD hud;
-        private Vector2 newPos;
-        private KeyboardState currentK, lastK;
+
         PauseMenu pmenu;
         Autotiler at;
 
-        public Test1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con)
+        public Test1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
         {
-            newPos = _playerpos;
-            pause = false;
-            pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), _game, this);
-            roomSize = new Vector2(0);
+            
         }
 
         public override void Load()
         {
-            spriteList = new List<Sprite>();
-            spriteList.Add(player = new Player(this.con, newPos));
-            //spriteList.Add(sen = new Sentry(this.con, new Vector2(600, 600), player));
-            spriteList.Add(pro = new Prowler(this.con, new Vector2(600, 600), player));
-            //spriteList.Add(cha = new Charger(this.con, new Vector2(600, 600), player));
+            
+
             //solids to collide with
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(32, 768)));
-            spriteList.Add(new Solid(this.con, new Vector2(0), new Vector2(1312, 32)));
-            spriteList.Add(new Solid(this.con, new Vector2(0, 768), new Vector2(1312, 32)));
-            spriteList.Add(new Solid(this.con, new Vector2(1280, 0), new Vector2(32, 768)));
-            spriteList.Add(new SceneChanger(this.con, new Vector2(1000,630),player,this.game, "s", new Vector2(32,630)));
+            newSolid(0,0,1,11);
+            newSolid(0, 0, 19, 1);
+            newSolid(0, 11, 19, 1);
+            newSolid(19, 0, 1, 12);
             
-            hud = new HUD(player, this.con);
 
-            //checking the size of the room
-            foreach(Sprite _s in spriteList)
-            {
-                if(roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X; }
-                if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y; }
-            }
-            //put anything that's dependant on the roomsize here
-            cam = new Cam(player,roomSize,new Vector2(1280,720));
-            at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
-            
+            base.Load();
+            //add anything that uses the player as a target after this
+            newSceneChanger(20, 0, 1, 23, "s");
         }
 
-        public override void Update(GameTime _gt)
-        {
-            //nothing moves while the level is being tiled
-            while (at.active)
-            {
-                at.Update(_gt, spriteList);
-            }
-            currentK = Keyboard.GetState();
-            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause;}//if P is "pressed" pause the game 
-            if (!pause)
-            {
-                foreach (Sprite _s in spriteList)
-                {
-                    _s.Update(_gt, spriteList);
-                }
-                checkToRemoveSprite();
-                cam.Update(_gt);
-                hud.Update(_gt);
-            } else
-            {
-                pmenu.Update(_gt);
-            }
-
-            lastK = currentK;
-        }
-
-        public override void Draw(SpriteBatch _sb, GameTime _gt)
-        {
-            _sb.Begin(SpriteSortMode.Deferred,null, null, null, null, null,cam.trans);
-            foreach (Sprite _s in spriteList)
-            {
-                _s.Draw(_sb);
-            }
-            at.Draw(_sb);
-            _sb.End();
-
-            //so the HUD isn't moved by the trans matrix
-            _sb.Begin();
-                hud.Draw(_sb);
-                if (pause) {
-                //the black background
-                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black*0.75f);
-                //draw Pause menu
-                pmenu.Draw(_sb);
-                }
-            _sb.End();
-
-        }
+        
     }
 }

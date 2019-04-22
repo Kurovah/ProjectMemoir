@@ -106,3 +106,5 @@ C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_dash_air.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\sentry_projectile.xnb
 C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\enemySprites\prowler_walk.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\backgrounds\DesVillageBK.xnb
+C:\Users\danny\Source\Repos\Kurovah\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\backgrounds\VillageBK.xnb

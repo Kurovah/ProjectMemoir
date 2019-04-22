@@ -13,6 +13,7 @@ namespace ProjectMemoir.Sprites
         public float delay = 0f,maxDelay = 1f;
         public Texture2D tex;
         public Color col;
+        public int t;
         public SpriteEffects mirrored;
         public bool needsChange = true;// if the source pos x needs to snap back to the original position
         public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 _sourceSize,Vector2 _position, int _frameNo, Color _col)

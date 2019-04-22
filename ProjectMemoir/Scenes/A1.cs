@@ -10,17 +10,11 @@ using ProjectMemoir.Components;
 
 namespace ProjectMemoir.Scenes
 {
-    public class Test1:Gamescene
+    public class A1:Gamescene
     {
-        //private Charger cha;
-        //private Sentry sen;
-        private Prowler pro;
-       
 
-        PauseMenu pmenu;
-        Autotiler at;
 
-        public Test1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
+        public A1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
         {
             
         }
@@ -31,10 +25,14 @@ namespace ProjectMemoir.Scenes
 
             //solids to collide with
             newSolid(0,0,1,11);
-            newSolid(0, 0, 19, 1);
+            newSolid(1, 0, 19, 1);
             newSolid(0, 11, 19, 1);
-            newSolid(19, 0, 1, 12);
-            
+            newSolid(19, 1, 1, 11);
+
+            newSolid(1, 7, 4, 1);
+            newSolid(15, 7, 4, 1);
+            newSolid(7, 4, 6, 1);
+            newSolid(7, 10, 6, 1);
 
             base.Load();
             //add anything that uses the player as a target after this

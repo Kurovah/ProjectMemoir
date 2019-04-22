@@ -17,7 +17,7 @@ namespace ProjectMemoir.Scenes
         protected HUD hud;
         protected Vector2 newPos;
         protected KeyboardState currentK, lastK;
-        PauseMenu pmenu;
+        protected PauseMenu pmenu;
         protected Autotiler at;
 
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){

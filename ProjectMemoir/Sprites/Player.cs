@@ -194,7 +194,7 @@ namespace ProjectMemoir.Sprites
                 //jumping
                 if(UScanuse == false) { UScanuse = true; }
                 if (currentKS.IsKeyDown(Keys.J)) {
-                    velocity.Y += -8f;
+                    velocity.Y += -9f;
                 }
                 
             }

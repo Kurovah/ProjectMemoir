@@ -28,7 +28,7 @@ namespace ProjectMemoir.Sprites
         {
             if (target.anim.desRect.Intersects(anim.desRect))
             {
-                game.nextScene = new Test1(this.game, this.con, playerpos);
+                game.nextScene = new A1(this.game, this.con, playerpos);
             }
         }
     }

@@ -65,6 +65,10 @@ namespace ProjectMemoir.Scenes
         {
             spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene, new Vector2(32, 630)));
         }
+        protected void newPedestal(int _x, int _y, String _type)
+        {
+            spriteList.Add(new Pedestal(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player));
+        }
         #endregion
 
         public override void Update(GameTime _gt)

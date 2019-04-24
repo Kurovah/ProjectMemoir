@@ -56,7 +56,7 @@ namespace ProjectMemoir
 
             ps = new PlayerStats();
             // TODO: use this.Content to load your game content here
-            currentScene = new A01(this, this.Content, new Vector2(2, 10));
+            currentScene = new Pedestaltest(this, this.Content, new Vector2(2, 10));
             currentScene.Load();
             
             

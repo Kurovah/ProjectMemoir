@@ -13,7 +13,7 @@ namespace ProjectMemoir.Sprites
         public float delay = 0f,maxDelay = 1f;
         public Texture2D tex;
         public Color col;
-        public int t;
+        public int t,alpha;
         public SpriteEffects mirrored;
         public bool needsChange = true;// if the source pos x needs to snap back to the original position
         public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 _sourceSize,Vector2 _position, int _frameNo, Color _col)
@@ -26,6 +26,7 @@ namespace ProjectMemoir.Sprites
             sourcesize = _sourceSize;
             sourcePos = new Vector2(0);
             mirrored = SpriteEffects.None;
+            alpha = 1;
             //rememeber the change source rects xy to 0 0
             sourceRect = new Rectangle((int)sourcePos.X,(int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X , (int)spriteSize.Y);
@@ -68,7 +69,7 @@ namespace ProjectMemoir.Sprites
         }
         public void Draw(SpriteBatch _sb)
         {
-            _sb.Draw(tex, desRect, sourceRect, col, 0.0f,spriteOrigin, mirrored, 0.0f);
+            _sb.Draw(tex, desRect, sourceRect, col*alpha, 0.0f,spriteOrigin, mirrored, 0.0f);
         }
     }
 }

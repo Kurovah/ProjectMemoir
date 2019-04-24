@@ -10,11 +10,11 @@ using ProjectMemoir.Components;
 
 namespace ProjectMemoir.Scenes
 {
-    public class A1:Gamescene
+    public class A13:Gamescene
     {
 
 
-        public A1(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
+        public A13(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
         {
             
         }
@@ -36,7 +36,7 @@ namespace ProjectMemoir.Scenes
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(20, 0, 1, 23, "s");
+            newSceneChanger(20, 0, 1, 23, "A2");
         }
 
         

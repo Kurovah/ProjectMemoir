@@ -46,6 +46,7 @@
     <Compile Include="Components\HUD.cs" />
     <Compile Include="Components\Menu.cs" />
     <Compile Include="Components\PauseMenu.cs" />
+    <Compile Include="Components\PlayerStats.cs" />
     <Compile Include="Scenes\A17.cs" />
     <Compile Include="Scenes\A18.cs" />
     <Compile Include="Scenes\A19.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Scenes\Gamescene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\A01.cs" />
+    <Compile Include="Sprites\Pedestal.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Sprites\SceneChanger.cs" />
     <Compile Include="Sprites\Enemies\Charger.cs" />

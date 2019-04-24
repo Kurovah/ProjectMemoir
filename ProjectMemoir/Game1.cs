@@ -15,7 +15,7 @@ namespace ProjectMemoir
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        public PlayerStats ps;
         
 
         public Scene currentScene, nextScene;
@@ -54,9 +54,9 @@ namespace ProjectMemoir
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
+            ps = new PlayerStats();
             // TODO: use this.Content to load your game content here
-            currentScene = new A01(this, this.Content, new Vector2(32, 40));
+            currentScene = new A01(this, this.Content, new Vector2(2, 10));
             currentScene.Load();
             
             

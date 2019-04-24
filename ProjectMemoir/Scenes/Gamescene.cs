@@ -29,7 +29,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
-            spriteList.Add(player = new Player(this.con, newPos));
+            spriteList.Add(player = new Player(this.con, newPos, this.game.ps));
             hud = new HUD(player, this.con);
 
             //checking the size of the room

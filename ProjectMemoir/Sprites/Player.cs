@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using ProjectMemoir.Components;
 
 namespace ProjectMemoir.Sprites
 {
@@ -25,16 +26,18 @@ namespace ProjectMemoir.Sprites
         SpriteFont txt;
         bool g, UScanuse = true, SScanuse = true, DScanuse = true, NScanuse = true;
         playerStates currentState = playerStates.normal;
+        PlayerStats ps;
 
-        public Player(ContentManager _con, Vector2 _pos):base(_con, _pos)
+        public Player(ContentManager _con, Vector2 _pos, PlayerStats _ps):base(_con, _pos)
         {
             currentState = playerStates.normal;
-            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55), _pos, 4, Color.White);
+            ps = _ps;
+            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55), _pos*32, 4, Color.White);
             anim.maxDelay = 3f;
             txt = _con.Load<SpriteFont>("Font");
         }
 
-        public override void  Update(GameTime _gt, List<Sprite> _sl)
+        public override void Update(GameTime _gt, List<Sprite> _sl)
         {
             g = IsGrounded(_sl); 
             currentKS = Keyboard.GetState();
@@ -74,6 +77,7 @@ namespace ProjectMemoir.Sprites
             {
                 anim.mirrored = SpriteEffects.FlipHorizontally;
             }
+
             base.Update(_gt, _sl);
         }
 
@@ -139,23 +143,23 @@ namespace ProjectMemoir.Sprites
             //checking if the player wants to do a special move
             if (currentKS.IsKeyDown(Keys.K)) //For projectile
             {
-                anim.currentframe = 0;
-                if (currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) //For roll
+                
+                if ((currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) && ps.abilities["Side"]) //For roll
                 {
                     if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) { facing = -1; } else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1; }
                     currentState = playerStates.sidespecial;
                 }
-                else if (currentKS.IsKeyDown(Keys.W) && UScanuse) //For double jump
+                else if (currentKS.IsKeyDown(Keys.W) && UScanuse && ps.abilities["Up"]) //For double jump
                 {
                     currentState = playerStates.upspecial;
                 }
-                else if (currentKS.IsKeyDown(Keys.S)) //For dive
+                else if (currentKS.IsKeyDown(Keys.S) && ps.abilities["Down"]) //For dive
                 {
                     currentState = playerStates.downspecial;
-                } else
+                } else if(ps.abilities["Neutral"])
                 {
                     currentState = playerStates.neutralspecial;
-                    
+                    anim.currentframe = 0;
                 }
             }
             #endregion;
@@ -210,15 +214,6 @@ namespace ProjectMemoir.Sprites
             
            
         }
-        public override void Draw(SpriteBatch _sb)
-        {
-            /*/text for debugging
-            _sb.DrawString(txt, "anim rect data SourceRectX:"+anim.sourceRect.X+" SourceRect Y:" + anim.sourceRect.Y, anim.position - new Vector2(0, 45), Color.Black);
-            _sb.DrawString(txt, "AnimData Frame:" + anim.currentframe+ " currentTex:" + anim.tex, anim.position - new Vector2(0, 35), Color.Black);
-            _sb.DrawString(txt, "XPos:" + anim.position.X + " YPos:" + anim.position.Y + " Yvel:" + velocity.Y+ " Xvel:" + velocity.X + " stateCurrent:"+currentState, anim.position - new Vector2(0, 25), Color.Black);
-            _sb.DrawString(txt, "Grounded:" + g, anim.position - new Vector2(0, 15), Color.Black);
-            //*/
-            base.Draw(_sb);
-        }
+        
     }
 }

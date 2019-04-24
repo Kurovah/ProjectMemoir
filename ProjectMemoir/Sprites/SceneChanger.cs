@@ -20,7 +20,7 @@ namespace ProjectMemoir.Sprites
             target = _target;
             game = _game;
             sceneTo = _sceneId;
-            playerpos = _newPos*32;
+            playerpos = _newPos;
             con = _con;
         }
 

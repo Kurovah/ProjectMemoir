@@ -36,8 +36,13 @@ namespace ProjectMemoir.Sprites
         {
             foreach(Sprite _s in _sl)
             {
-                if(_s.GetType() != typeof(Solid)) { continue; }
-                if (checkGroundCol(_s)) { return true; }
+                if (_s.GetType() == typeof(Solid) || (_s.GetType() == typeof(Seal) && _s.canCollide))
+                {
+                    if (checkGroundCol(_s)) { return true; }
+                } else
+                {
+                    continue;
+                }
                 
             }
             return false;
@@ -47,32 +52,38 @@ namespace ProjectMemoir.Sprites
             foreach (Sprite _s in _sl)
             {
                 //dont' collide with non solid sprites
-                if (_s.GetType() != typeof(Solid)) { continue; }
-                //lateral
-                if (velocity.X > 0 && checkLeftCol(_s))
-                {
-                    velocity.X = 0;
-                    anim.position.X = _s.anim.desRect.Left - anim.desRect.Width;
-                }
+                if (_s.GetType() == typeof(Solid) ||  (_s.GetType() == typeof(Seal) && _s.canCollide)) {
+                    //lateral
+                    if (velocity.X > 0 && checkLeftCol(_s))
+                    {
+                        velocity.X = 0;
+                        anim.position.X = _s.anim.desRect.Left - anim.desRect.Width;
+                    }
 
-                if (velocity.X < 0 && checkRightCol(_s))
-                {
-                    velocity.X = 0;
-                    anim.position.X = _s.anim.desRect.Right;
-                }
+                    if (velocity.X < 0 && checkRightCol(_s))
+                    {
+                        velocity.X = 0;
+                        anim.position.X = _s.anim.desRect.Right;
+                    }
 
-                //vertical
-                if (velocity.Y > 0 && checkTopCol(_s))
-                {
-                    velocity.Y = 0;
-                    anim.position.Y = _s.anim.desRect.Top - anim.desRect.Height;
-                }
+                    //vertical
+                    if (velocity.Y > 0 && checkTopCol(_s))
+                    {
+                        velocity.Y = 0;
+                        anim.position.Y = _s.anim.desRect.Top - anim.desRect.Height;
+                    }
 
-                if (velocity.Y < 0 && checkBottomCol(_s))
-                {
-                    velocity.Y = 0;
-                    anim.position.Y = _s.anim.desRect.Bottom;
+                    if (velocity.Y < 0 && checkBottomCol(_s))
+                    {
+                        velocity.Y = 0;
+                        anim.position.Y = _s.anim.desRect.Bottom;
+                    }
                 }
+                else
+                {
+                    continue;
+                }
+           
             }
         }
         # region collision

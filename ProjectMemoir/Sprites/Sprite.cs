@@ -9,12 +9,13 @@ namespace ProjectMemoir.Sprites
     public class Sprite
     {
         public Animation anim;
-        public bool isVisible;
+        public bool isVisible, canCollide;
         protected ContentManager con;
         public Sprite(ContentManager _con, Vector2 _pos)
         {
             con = _con;
             isVisible = true;
+            canCollide = false;
         }
 
         public virtual void Update(GameTime _gt, List<Sprite> _sl)

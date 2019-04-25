@@ -69,6 +69,10 @@ namespace ProjectMemoir.Scenes
         {
             spriteList.Add(new Pedestal(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player));
         }
+        protected void newSeal(int _x, int _y, String _type)
+        {
+            spriteList.Add(new Seal(this.con, new Vector2(_x * 32, _y * 32),new Vector2(32,64), _type, game.ps));
+        }
         #endregion
 
         public override void Update(GameTime _gt)

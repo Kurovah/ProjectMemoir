@@ -31,7 +31,13 @@ namespace ProjectMemoir.Scenes
 
             base.Load();
             //add anything that uses the player as a target after this
-            newPedestal(16,9,"Down");
+            newPedestal(16,9,"Red");
+            newPedestal(17, 9, "Green");
+            newPedestal(19, 9, "Blue");
+
+            newSeal(10,9,"Red");
+            newSeal(11, 9, "Green");
+            newSeal(9, 9, "Blue");
         }
 
         

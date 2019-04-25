@@ -78,6 +78,7 @@
     <Compile Include="Scenes\Gamescene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\A01.cs" />
+    <Compile Include="Sprites\Seal.cs" />
     <Compile Include="Sprites\Pedestal.cs" />
     <Compile Include="Sprites\Animation.cs" />
     <Compile Include="Sprites\Kunai.cs" />

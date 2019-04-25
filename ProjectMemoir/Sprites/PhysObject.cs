@@ -36,7 +36,7 @@ namespace ProjectMemoir.Sprites
         {
             foreach(Sprite _s in _sl)
             {
-                if (_s.GetType() == typeof(Solid) || (_s.GetType() == typeof(Seal) && _s.canCollide))
+                if (_s.GetType() == typeof(BreakableBlock) || _s.GetType() == typeof(Solid) || (_s.GetType() == typeof(Seal) && _s.canCollide))
                 {
                     if (checkGroundCol(_s)) { return true; }
                 } else
@@ -52,7 +52,7 @@ namespace ProjectMemoir.Sprites
             foreach (Sprite _s in _sl)
             {
                 //dont' collide with non solid sprites
-                if (_s.GetType() == typeof(Solid) ||  (_s.GetType() == typeof(Seal) && _s.canCollide)) {
+                if (_s.GetType() == typeof(BreakableBlock) || _s.GetType() == typeof(Solid) ||  (_s.GetType() == typeof(Seal) && _s.canCollide)) {
                     //lateral
                     if (velocity.X > 0 && checkLeftCol(_s))
                     {

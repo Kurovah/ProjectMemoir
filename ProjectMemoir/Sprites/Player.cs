@@ -137,6 +137,15 @@ namespace ProjectMemoir.Sprites
                     velocity = new Vector2(2*facing, 10);
                     anim.tex = con.Load<Texture2D>("playersprites/player_air_smash_loop");
                     anim.frames = 0;
+                    //smashing breakable blocks
+                    foreach (Sprite _s in _sl)
+                    {
+                        if(checkTopCol(_s) && _s.GetType() == typeof(BreakableBlock))
+                        {
+                            _s.isVisible = false;
+                        }
+                    }
+
                     if (IsGrounded(_sl))
                     {
                         type = 3;

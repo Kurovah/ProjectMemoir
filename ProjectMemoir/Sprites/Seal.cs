@@ -31,10 +31,10 @@ namespace ProjectMemoir.Sprites
                     anim.sourcePos.X = 0;
                     break;
                 case "Blue":
-                    anim.sourcePos.X = 32;
+                    anim.sourcePos.X = 64;
                     break;
                 case "Green":
-                    anim.sourcePos.X = 64;
+                    anim.sourcePos.X = 32;
                     break;
             }
             if (ps.abilities[type])

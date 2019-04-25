@@ -73,6 +73,11 @@ namespace ProjectMemoir.Scenes
         {
             spriteList.Add(new Seal(this.con, new Vector2(_x * 32, _y * 32),new Vector2(32,64), _type, game.ps));
         }
+
+        protected void newBreakableBlock(int _x, int _y)
+        {
+            spriteList.Add(new BreakableBlock(this.con, new Vector2(_x * 32, _y * 32), new Vector2(32)));
+        }
         #endregion
 
         public override void Update(GameTime _gt)

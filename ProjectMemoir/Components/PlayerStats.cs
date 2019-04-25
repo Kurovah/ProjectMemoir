@@ -65,7 +65,7 @@ namespace ProjectMemoir.Components
                 ["4"] = false,
                 ["5"] = false
             };
-            hp = 10;
+            hp = 3;
 
         }
     }

@@ -9,26 +9,34 @@ namespace ProjectMemoir.Components
 {
     public class HUD
     {
-        Player target;
-        Animation frontBar, backBar;
-        float width = 100;
-        public HUD(Player _playerchr, ContentManager _con)
+        PlayerStats target;
+        ContentManager con;
+        Texture2D tex;
+        float scale;
+        public HUD(PlayerStats _playerchr, ContentManager _con)
         {
             target = _playerchr;
-            frontBar = new Animation(_con.Load<Texture2D>("forP"), new Vector2(width, 20), new Vector2(32), new Vector2(5), 0, Color.Red);
-            backBar = new Animation(_con.Load<Texture2D>("forP"), new Vector2(width, 20), new Vector2(32), new Vector2(5), 0, Color.Black);
+            con = _con;
+            tex = _con.Load<Texture2D>("HUD");
+            scale = 2f;
         }
 
-        public void Update(GameTime _gt)
-        {
-            frontBar.spriteSize.X = width * target.hp / target.maxHp;
-            frontBar.Update(_gt);
-        }
 
         public void Draw(SpriteBatch _sb)
         {
-            backBar.Draw(_sb);
-            frontBar.Draw(_sb);
+            _sb.Draw(tex, 
+                        new Rectangle(5, 5, (int)(96*scale),(int)(32 *scale)), 
+                        new Rectangle(0, 0, 96, 32),
+                        Color.White);
+
+           //drawing the hearts
+            for(int i=0; i <  target.hp; i++)
+            {
+                _sb.Draw(tex,
+                    new Rectangle(5 + (int)(32*i*scale), 5, (int)(32 * scale), (int)(32 * scale)), 
+                    new Rectangle(97, 0, 32, 32), 
+                    Color.White);
+            }
         }
     }
 }

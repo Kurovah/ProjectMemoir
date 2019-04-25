@@ -30,7 +30,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
             spriteList.Add(player = new Player(this.con, newPos, this.game.ps));
-            hud = new HUD(player, this.con);
+            hud = new HUD(this.game.ps, this.con);
 
             //checking the size of the room
             foreach (Sprite _s in spriteList)
@@ -97,7 +97,6 @@ namespace ProjectMemoir.Scenes
                 }
                 checkToRemoveSprite();
                 cam.Update(_gt);
-                hud.Update(_gt);
             }
             else
             {

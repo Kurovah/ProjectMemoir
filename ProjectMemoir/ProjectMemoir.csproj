@@ -52,8 +52,8 @@
     <Compile Include="Scenes\A19.cs" />
     <Compile Include="Scenes\A20.cs" />
     <Compile Include="Scenes\A21.cs" />
-    <Compile Include="Scenes\Pedestaltest.cs" />
     <Compile Include="Scenes\A28.cs" />
+    <Compile Include="Scenes\Pedestaltest.cs" />
     <Compile Include="Scenes\A22.cs" />
     <Compile Include="Scenes\A23.cs" />
     <Compile Include="Scenes\A08.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Scenes\A01.cs" />
     <Compile Include="Sprites\Pedestal.cs" />
     <Compile Include="Sprites\Animation.cs" />
+    <Compile Include="Sprites\Kunai.cs" />
     <Compile Include="Sprites\SceneChanger.cs" />
     <Compile Include="Sprites\Enemies\Charger.cs" />
     <Compile Include="Sprites\Enemies\Prowler.cs" />

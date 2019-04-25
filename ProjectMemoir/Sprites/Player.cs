@@ -19,12 +19,12 @@ namespace ProjectMemoir.Sprites
             neutralspecial,
             hurt
         };
-
+        List<Kunai> kl;
         KeyboardState currentKS;
         float spd = 5f;
-        public int hp = 100, maxHp = 100, facing = 1;
+        public int hp = 100, maxHp = 100, facing = 1, type = 0;
         SpriteFont txt;
-        bool g, UScanuse = true, SScanuse = true, DScanuse = true, NScanuse = true;
+        bool g, UScanuse = true, SScanuse = true, DScanuse = true, NScanuse = true, startDive = false;
         playerStates currentState = playerStates.normal;
         PlayerStats ps;
 
@@ -35,6 +35,7 @@ namespace ProjectMemoir.Sprites
             anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55), _pos*32, 4, Color.White);
             anim.maxDelay = 3f;
             txt = _con.Load<SpriteFont>("Font");
+            kl = new List<Kunai>();
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
@@ -50,18 +51,16 @@ namespace ProjectMemoir.Sprites
                     break;
 
                 case playerStates.upspecial:
-                    
                     playerUpSpecial();
                     break;
 
                 case playerStates.downspecial:
-
-                    currentState = playerStates.normal;
+                    playerDownSpecial(_sl);
                     break;
 
                 case playerStates.neutralspecial:
 
-                    currentState = playerStates.normal;
+                    playerNeutralSpecial(_sl);
                     break;
 
                 case playerStates.sidespecial:
@@ -78,9 +77,109 @@ namespace ProjectMemoir.Sprites
                 anim.mirrored = SpriteEffects.FlipHorizontally;
             }
 
+            #region updating the list of kunai
+            foreach (Kunai _sp in kl)
+            {
+                _sp.Update(_gt, _sl);
+            }
+            for (int i = 0; i < kl.Count; i++)
+            {
+                if (!kl[i].isVisible)
+                {
+                    kl.RemoveAt(i);
+                    i--;
+                }
+            }
+            #endregion
             base.Update(_gt, _sl);
         }
+        private void playerDownSpecial(List<Sprite> _sl)
+        {
+            
+            if (!startDive)
+            {
+                
+                if (IsGrounded(_sl))
+                {
+                    anim.tex = con.Load<Texture2D>("playersprites/player_ground_smash");
+                    anim.frames = 4;
+                    startDive = true;
+                    type = 0;
+                }
+                else
+                {
+                    anim.tex = con.Load<Texture2D>("playersprites/player_air_smash_start");
+                    anim.frames = 3;
+                    type = 1;
+                    startDive = true;
+                }
+            }
+            //different phases of the smash
+            switch (type)
+            {
+                case 0://grounded
+                    if (anim.isFinished())
+                    {
+                        currentState = playerStates.normal;
+                        startDive = false;
+                        
+                    }
+                    break;
+                case 1://air start
+                    velocity = new Vector2(0,-6);
+                    if (anim.isFinished())
+                    {
+                        anim.currentframe = 0;
+                        type = 2;
+                    }
+                    break;
+                case 2://loop air
+                    velocity = new Vector2(2*facing, 10);
+                    anim.tex = con.Load<Texture2D>("playersprites/player_air_smash_loop");
+                    anim.frames = 0;
+                    if (IsGrounded(_sl))
+                    {
+                        type = 3;
+                        anim.currentframe = 0;
+                    }
+                    break;
+                case 3:
+                    anim.tex = con.Load<Texture2D>("playersprites/player_air_smash_end");
+                    anim.frames = 2;
+                    if (anim.isFinished())
+                    {
+                        startDive = false;
+                        currentState = playerStates.normal;
+                        
+                    }
+                    break;
+            }
+            
+        }
+        private void playerNeutralSpecial(List<Sprite> _sl)
+        {
+            velocity = Vector2.Zero;
+            if (IsGrounded(_sl))
+            {
+                anim.tex = con.Load<Texture2D>("playersprites/player_kunai_toss_ground");
+            }
+            else
+            {
+                anim.tex = con.Load<Texture2D>("playersprites/player_kunai_air");
+            }
 
+            anim.frames = 4;
+
+            if (anim.currentframe == 2)
+            {
+                kl.Add(new Kunai(con, new Vector2(anim.position.X+27+27*facing, anim.position.Y+27), facing));
+            }
+
+            if (anim.isFinished())
+            {
+                currentState = playerStates.normal;
+            }
+        }
         private void playerSideSpecial(List<Sprite> _sl)
         {
             SScanuse = false;
@@ -129,7 +228,6 @@ namespace ProjectMemoir.Sprites
                 anim.spriteOrigin = new Vector2(0, 0);
             }
         }
-
         public void playerNormalState(List<Sprite> _sl)
         {
             //making sure the sprite is the right size
@@ -214,6 +312,14 @@ namespace ProjectMemoir.Sprites
             
            
         }
-        
+
+        public override void Draw(SpriteBatch _sb)
+        {
+            foreach(Kunai _k in kl)
+            {
+                _k.Draw(_sb);
+            }
+            base.Draw(_sb);
+        }
     }
 }

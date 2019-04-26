@@ -58,8 +58,8 @@ namespace ProjectMemoir
             // TODO: use this.Content to load your game content here
             currentScene = new A01(this, this.Content, new Vector2(2, 9));
             currentScene.Load();
-            
-            
+            nextScene = null;
+
         }
 
         /// <summary>
@@ -78,14 +78,14 @@ namespace ProjectMemoir
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime _gameTime)
         {
-            if(nextScene != null)
+            currentScene.Update(_gameTime);
+
+            if (nextScene != null)
             {
                 currentScene = nextScene;
-                currentScene.Load();
                 nextScene = null;
+                currentScene.Load();
             }
-
-            currentScene.Update(_gameTime);
             base.Update(_gameTime);
         }
 

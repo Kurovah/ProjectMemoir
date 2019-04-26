@@ -91,27 +91,30 @@ namespace ProjectMemoir.Scenes
         public override void Update(GameTime _gt)
         {
             //nothing moves while the level is being tiled
-            while (at.active)
+            if (at.active)
             {
                 at.Update(_gt, spriteList);
             }
-            currentK = Keyboard.GetState();
-            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause; }//if P is "pressed" pause the game 
-            if (!pause)
-            {
-                foreach (Sprite _s in spriteList)
-                {
-                    _s.Update(_gt, spriteList);
-                }
-                checkToRemoveSprite();
-                cam.Update(_gt);
-            }
             else
             {
-                pmenu.Update(_gt);
-            }
+                currentK = Keyboard.GetState();
+                if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause; }//if P is "pressed" pause the game 
+                if (!pause)
+                {
+                    foreach (Sprite _s in spriteList)
+                    {
+                        _s.Update(_gt, spriteList);
+                    }
+                    checkToRemoveSprite();
+                    cam.Update(_gt);
+                }
+                else
+                {
+                    pmenu.Update(_gt);
+                }
 
-            lastK = currentK;
+                lastK = currentK;
+            }
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {

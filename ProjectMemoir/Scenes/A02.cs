@@ -16,16 +16,17 @@ namespace ProjectMemoir.Scenes
 
         public A02(Game1 _game, ContentManager _con,Vector2 _playerpos) :base(_game, _con, _playerpos)
         {
-            
+            //id = "a2";
         }
 
         public override void Load()
         {
-            
+
 
             //solids to collide with
-            newSolid(0,0,1,11);
-            newSolid(1, 0, 19, 1);
+            newSolid(0, 0, 1, 11);
+            newSolid(1, 0, 5, 1);
+            newSolid(14, 0, 6, 1);
             newSolid(0, 11, 19, 1);
             newSolid(19, 1, 1, 11);
 

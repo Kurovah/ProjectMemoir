@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using ProjectMemoir.Components;
+using Microsoft.Xna.Framework.Audio;
 
 namespace ProjectMemoir.Sprites
 {
@@ -27,6 +28,7 @@ namespace ProjectMemoir.Sprites
         bool g, UScanuse = true, SScanuse = true, DScanuse = true, NScanuse = true, startDive = false;
         playerStates currentState = playerStates.normal;
         PlayerStats ps;
+        SoundEffect jumpEffect;
 
         public Player(ContentManager _con, Vector2 _pos, PlayerStats _ps):base(_con, _pos)
         {
@@ -34,6 +36,7 @@ namespace ProjectMemoir.Sprites
             ps = _ps;
             anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55), _pos*32, 4, Color.White);
             anim.maxDelay = 3f;
+            jumpEffect = _con.Load<SoundEffect>("sounds/Jump");
             txt = _con.Load<SpriteFont>("Font");
             kl = new List<Kunai>();
         }
@@ -306,6 +309,7 @@ namespace ProjectMemoir.Sprites
                 if(UScanuse == false) { UScanuse = true; }
                 if (currentKS.IsKeyDown(Keys.J)) {
                     velocity.Y += -9f;
+                    jumpEffect.Play();
                 }
                 
             }

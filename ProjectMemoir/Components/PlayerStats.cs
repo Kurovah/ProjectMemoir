@@ -24,20 +24,20 @@ namespace ProjectMemoir.Components
                 ["Blue"] = false
             };
 
-            //what mapPeices the player has visited
+            # region what mapPeices the player has visited
             mapPeices = new Dictionary<string, bool> {
-            ["a1"] = false,
-            ["a2"] = false,
-            ["a3"] = false,
-            ["a4"] = false,
-            ["a5"] = false,
-            [ "a6"]= false,
-            ["a7"]= false,
-            ["a8"]= false,
-            ["a9"]= false,
+            ["a1"]  = false,
+            ["a2"]  = false,
+            ["a3"]  = false,
+            ["a4"]  = false,
+            ["a5"]  = false,
+            ["a6"]  = false,
+            ["a7"]  = false,
+            ["a8"]  = false,
+            ["a9"]  = false,
             ["a10"] = false,
             ["a11"] = false,
-            ["a12"]= false,
+            ["a12"] = false,
             ["a13"] = false,
             ["a14"] = false,
             ["a15"] = false,
@@ -46,16 +46,15 @@ namespace ProjectMemoir.Components
             ["a18"] = false,
             ["a19"] = false,
             ["a20"] = false,
-            ["a21"]= false,
+            ["a21"] = false,
             ["a22"] = false,
             ["a23"] = false,
             ["a24"] = false,
             ["a25"] = false,
             ["a26"] = false,
-            ["a27"] = false,
-            ["a28"] = false
+            ["a27"] = false
             };
-            
+            #endregion
             //what trees have been purified
             treesPurified = new Dictionary<string, bool>
             {

@@ -113,9 +113,6 @@ namespace ProjectMemoir.Sprites
                     case "A27":
                         game.nextScene = new A27(this.game, this.con, playerpos);
                         break;
-                    case "A28":
-                        game.nextScene = new A28(this.game, this.con, playerpos);
-                        break;
                         #endregion
 
                 }

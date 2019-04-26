@@ -14,9 +14,9 @@ namespace ProjectMemoir.Scenes
     {
 
 
-        public A04(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
+        public A04(Game1 _game, ContentManager _con,Vector2 _playerpos) : base(_game, _con, _playerpos)
         {
-            
+            id = "a4";
         }
 
         public override void Load()
@@ -31,7 +31,8 @@ namespace ProjectMemoir.Scenes
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(20, 0, 1, 23, "s");
+            newSceneChanger(0, -1, 1, 12, "A3", new Vector2(2, 9));
+            newSceneChanger(0, -1, 1, 12, "A5", new Vector2(2, 9));
         }
 
         

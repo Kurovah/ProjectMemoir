@@ -19,16 +19,24 @@ namespace ProjectMemoir.Scenes
         protected KeyboardState currentK, lastK;
         protected PauseMenu pmenu;
         protected Autotiler at;
-
+        protected PlayerStats ps;
+        protected String id;
+        Game1 g;
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
             newPos = _playerpos;
             pause = false;
             pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), _game, this);
             roomSize = new Vector2(0);
+            g = _game;
         }
 
         public override void Load()
         {
+            if (id != null)
+            {
+                g.ps.mapPeices[id] = true;
+            }
+
             spriteList.Add(player = new Player(this.con, newPos, this.game.ps));
             hud = new HUD(this.game.ps, this.con);
 
@@ -61,9 +69,9 @@ namespace ProjectMemoir.Scenes
         {
             spriteList.Add(new Prowler(this.con, new Vector2(_x * 32, _y * 32), player));
         }
-        protected void newSceneChanger(int _x, int _y, int _width, int _height,string _scene)
+        protected void newSceneChanger(int _x, int _y, int _width, int _height,string _scene, Vector2 _newPos)
         {
-            spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene, new Vector2(32, 630)));
+            spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene, _newPos*32));
         }
         protected void newPedestal(int _x, int _y, String _type)
         {

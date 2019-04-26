@@ -52,7 +52,6 @@
     <Compile Include="Scenes\A19.cs" />
     <Compile Include="Scenes\A20.cs" />
     <Compile Include="Scenes\A21.cs" />
-    <Compile Include="Scenes\A28.cs" />
     <Compile Include="Scenes\Pedestaltest.cs" />
     <Compile Include="Scenes\A22.cs" />
     <Compile Include="Scenes\A23.cs" />

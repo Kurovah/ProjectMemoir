@@ -16,7 +16,7 @@ namespace ProjectMemoir.Scenes
 
         public A01(Game1 _game, ContentManager _con,Vector2 _playerpos):base(_game, _con, _playerpos)
         {
-            
+            id = "a1";
         }
 
         public override void Load()
@@ -25,7 +25,8 @@ namespace ProjectMemoir.Scenes
 
             //solids to collide with
             newSolid(0,0,1,11);
-            newSolid(1, 0, 19, 1);
+            newSolid(1, 0, 5, 1);
+            newSolid(10,0,5,1);
             newSolid(0, 11, 19, 1);
             newSolid(19, 1, 1, 11);
 
@@ -36,7 +37,7 @@ namespace ProjectMemoir.Scenes
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(20, 0, 1, 23, "A2");
+            newSceneChanger(0, -1, 1, 12, "A2", new Vector2(2,9));
         }
 
         

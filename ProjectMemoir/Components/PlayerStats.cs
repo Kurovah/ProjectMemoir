@@ -15,7 +15,7 @@ namespace ProjectMemoir.Components
             //wether the player has collected the abilities
             abilities = new Dictionary<string, bool>
             {
-                ["Up"] = true,
+                ["Up"] = false,
                 ["Down"] = false,
                 ["Side"] = false,
                 ["Neutral"] = false,

@@ -88,6 +88,10 @@ namespace ProjectMemoir.Scenes
         {
             spriteList.Add(new BreakableBlock(this.con, new Vector2(_x * 32, _y * 32), new Vector2(32)));
         }
+       protected void newGriefTree(int _x, int _y, string _type)
+        {
+            spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player));
+        }
         #endregion
 
         public override void Update(GameTime _gt)

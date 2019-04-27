@@ -37,7 +37,7 @@ namespace ProjectMemoir.Scenes
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(0, -1, 20, 1, "A2", new Vector2(0));
+            newSceneChanger(0, -1, 20, 1, "A2", new Vector2(1,9));
         }
 
         

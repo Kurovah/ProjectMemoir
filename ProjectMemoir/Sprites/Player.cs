@@ -328,7 +328,8 @@ namespace ProjectMemoir.Sprites
 
         public override void Draw(SpriteBatch _sb)
         {
-            foreach(Kunai _k in kl)
+            _sb.DrawString(txt, "coords x:" + anim.position.X +" y:"+ anim.position.Y, new Vector2(200,200), Color.White);
+            foreach (Kunai _k in kl)
             {
                 _k.Draw(_sb);
             }

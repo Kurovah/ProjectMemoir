@@ -20,7 +20,7 @@ namespace ProjectMemoir.Scenes
         protected PauseMenu pmenu;
         protected Autotiler at;
         protected PlayerStats ps;
-        protected String id;
+        
         Game1 g;
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
             newPos = _playerpos;
@@ -37,7 +37,7 @@ namespace ProjectMemoir.Scenes
                 g.ps.mapPeices[id] = true;
             }
 
-            spriteList.Add(player = new Player(this.con, newPos, this.game.ps));
+           
             hud = new HUD(this.game.ps, this.con);
 
             //checking the size of the room
@@ -46,10 +46,12 @@ namespace ProjectMemoir.Scenes
                 if (roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X; }
                 if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y; }
             }
-
+            
             //put anything that's dependant on the roomsize here
-            cam = new Cam(player, roomSize, new Vector2(1280, 720));
+            
             at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
+            spriteList.Add(player = new Player(this.con, newPos, this.game.ps));
+            cam = new Cam(player, roomSize, new Vector2(1280, 720));
         }
 
         #region functions to create new objects in the game world
@@ -71,7 +73,7 @@ namespace ProjectMemoir.Scenes
         }
         protected void newSceneChanger(int _x, int _y, int _width, int _height,string _scene, Vector2 _newPos)
         {
-            spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene, _newPos*32));
+            spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene,_newPos));
         }
         protected void newPedestal(int _x, int _y, String _type)
         {
@@ -97,8 +99,7 @@ namespace ProjectMemoir.Scenes
             }
             else
             {
-                currentK = Keyboard.GetState();
-                if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { pause = !pause; }//if P is "pressed" pause the game 
+                pmenu.Update(_gt);
                 if (!pause)
                 {
                     foreach (Sprite _s in spriteList)
@@ -108,12 +109,6 @@ namespace ProjectMemoir.Scenes
                     checkToRemoveSprite();
                     cam.Update(_gt);
                 }
-                else
-                {
-                    pmenu.Update(_gt);
-                }
-
-                lastK = currentK;
             }
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)

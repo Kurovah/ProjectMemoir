@@ -15,10 +15,12 @@ namespace ProjectMemoir.Components
         PlayerStats ps;
         Texture2D tex;
         int sectSize = 48;
+        bool active;
         public PauseMenu(ContentManager _con, List<string> _options, Vector2 _pos, Game1 _g, Scene _scene) :base(_con, _options,_pos,_g, _scene)
         {
             ps = _g.ps;
             tex = _con.Load<Texture2D>("ForP");
+            active = false;
             #region list of vectors for drawing the map sector
             mapSects = new List<Vector2>(){
                 new Vector2(_pos.X+5 + sectSize*4,_pos.Y+5 +sectSize*4),
@@ -50,6 +52,13 @@ namespace ProjectMemoir.Components
                 new Vector2(_pos.X+5 + sectSize*2,_pos.Y+5 +sectSize*5),
             };
             #endregion
+        }
+        public override void Update(GameTime _gt)
+        {
+            currentK = Keyboard.GetState();
+            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; }//if P is "pressed" pause the game 
+            lastK = currentK;
+            base.Update(_gt);
         }
         public override void Selectoption(int OP)
         {

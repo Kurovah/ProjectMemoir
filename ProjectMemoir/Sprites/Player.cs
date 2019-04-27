@@ -34,7 +34,7 @@ namespace ProjectMemoir.Sprites
         {
             currentState = playerStates.normal;
             ps = _ps;
-            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55), _pos*32, 4, Color.White);
+            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32, 4, Color.White);
             anim.maxDelay = 3f;
             jumpEffect = _con.Load<SoundEffect>("sounds/Jump");
             txt = _con.Load<SpriteFont>("Font");
@@ -328,7 +328,6 @@ namespace ProjectMemoir.Sprites
 
         public override void Draw(SpriteBatch _sb)
         {
-            _sb.DrawString(txt, "coords x:" + anim.position.X +" y:"+ anim.position.Y, new Vector2(200,200), Color.White);
             foreach (Kunai _k in kl)
             {
                 _k.Draw(_sb);

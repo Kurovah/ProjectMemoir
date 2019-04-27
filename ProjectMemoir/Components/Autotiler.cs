@@ -153,7 +153,6 @@ namespace ProjectMemoir.Components
             foreach(Animation _a in tiles)
             {
                 _a.Draw(_sb);
-                _sb.DrawString(txt, "" + _a.t, _a.position, Color.White);
             }
         }
     }

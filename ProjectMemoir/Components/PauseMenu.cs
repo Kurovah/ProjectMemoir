@@ -15,7 +15,6 @@ namespace ProjectMemoir.Components
         PlayerStats ps;
         Texture2D tex;
         int sectSize = 48;
-        bool active;
         public PauseMenu(ContentManager _con, List<string> _options, Vector2 _pos, Game1 _g, Scene _scene) :base(_con, _options,_pos,_g, _scene)
         {
             ps = _g.ps;
@@ -56,7 +55,7 @@ namespace ProjectMemoir.Components
         public override void Update(GameTime _gt)
         {
             currentK = Keyboard.GetState();
-            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; }//if P is "pressed" pause the game 
+            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; active = !active; }//if P is "pressed" pause the game 
             lastK = currentK;
             base.Update(_gt);
         }

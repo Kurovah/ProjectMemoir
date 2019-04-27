@@ -20,7 +20,7 @@ namespace ProjectMemoir.Components
         Animation pointer;
         protected Game1 g;
         protected Scene scene;
-        protected bool active;
+        public bool active;
         public Menu(ContentManager _con, List<string> _options, Vector2 _startpos, Game1 _g, Scene _scene)
         {
             //set the position of the menu to zero (top option)
@@ -71,12 +71,6 @@ namespace ProjectMemoir.Components
                 _sb.DrawString(txt, _s, startPos + new Vector2(30, P*32), Color.White);
                 P++;
             }
-            _sb.DrawString(txt, "CamB Max X:" + scene.cam.camMax.X + " CamB Max Y:" + scene.cam.camMax.Y,
-                                startPos + new Vector2(10, 5 * 32), 
-                                Color.White);
-            _sb.DrawString(txt, "Cam X:" + scene.cam.currentPos.X+ "Cam Y:" + scene.cam.currentPos.Y, startPos + new Vector2(10, 6 * 32), Color.White);
-            _sb.DrawString(txt, "Roomsize X:" + scene.roomSize.X+" Y:" + scene.roomSize.Y, startPos + new Vector2(10, 7 * 32), Color.White);
-            _sb.DrawString(txt, "scene:" + scene.id, startPos + new Vector2(10, 9 * 32), Color.White);
             pointer.Draw(_sb);
         }
     }

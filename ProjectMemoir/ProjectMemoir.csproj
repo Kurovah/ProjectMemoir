@@ -44,6 +44,7 @@
     <Compile Include="Components\Autotiler.cs" />
     <Compile Include="Components\Cam.cs" />
     <Compile Include="Components\HUD.cs" />
+    <Compile Include="Components\Popup.cs" />
     <Compile Include="Components\Menu.cs" />
     <Compile Include="Components\PauseMenu.cs" />
     <Compile Include="Components\PlayerStats.cs" />
@@ -103,6 +104,8 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

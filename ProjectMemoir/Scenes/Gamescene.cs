@@ -20,6 +20,7 @@ namespace ProjectMemoir.Scenes
         protected PauseMenu pmenu;
         protected Autotiler at;
         protected PlayerStats ps;
+        public PopUp pu;
         
         Game1 g;
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
@@ -28,6 +29,7 @@ namespace ProjectMemoir.Scenes
             pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), _game, this);
             roomSize = new Vector2(0);
             g = _game;
+            pu = new PopUp(_con,this,"");
         }
 
         public override void Load()
@@ -90,7 +92,7 @@ namespace ProjectMemoir.Scenes
         }
        protected void newGriefTree(int _x, int _y, string _type)
         {
-            spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player));
+            spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player, this));
         }
         #endregion
 
@@ -103,7 +105,14 @@ namespace ProjectMemoir.Scenes
             }
             else
             {
-                pmenu.Update(_gt);
+                if (!pmenu.active)
+                {
+                    pu.Update(_gt);
+                }
+                if (!pu.active)
+                {
+                    pmenu.Update(_gt);
+                }
                 if (!pause)
                 {
                     foreach (Sprite _s in spriteList)
@@ -132,8 +141,13 @@ namespace ProjectMemoir.Scenes
             {
                 //the black background
                 _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black * 0.75f);
+
                 //draw Pause menu
-                pmenu.Draw(_sb);
+                if (pmenu.active)
+                {
+                    pmenu.Draw(_sb);
+                }
+                pu.Draw(_sb);
             }
             _sb.End();
 

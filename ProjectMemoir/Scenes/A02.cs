@@ -16,7 +16,7 @@ namespace ProjectMemoir.Scenes
 
         public A02(Game1 _game, ContentManager _con,Vector2 _playerpos) :base(_game, _con, _playerpos)
         {
-            //id = "a2";
+            id = "a2";
         }
 
         public override void Load()

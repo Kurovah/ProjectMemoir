@@ -79,7 +79,7 @@ namespace ProjectMemoir.Scenes
         }
         protected void newPedestal(int _x, int _y, String _type)
         {
-            spriteList.Add(new Pedestal(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player));
+            spriteList.Add(new Pedestal(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player, this));
         }
         protected void newSeal(int _x, int _y, String _type)
         {

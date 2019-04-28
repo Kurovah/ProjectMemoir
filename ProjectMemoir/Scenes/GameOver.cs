@@ -12,11 +12,11 @@ namespace ProjectMemoir.Scenes
 {
     public class GameOver:Scene
     {
-
+        
         public GameOverMenu gOMenu;
         public GameOver(Game1 _game, ContentManager _con):base(_game, _con)
         {
-            gOMenu = new GameOverMenu(_con,new List<string> (){"Continue","Quit"}, new Vector2(5), this);
+            gOMenu = new GameOverMenu(_con,new List<string> (){"Continue","Back to Main"}, new Vector2(5), this);
         }
 
         public override void Load()

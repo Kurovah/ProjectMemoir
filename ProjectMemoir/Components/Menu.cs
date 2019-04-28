@@ -21,14 +21,13 @@ namespace ProjectMemoir.Components
         protected Game1 g;
         protected Scene scene;
         public bool active;
-        public Menu(ContentManager _con, List<string> _options, Vector2 _startpos, Game1 _g, Scene _scene)
+        public Menu(ContentManager _con, List<string> _options, Vector2 _startpos, Scene _scene)
         {
             //set the position of the menu to zero (top option)
             pos = 0;
             options = _options;
             startPos = _startpos;
             txt = _con.Load<SpriteFont>("Font");
-            g = _g;
             scene = _scene;
             pointer = new Animation(_con.Load<Texture2D>("forP"), new Vector2(20), new Vector2(32), _startpos, 0, Color.Red);
             active = true;
@@ -65,12 +64,7 @@ namespace ProjectMemoir.Components
 
         public virtual void Draw(SpriteBatch _sb)
         {
-            int P = 0;
-            foreach (String _s in options)
-            {
-                _sb.DrawString(txt, _s, startPos + new Vector2(30, P*32), Color.White);
-                P++;
-            }
+            
             pointer.Draw(_sb);
         }
     }

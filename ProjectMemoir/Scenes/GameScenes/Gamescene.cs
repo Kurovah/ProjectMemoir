@@ -26,7 +26,7 @@ namespace ProjectMemoir.Scenes
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
             newPos = _playerpos;
             pause = false;
-            pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), _game, this);
+            pmenu = new PauseMenu(_con, new List<string> { "This", "is", "a", "Menu" }, new Vector2(0, 0), this);
             roomSize = new Vector2(0);
             g = _game;
             pu = new PopUp(_con,this,"");
@@ -52,7 +52,7 @@ namespace ProjectMemoir.Scenes
             //put anything that's dependant on the roomsize here
             
             at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
-            spriteList.Add(player = new Player(this.con, newPos, this.game.ps));
+            spriteList.Add(player = new Player(this.con, newPos, this));
             cam = new Cam(player, roomSize, new Vector2(1280, 720));
         }
 

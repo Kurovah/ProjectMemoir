@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using ProjectMemoir.Components;
 using Microsoft.Xna.Framework.Audio;
+using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Sprites
 {
@@ -31,11 +32,12 @@ namespace ProjectMemoir.Sprites
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
         SoundEffect jumpEffect;
-
-        public Player(ContentManager _con, Vector2 _pos, PlayerStats _ps):base(_con, _pos)
+        private Scene parentScene;
+        public Player(ContentManager _con, Vector2 _pos, Scene _parentScene):base(_con, _pos)
         {
             currentState = playerStates.normal;
-            ps = _ps;
+            ps = _parentScene.game.ps;
+            parentScene = _parentScene;
             anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32, 4, Color.White);
             anim.maxDelay = 3f;
             jumpEffect = _con.Load<SoundEffect>("sounds/Jump");
@@ -48,7 +50,8 @@ namespace ProjectMemoir.Sprites
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-            g = IsGrounded(_sl); 
+            g = IsGrounded(_sl);
+            if (invincible) { anim.alpha = 0.75f; } else { anim.alpha = 1; }
             currentKS = Keyboard.GetState();
             #region state machine
             switch (currentState)
@@ -361,24 +364,25 @@ namespace ProjectMemoir.Sprites
             } else
             {
                 stuntimer = -1;
-                itimer = 20;
+                itimer = 10;
                 currentState = playerStates.normal;
             }
         }
         public void getHurt(float _xvel, float _yvel)
         {
-            currentState = Player.playerStates.hurt;
-            velocity = new Vector2(_xvel,_yvel);
             ps.hp -= 1;
-            stuntimer = 10;
+            if (ps.hp <= 0) {
+                parentScene.game.nextScene = new GameOver(parentScene.game, con);
+            }
+            else
+            {
+                currentState = Player.playerStates.hurt;
+                velocity = new Vector2(_xvel, _yvel);
+                stuntimer = 10;
+            }
         }
         public override void Draw(SpriteBatch _sb)
         {
-            _sb.DrawString(txt,"state:" + currentState+
-                " itimer:"+itimer+
-                " hurt:"+invincible+
-                " stimer:" + stuntimer
-                , new Vector2(32), Color.White);
             foreach (Kunai _k in kl)
             {
                 _k.Draw(_sb);

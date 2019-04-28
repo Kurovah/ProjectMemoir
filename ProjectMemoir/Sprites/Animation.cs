@@ -10,10 +10,10 @@ namespace ProjectMemoir.Sprites
         public Rectangle sourceRect, desRect;
         public Vector2 spriteSize, sourcesize ,position, sourcePos,spriteOrigin = new Vector2(0,0);
         public int frames, currentframe;
-        public float delay = 0f,maxDelay = 1f;
+        public float delay = 0f,maxDelay = 1f, alpha;
         public Texture2D tex;
         public Color col;
-        public int t,alpha;
+        public int t;
         public SpriteEffects mirrored;
         public bool needsChange = true;// if the source pos x needs to snap back to the original position
         public Animation(Texture2D _tex, Vector2 _spritesize, Vector2 _sourceSize,Vector2 _position, int _frameNo, Color _col)

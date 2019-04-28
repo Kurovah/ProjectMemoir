@@ -47,7 +47,7 @@ namespace ProjectMemoir.Components
         {
             if (active) {
                 backboard.Draw(_sb);
-                _sb.DrawString(txt, text, new Vector2((1088 - txt.MeasureString(text).X) / 2 + 10, (720 / 2 - 25)+10), Color.White);
+                _sb.DrawString(txt, text, new Vector2( (1280 / 2) - txt.MeasureString(text).X/2, (720 / 2 - 25)+10), Color.White);
             }
             
         }

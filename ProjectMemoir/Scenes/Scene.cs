@@ -10,7 +10,7 @@ namespace ProjectMemoir.Scenes
 {
     public abstract class Scene
     {
-        protected Game1 game;
+        public Game1 game;
         protected ContentManager con;
         public Cam cam;
         public List<Sprite> spriteList = new List<Sprite>();

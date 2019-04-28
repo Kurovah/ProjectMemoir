@@ -15,9 +15,9 @@ namespace ProjectMemoir.Components
         PlayerStats ps;
         Texture2D tex;
         int sectSize = 48;
-        public PauseMenu(ContentManager _con, List<string> _options, Vector2 _pos, Game1 _g, Scene _scene) :base(_con, _options,_pos,_g, _scene)
+        public PauseMenu(ContentManager _con, List<string> _options, Vector2 _pos,Scene _scene) :base(_con, _options,_pos, _scene)
         {
-            ps = _g.ps;
+            ps = scene.game.ps;
             tex = _con.Load<Texture2D>("ForP");
             active = false;
             #region list of vectors for drawing the map sector
@@ -69,8 +69,16 @@ namespace ProjectMemoir.Components
 
         public override void Draw(SpriteBatch _sb)
         {
+            //draw the menu
+            int P = 0;
+            foreach (String _s in options)
+            {
+                _sb.DrawString(txt, _s, startPos + new Vector2(432, P * 20), Color.White);
+                P++;
+            }
+
             //drawing the map
-            for( int i = 0; i < ps.mapPeices.Count; i++)
+            for ( int i = 0; i < ps.mapPeices.Count; i++)
             {
                 //draw the map section if the corresponding section is true
                 if (ps.mapPeices[ps.mapPeices.Keys.ElementAt(i)])

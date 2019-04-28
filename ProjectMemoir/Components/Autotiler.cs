@@ -45,6 +45,24 @@ namespace ProjectMemoir.Components
                             if (checkRect.Intersects(_s.anim.desRect) )
                             {
                                 //check again for bw calc to get the new tile
+                                #region the outersides
+                                if(checkRect.X == 0)
+                                {
+                                    bw += 2;
+                                }
+                                if (checkRect.X == roomSize.X-32)
+                                {
+                                    bw += 4;
+                                }
+                                if (checkRect.Y == 0)
+                                {
+                                    bw += 1;
+                                }
+                                if (checkRect.Y == roomSize.Y-32)
+                                {
+                                    bw += 8;
+                                }
+                                #endregion
                                 #region checksides for bitwise collisions
                                 foreach (Sprite _s2 in _sl)
                                 {

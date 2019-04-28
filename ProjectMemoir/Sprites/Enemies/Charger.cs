@@ -36,7 +36,9 @@ namespace ProjectMemoir.Sprites.Enemies
                     anim.frames = 0;
 
                     //only attack player if they are not invincible
-                    if (distanceToTarget() < 200f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f && !target.invincible) {
+                    if (distanceToTarget() < 250f && 
+                        (target.anim.position.Y + 32 < anim.position.Y+anim.spriteSize.Y && target.anim.position.Y+32 > anim.position.Y) && 
+                        !target.invincible) {
                         facing = Math.Sign(target.anim.position.X - anim.position.X);
                         anim.currentframe = 0;
                         currentState = States.chargeup;

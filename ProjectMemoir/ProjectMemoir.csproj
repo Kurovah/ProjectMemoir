@@ -43,12 +43,14 @@
   <ItemGroup>
     <Compile Include="Components\Autotiler.cs" />
     <Compile Include="Components\Cam.cs" />
+    <Compile Include="Components\MainMenuMenu .cs" />
     <Compile Include="Components\HUD.cs" />
     <Compile Include="Components\GameOverMenu.cs" />
     <Compile Include="Components\Popup.cs" />
     <Compile Include="Components\Menu.cs" />
     <Compile Include="Components\PauseMenu.cs" />
     <Compile Include="Components\PlayerStats.cs" />
+    <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Scenes\GameScenes\A17.cs" />
     <Compile Include="Scenes\GameScenes\A18.cs" />
     <Compile Include="Scenes\GameScenes\A19.cs" />

@@ -20,6 +20,9 @@ namespace ProjectMemoir.Components
             ps = scene.game.ps;
             tex = _con.Load<Texture2D>("ForP");
             active = false;
+            offset = new Vector2(432*2,5);
+            pointer.sourcePos.Y = 32;
+            pointer.col = Color.Red;
             #region list of vectors for drawing the map sector
             mapSects = new List<Vector2>(){
                 new Vector2(_pos.X+5 + sectSize*4,_pos.Y+5 +sectSize*4),
@@ -56,15 +59,21 @@ namespace ProjectMemoir.Components
         {
             currentK = Keyboard.GetState();
             if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; active = !active; }//if P is "pressed" pause the game 
-            lastK = currentK;
+            pointer.position = offset + new Vector2(-32, pos * 30);
             base.Update(_gt);
+            lastK = currentK;
         }
         public override void Selectoption(int OP)
         {
-            if(OP == 0)
-            {
+            switch (OP) {
+                case 0:
                 scene.pause = false;
+                    break;
+                case 1:
+                    scene.game.nextScene = new MainMenu(scene.game, scene.game.Content);
+                    break;
             }
+            
         }
 
         public override void Draw(SpriteBatch _sb)
@@ -73,7 +82,7 @@ namespace ProjectMemoir.Components
             int P = 0;
             foreach (String _s in options)
             {
-                _sb.DrawString(txt, _s, startPos + new Vector2(432, P * 20), Color.White);
+                _sb.DrawString(txt, _s, startPos + new Vector2(432*2, P * 30), Color.White);
                 P++;
             }
 

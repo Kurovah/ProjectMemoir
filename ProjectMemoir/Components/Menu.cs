@@ -16,8 +16,8 @@ namespace ProjectMemoir.Components
         protected List<string> options;
         protected SpriteFont txt;
         protected KeyboardState currentK, lastK;
-        protected Vector2 startPos;
-        Animation pointer;
+        protected Vector2 startPos, offset;
+        public Animation pointer;
         protected Game1 g;
         protected Scene scene;
         public bool active;
@@ -31,6 +31,7 @@ namespace ProjectMemoir.Components
             scene = _scene;
             pointer = new Animation(_con.Load<Texture2D>("forP"), new Vector2(20), new Vector2(32), _startpos, 0, Color.Red);
             active = true;
+            currentK = lastK = Keyboard.GetState();
         }
         public virtual void Update(GameTime _gt)
         {
@@ -49,12 +50,10 @@ namespace ProjectMemoir.Components
                 }
 
                 //select option
-                if (currentK.IsKeyDown(Keys.J))
+                if (currentK.IsKeyDown(Keys.J) && !lastK.IsKeyDown(Keys.J))
                 {
                     Selectoption(pos);
                 }
-
-                pointer.position.Y = startPos.Y + pos * 32;
                 pointer.Update(_gt);
                 lastK = currentK;
             }

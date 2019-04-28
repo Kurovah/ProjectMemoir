@@ -9,18 +9,18 @@ using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Components
 {
-    public class GameOverMenu:Menu
+    public class MainMenuMenu:Menu
     {
         List<Vector2> mapSects;
         PlayerStats ps;
         Texture2D tex;
         Scene parent;
         int sectSize = 48;
-        public GameOverMenu(ContentManager _con, List<string> _options, Vector2 _pos, Scene _scene) :base(_con, _options,_pos, _scene)
+        public MainMenuMenu(ContentManager _con, List<string> _options, Vector2 _pos, Scene _scene) :base(_con, _options,_pos, _scene)
         {
             ps = scene.game.ps;
             tex = _con.Load<Texture2D>("ForP");
-            offset = new Vector2((1280 / 2) - (txt.MeasureString(options[pos]).X / 2), 720 / 2 + 10);
+            offset = new Vector2((1280 / 2) - (txt.MeasureString(options[pos]).X / 2),720/2 + 10);
             pointer.sourcePos.Y = 32;
             pointer.col = Color.Red;
         }
@@ -41,7 +41,7 @@ namespace ProjectMemoir.Components
                     scene.game.nextScene = new A01(scene.game, scene.game.Content, new Vector2(2, 9));
                     break;
                 case 1:
-                    scene.game.nextScene = new MainMenu(scene.game, scene.game.Content);
+                    scene.game.Exit();
                     break;
             }
         }

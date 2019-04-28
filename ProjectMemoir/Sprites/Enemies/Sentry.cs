@@ -38,11 +38,11 @@ namespace ProjectMemoir.Sprites.Enemies
                 case states.idle:
                     anim.tex = con.Load<Texture2D>("enemySprites/sentry_idle");
                     anim.frames = 5;
-                    if (distanceToTarget() < 200f) { currentState = states.alert; anim.currentframe = 0; }
+                    if (distanceToTarget() < 200f && !target.invincible) { currentState = states.alert; anim.currentframe = 0; }
                     break;
                 case states.alert:
                     
-                    if (distanceToTarget() >= 200f) { currentState = states.idle; anim.currentframe = 0; }
+                    if (distanceToTarget() >= 200f || target.invincible) { currentState = states.idle; anim.currentframe = 0; }
                     anim.tex = con.Load<Texture2D>("enemySprites/sentry_shoot");
                     anim.frames = 5;
 

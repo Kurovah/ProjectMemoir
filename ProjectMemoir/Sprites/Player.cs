@@ -11,7 +11,7 @@ namespace ProjectMemoir.Sprites
 {
     public class Player:PhysObject
     {
-        enum playerStates
+        public enum playerStates
         {
             normal,
             upspecial,
@@ -24,10 +24,12 @@ namespace ProjectMemoir.Sprites
         KeyboardState currentKS;
         float spd = 5f;
         public int hp = 100, maxHp = 100, facing = 1, type = 0;
+        public float itimer, stuntimer;
+        public bool invincible;
         SpriteFont txt;
-        bool g, UScanuse = true, SScanuse = true, DScanuse = true, NScanuse = true, startDive = false;
-        playerStates currentState = playerStates.normal;
-        PlayerStats ps;
+        bool g, UScanuse = true, startDive = false, SScanuse = false;
+        public playerStates currentState = playerStates.normal;
+        public PlayerStats ps;
         SoundEffect jumpEffect;
 
         public Player(ContentManager _con, Vector2 _pos, PlayerStats _ps):base(_con, _pos)
@@ -39,14 +41,16 @@ namespace ProjectMemoir.Sprites
             jumpEffect = _con.Load<SoundEffect>("sounds/Jump");
             txt = _con.Load<SpriteFont>("Font");
             kl = new List<Kunai>();
+            itimer = -1f;
+            stuntimer = -1f;
+            invincible = false;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
             g = IsGrounded(_sl); 
             currentKS = Keyboard.GetState();
-
-            //state machine
+            #region state machine
             switch (currentState)
             {
                 case playerStates.normal:
@@ -69,10 +73,14 @@ namespace ProjectMemoir.Sprites
                 case playerStates.sidespecial:
                     playerSideSpecial(_sl);
                     break;
+                case playerStates.hurt:
+                    playerHurtState(_sl);
+                    break;
             }
-
+            #endregion
+            
             //flip the sprite based on facing value
-            if(facing == 1)
+            if (facing == 1)
             {
                 anim.mirrored = SpriteEffects.None;
             } else
@@ -209,9 +217,11 @@ namespace ProjectMemoir.Sprites
             if(anim.currentframe < 5 || anim.currentframe > 10)
             {
                 velocity = new Vector2(0);
+                invincible = false;
             } else
             {
                 velocity.X = 10 * facing;
+                invincible = true;
             }
 
             if (anim.isFinished())
@@ -242,6 +252,14 @@ namespace ProjectMemoir.Sprites
         }
         public void playerNormalState(List<Sprite> _sl)
         {
+            if (itimer > 0)
+            {
+                itimer -= 0.1f;
+            }
+            else
+            {
+                invincible = false;
+            }
             //making sure the sprite is the right size
             if (anim.sourcesize != new Vector2(55))
             {
@@ -325,9 +343,33 @@ namespace ProjectMemoir.Sprites
             
            
         }
-
+        public void playerHurtState(List<Sprite> _sl)
+        {
+            if (stuntimer < 0)
+            {
+                stuntimer = 40;
+            }
+            Applygravity();
+            if (stuntimer > 0 || !IsGrounded(_sl))
+            {
+                anim.tex = con.Load<Texture2D>("playersprites/player_hurt");
+                anim.currentframe = 0;
+                anim.frames = 0;
+                invincible = true;
+                stuntimer -= 0.1f;
+            } else
+            {
+                stuntimer = -1;
+                itimer = 50;
+                currentState = playerStates.normal;
+            }
+        }
         public override void Draw(SpriteBatch _sb)
         {
+            _sb.DrawString(txt,"state:" + currentState+
+                " itimer:"+itimer+
+                " hurt:"+invincible
+                , new Vector2(32), Color.White);
             foreach (Kunai _k in kl)
             {
                 _k.Draw(_sb);

@@ -34,8 +34,9 @@ namespace ProjectMemoir.Sprites.Enemies
                 case States.idle:
                     anim.tex = con.Load<Texture2D>("enemySprites/charger_idle");
                     anim.frames = 0;
-                    anim.col = Color.Aqua;
-                    if (distanceToTarget() < 200f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f) {
+
+                    //only attack player if they are not invincible
+                    if (distanceToTarget() < 200f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f && !target.invincible) {
                         facing = Math.Sign(target.anim.position.X - anim.position.X);
                         anim.currentframe = 0;
                         currentState = States.chargeup;
@@ -77,10 +78,12 @@ namespace ProjectMemoir.Sprites.Enemies
 
                        
                     //crash into player
-                    if (checkRightCol(target) || checkLeftCol(target) || checkTopCol(target) || checkBottomCol(target)) {
-                        target.velocity.Y = -20;
+                    if ((checkRightCol(target) || checkLeftCol(target) || checkTopCol(target) || checkBottomCol(target)) && !target.invincible) {
+                        target.currentState = Player.playerStates.hurt;
+                        target.velocity.Y = -12;
                         velocity.X = 0;
-                        target.hp = -20;
+                        target.ps.hp -= 1;
+                        target.velocity.X = velocity.X;
                         currentState = States.idle;
                     }
                     break;

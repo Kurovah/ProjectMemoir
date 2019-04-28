@@ -22,9 +22,14 @@ namespace ProjectMemoir.Sprites.Enemies
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
 
-            if (anim.desRect.Intersects(target.anim.desRect))
+            if (anim.desRect.Intersects(target.anim.desRect) && !target.invincible)
             {
-                target.hp -= 5;
+                target.hp -= 1;
+                target.velocity.Y = -12;
+                target.velocity.X = Math.Sign(target.anim.position.X - anim.position.X)*4;
+                target.itimer = 100;
+                target.ps.hp -= 1;
+                target.currentState = Player.playerStates.hurt;
                 isVisible = false;
             }
 

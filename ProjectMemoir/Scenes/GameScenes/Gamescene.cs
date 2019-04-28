@@ -21,6 +21,7 @@ namespace ProjectMemoir.Scenes
         protected Autotiler at;
         protected PlayerStats ps;
         public PopUp pu;
+        protected float palpha;
         
         Game1 g;
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
@@ -107,7 +108,11 @@ namespace ProjectMemoir.Scenes
             {
                 if (!pmenu.active)
                 {
+                    if(palpha > 0) { palpha -= 0.05f; }
                     pu.Update(_gt);
+                } else
+                {
+                    if (palpha < 0.75f) { palpha += 0.05f; }
                 }
                 if (!pu.active)
                 {
@@ -140,7 +145,7 @@ namespace ProjectMemoir.Scenes
             if (pause)
             {
                 //the black background
-                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black * 0.75f);
+                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black * palpha);
 
                 //draw Pause menu
                 if (pmenu.active)

@@ -26,6 +26,7 @@ namespace ProjectMemoir.Components
         }
         public override void Update(GameTime _gt)
         {
+            active = true;
             currentK = Keyboard.GetState();
             if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; active = !active; }//if P is "pressed" pause the game 
             pointer.position = offset + new Vector2(-32, pos * 30);

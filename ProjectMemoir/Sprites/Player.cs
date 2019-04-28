@@ -345,30 +345,39 @@ namespace ProjectMemoir.Sprites
         }
         public void playerHurtState(List<Sprite> _sl)
         {
-            if (stuntimer < 0)
-            {
-                stuntimer = 40;
-            }
             Applygravity();
-            if (stuntimer > 0 || !IsGrounded(_sl))
+            if (stuntimer > 0)
             {
                 anim.tex = con.Load<Texture2D>("playersprites/player_hurt");
                 anim.currentframe = 0;
                 anim.frames = 0;
                 invincible = true;
                 stuntimer -= 0.1f;
+                //the stun ends prematurely when you land
+                if (IsGrounded(_sl) && velocity.Y > 0)
+                {
+                    stuntimer = 0;
+                }
             } else
             {
                 stuntimer = -1;
-                itimer = 50;
+                itimer = 20;
                 currentState = playerStates.normal;
             }
+        }
+        public void getHurt(float _xvel, float _yvel)
+        {
+            currentState = Player.playerStates.hurt;
+            velocity = new Vector2(_xvel,_yvel);
+            ps.hp -= 1;
+            stuntimer = 10;
         }
         public override void Draw(SpriteBatch _sb)
         {
             _sb.DrawString(txt,"state:" + currentState+
                 " itimer:"+itimer+
-                " hurt:"+invincible
+                " hurt:"+invincible+
+                " stimer:" + stuntimer
                 , new Vector2(32), Color.White);
             foreach (Kunai _k in kl)
             {

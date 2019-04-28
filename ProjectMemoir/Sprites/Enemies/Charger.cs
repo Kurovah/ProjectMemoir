@@ -79,12 +79,9 @@ namespace ProjectMemoir.Sprites.Enemies
                        
                     //crash into player
                     if ((checkRightCol(target) || checkLeftCol(target) || checkTopCol(target) || checkBottomCol(target)) && !target.invincible) {
-                        target.currentState = Player.playerStates.hurt;
-                        target.velocity.Y = -12;
                         velocity.X = 0;
-                        target.ps.hp -= 1;
-                        target.velocity.X = velocity.X;
                         currentState = States.idle;
+                        target.getHurt(Math.Sign(target.anim.position.X - anim.position.X)*4, -8);
                     }
                     break;
             }

@@ -24,12 +24,7 @@ namespace ProjectMemoir.Sprites.Enemies
 
             if (anim.desRect.Intersects(target.anim.desRect) && !target.invincible)
             {
-                target.hp -= 1;
-                target.velocity.Y = -12;
-                target.velocity.X = Math.Sign(target.anim.position.X - anim.position.X)*4;
-                target.itimer = 100;
-                target.ps.hp -= 1;
-                target.currentState = Player.playerStates.hurt;
+                target.getHurt(Math.Sign(target.anim.position.X - anim.position.X) * 4, -4);
                 isVisible = false;
             }
 

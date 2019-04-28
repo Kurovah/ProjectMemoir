@@ -44,8 +44,7 @@ namespace ProjectMemoir.Sprites
 
             if (ps.treesPurified[type])
             {  
-                anim.sourcePos.Y = 161;
-                anim.position.Y = initx +1;
+                anim.sourcePos.Y = 160;
             }
             else
             {

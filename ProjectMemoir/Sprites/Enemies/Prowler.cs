@@ -11,12 +11,13 @@ namespace ProjectMemoir.Sprites.Enemies
         enum States
         {
             wander,
-            follow
+            follow,
+            stunned
         };
 
         private Player target;
         private States currentstate;
-        private int jumpcount,facing;
+        private int facing;
         private Vector2 pos;
         private float distance = 500, oldDistance, targetDistance;
         private bool right;
@@ -29,7 +30,6 @@ namespace ProjectMemoir.Sprites.Enemies
             oldDistance = distance;
             right = true;
             facing = 1;
-            jumpcount = 0;
             currentstate = States.wander;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/prowler_walk"), new Vector2(55), new Vector2(55), _pos, 6, Color.White);
             anim.maxDelay = 2f;
@@ -62,7 +62,7 @@ namespace ProjectMemoir.Sprites.Enemies
                             distance -= 10;
 
 
-                        if (distanceToTarget() < 400f && Math.Abs(target.anim.position.Y - anim.position.Y) < 40f)
+                        if (distanceToTarget() < 400f && Math.Abs(target.anim.position.Y - anim.position.Y) < 40f && !target.invincible)
                         {
                             facing = Math.Sign(target.anim.position.X - anim.position.X); currentstate = States.follow;
                         }
@@ -81,7 +81,12 @@ namespace ProjectMemoir.Sprites.Enemies
                         else if (targetDistance == 0)
                             velocity.X = 0f;
 
-                        if (distanceToTarget() >= 400f || Math.Abs(target.anim.position.Y - anim.position.Y) > 70f)
+                        if (anim.desRect.Intersects(target.anim.desRect) && !target.invincible)
+                        {
+                            target.getHurt(Math.Sign(target.anim.position.X - anim.position.X) * 4, -8);
+                        }
+
+                        if (distanceToTarget() >= 400f || Math.Abs(target.anim.position.Y - anim.position.Y) > 70f || target.invincible)
                         {
                             velocity.X = 0f; currentstate = States.wander;
                         }

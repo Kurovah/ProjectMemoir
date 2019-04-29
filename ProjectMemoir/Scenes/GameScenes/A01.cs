@@ -25,22 +25,22 @@ namespace ProjectMemoir.Scenes
             background = con.Load<Texture2D>("backgrounds/VillageBK");
 
             //solids to collide with
-            newSolid(0,0,1,11);
-            newSolid(1, 0, 5, 1);
-            newSolid(14,0,6,1);
+            newSolid(0, 0, 1, 11);
+            newSolid(1, 0, 7, 1);
+            newSolid(12, 0, 8, 1);
             newSolid(0, 11, 19, 1);
             newSolid(19, 1, 1, 11);
 
-            newSolid(1, 7, 4, 1);
-            newSolid(15, 7, 4, 1);
-            newSolid(7, 4, 6, 1);
-            newSolid(7, 10, 6, 1);
+            newSolid(15, 8, 4, 3);
+            newSolid(7, 5, 6, 1);
 
             base.Load();
             //you can change the current tileset like this
             //at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
-            newSceneChanger(0, -1, 20, 1, "A2", new Vector2(1,9));
+            newSceneChanger(7, -1, 7, 1, "A2", new Vector2(1,9));
+
+            newGriefTree(7, 6, "1");
         }
 
         

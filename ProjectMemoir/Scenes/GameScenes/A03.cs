@@ -21,24 +21,22 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
-            
+
 
             //solids to collide with
-            newSolid(0,0,1,11);
+            newSolid(0, 0, 1, 9);
             newSolid(1, 0, 19, 1);
-            newSolid(0, 11, 19, 1);
-            newSolid(19, 1, 1, 11);
-
-            newSolid(1, 7, 4, 1);
-            newSolid(15, 7, 4, 1);
-            newSolid(7, 4, 6, 1);
-            newSolid(7, 10, 6, 1);
+            newSolid(0, 11, 9, 1);
+            //newBreakableBlock(9, 11);
+            //newBreakableBlock(10, 11);
+            newSolid(11, 11, 9, 1);
+            newSolid(19, 1, 1, 8);
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(0, -1, 1, 12, "A24", new Vector2(2, 9));
-            newSceneChanger(0, -1, 1, 12, "A2", new Vector2(2, 9));
-            newSceneChanger(0, -1, 1, 12, "A4", new Vector2(2, 9));
+            newSceneChanger(21, 11, 0, 12, "A7", new Vector2(2, 9));
+            newSceneChanger(-1, -1, 0, 12, "A3", new Vector2(2, 9));
+            newSceneChanger(8, 12, 2, 1, "A24", new Vector2(2, 9));
         }
 
         

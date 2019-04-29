@@ -39,8 +39,6 @@ namespace ProjectMemoir.Scenes
             //at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
             newSceneChanger(7, -1, 7, 1, "A2", new Vector2(1,9));
-
-            newGriefTree(7, 6, "1");
         }
 
         

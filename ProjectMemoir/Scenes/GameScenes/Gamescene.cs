@@ -131,6 +131,14 @@ namespace ProjectMemoir.Scenes
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {
+            //drawing the background
+            if(background != null)
+            {
+                _sb.Begin();
+                    _sb.Draw(background, Vector2.Zero, Color.White);
+             
+                _sb.End();
+            }
             _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.trans);
             foreach (Sprite _s in spriteList)
             {

@@ -16,7 +16,7 @@ namespace ProjectMemoir.Scenes
         public GameOverMenu gOMenu;
         public GameOver(Game1 _game, ContentManager _con):base(_game, _con)
         {
-            background = _con.Load<Texture2D>("gameover_screen");
+            background = _con.Load<Texture2D>("backgrounds/gameover_screen");
             gOMenu = new GameOverMenu(_con,new List<string> (){"Continue","Back to Main"}, new Vector2(5), this);
         }
 

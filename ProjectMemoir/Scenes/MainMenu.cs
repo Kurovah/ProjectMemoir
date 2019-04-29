@@ -16,7 +16,7 @@ namespace ProjectMemoir.Scenes
         public MainMenuMenu gOMenu;
         public MainMenu(Game1 _game, ContentManager _con):base(_game, _con)
         {
-            background = _con.Load<Texture2D>("title_screen");
+            background = _con.Load<Texture2D>("backgrounds/title_screen");
             gOMenu = new MainMenuMenu(_con,new List<string> (){"Start","Quit"}, new Vector2(5), this);
         }
 

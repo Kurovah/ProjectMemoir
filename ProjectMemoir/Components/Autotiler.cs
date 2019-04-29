@@ -14,7 +14,7 @@ namespace ProjectMemoir.Components
         Rectangle checkRect;
         List<Animation> tiles;
         public bool active = true;
-        Texture2D tex;
+        public Texture2D tex;
         Vector2 tSize,texCoord;
         SpriteFont txt;//for testing
         public Autotiler(ContentManager _con, String _tileset,Vector2 _roomsize)

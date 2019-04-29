@@ -17,6 +17,7 @@ namespace ProjectMemoir.Scenes
         public bool pause;
         public Vector2 roomSize;
         public String id;
+        public Texture2D background;
         protected Scene(Game1 _game, ContentManager _con)
         {
             con = _con;

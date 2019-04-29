@@ -189,3 +189,5 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Win
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\Jump.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\playersprites\player_hurt.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\grieftree.xnb
+C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\gameover_screen.xnb
+C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\title_screen.xnb

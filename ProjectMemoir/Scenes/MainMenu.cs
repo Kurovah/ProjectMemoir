@@ -16,6 +16,7 @@ namespace ProjectMemoir.Scenes
         public MainMenuMenu gOMenu;
         public MainMenu(Game1 _game, ContentManager _con):base(_game, _con)
         {
+            background = _con.Load<Texture2D>("title_screen");
             gOMenu = new MainMenuMenu(_con,new List<string> (){"Start","Quit"}, new Vector2(5), this);
         }
 
@@ -30,6 +31,7 @@ namespace ProjectMemoir.Scenes
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {
             _sb.Begin();
+            _sb.Draw(background, Vector2.Zero, Color.White);
             gOMenu.Draw(_sb);
             _sb.End();
         }

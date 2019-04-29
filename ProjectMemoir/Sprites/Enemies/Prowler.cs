@@ -41,6 +41,7 @@ namespace ProjectMemoir.Sprites.Enemies
             {
                 case States.wander:
                     {
+                        anim.col = Color.White;
                         anim.maxDelay = 2f;
                         pos += velocity;
                         if (distance <= 0)
@@ -62,7 +63,7 @@ namespace ProjectMemoir.Sprites.Enemies
                             distance -= 10;
 
 
-                        if (distanceToTarget() < 400f && Math.Abs(target.anim.position.Y - anim.position.Y) < 40f && !target.invincible)
+                        if (distanceToTarget() < 350f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f && !target.invincible)
                         {
                             facing = Math.Sign(target.anim.position.X - anim.position.X); currentstate = States.follow;
                         }
@@ -75,9 +76,9 @@ namespace ProjectMemoir.Sprites.Enemies
                         targetDistance = target.anim.position.X - anim.position.X;
                         anim.col = Color.Red;
                         if (targetDistance < facing)
-                            velocity.X = -3f;
+                            velocity.X = -2f;
                         else if (targetDistance >= facing)
-                            velocity.X = 3f;
+                            velocity.X = 2f;
                         else if (targetDistance == 0)
                             velocity.X = 0f;
 

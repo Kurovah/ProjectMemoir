@@ -29,11 +29,12 @@ namespace ProjectMemoir.Scenes
             newSolid(14, 0, 6, 1);
             newSolid(0, 11, 20, 1);
             newSolid(19, 1, 1, 8);
+            newSeal(19, 9, "Red");
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(21, -1, 0, 12, "A7", new Vector2(2, 9));
-            newSceneChanger(-1, -1, 0, 12, "A3", new Vector2(2, 9));
+            newSceneChanger(21, -1, 0, 12, "A7", new Vector2(1, 9));
+            newSceneChanger(-1, -1, 0, 12, "A3", new Vector2(18, 9));
         }
 
         

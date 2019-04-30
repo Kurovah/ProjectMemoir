@@ -31,14 +31,15 @@ namespace ProjectMemoir.Scenes
             newSolid(0, 11, 19, 1);
             newSolid(19, 1, 1, 11);
 
-            newSolid(15, 8, 4, 3);
-            newSolid(7, 5, 6, 1);
+            newSolid(17, 7, 2, 2);
+            newSolid(15, 9, 4, 2);
+            newSolid(8, 5, 4, 1);
 
             base.Load();
             //you can change the current tileset like this
             //at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
-            newSceneChanger(7, -1, 7, 1, "A2", new Vector2(1,9));
+            newSceneChanger(7, -1, 7, 1, "A2", new Vector2(9,9));
         }
 
         

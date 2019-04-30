@@ -16,7 +16,8 @@ namespace ProjectMemoir
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         public PlayerStats ps;
-        
+        Texture2D transitionScreen;
+        float talpha;
 
         public Scene currentScene, nextScene;
 
@@ -55,6 +56,8 @@ namespace ProjectMemoir
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ps = new PlayerStats();
+            talpha = 0f;
+            transitionScreen = Content.Load<Texture2D>("ForP");
             // TODO: use this.Content to load your game content here
             currentScene = new MainMenu(this, Content);
             currentScene.Load();
@@ -78,13 +81,29 @@ namespace ProjectMemoir
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime _gameTime)
         {
-            currentScene.Update(_gameTime);
-
-            if (nextScene != null)
+            
+            
+            if (nextScene == null)
             {
-                currentScene = nextScene;
-                nextScene = null;
-                currentScene.Load();
+                if(talpha > 0)
+                {
+                    talpha -= 0.1f;
+                }
+                currentScene.Update(_gameTime);
+            } else
+            {
+                {
+                    if (talpha < 1)
+                    {
+                        talpha += 0.1f;
+                    }
+                    else
+                    {
+                        currentScene = nextScene;
+                        nextScene = null;
+                        currentScene.Load();
+                    }
+                }
             }
             base.Update(_gameTime);
         }
@@ -97,7 +116,9 @@ namespace ProjectMemoir
         {
             GraphicsDevice.Clear(Color.Black);
             currentScene.Draw(spriteBatch, gameTime);
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(transitionScreen, new Rectangle(0, 0, 1280, 720), new Rectangle(0,0,32,32),Color.White * talpha);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

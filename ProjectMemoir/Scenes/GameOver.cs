@@ -30,7 +30,7 @@ namespace ProjectMemoir.Scenes
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {
             _sb.Begin();
-            _sb.Draw(background, Vector2.Zero, Color.White);
+            _sb.Draw(background, new Rectangle(0,0,1280,720), Color.White);
             gOMenu.Draw(_sb);
             _sb.End();
         }

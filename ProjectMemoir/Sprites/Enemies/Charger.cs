@@ -36,9 +36,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     anim.frames = 0;
 
                     //only attack player if they are not invincible
-                    if (distanceToTarget() < 250f && 
-                        (target.anim.position.Y + 32 < anim.position.Y+anim.spriteSize.Y && target.anim.position.Y+32 > anim.position.Y) && 
-                        !target.invincible) {
+                    if (distanceToTarget() < 250f && canSeePlayer() && !target.invincible) {
                         facing = Math.Sign(target.anim.position.X - anim.position.X);
                         anim.currentframe = 0;
                         currentState = States.chargeup;
@@ -90,6 +88,13 @@ namespace ProjectMemoir.Sprites.Enemies
             if(facing == -1) { anim.mirrored = SpriteEffects.None; } else { anim.mirrored = SpriteEffects.FlipHorizontally; }
             Applygravity();
             base.Update(_gt, _sl);
+        }
+        private bool canSeePlayer()
+        {
+            float playerPoint = target.anim.position.Y + target.anim.spriteSize.Y / 2,
+                anchor1 = anim.position.Y,
+                anchor2 = anim.position.Y + anim.spriteSize.Y;
+            return playerPoint < anchor2 && playerPoint > anchor1;
         }
         public float distanceToTarget()
         {

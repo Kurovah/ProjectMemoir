@@ -8,7 +8,7 @@ namespace ProjectMemoir.Sprites.Enemies
 {
     public class Prowler:PhysObject
     {
-        enum States
+        public enum States
         {
             wander,
             follow,
@@ -16,11 +16,12 @@ namespace ProjectMemoir.Sprites.Enemies
         };
 
         private Player target;
-        private States currentstate;
-        private int facing;
+        public States currentstate;
+        public int facing,stuntime;
         private Vector2 pos;
         private float distance = 500, oldDistance, targetDistance;
         private bool right;
+        private Animation stunFx;
 
 
         public Prowler(ContentManager _con, Vector2 _pos, Player _target) : base(_con, _pos)
@@ -31,12 +32,17 @@ namespace ProjectMemoir.Sprites.Enemies
             right = true;
             facing = 1;
             currentstate = States.wander;
+            stunFx = new Animation(_con.Load<Texture2D>("Vfx/vfx_stun"), new Vector2(27,15), new Vector2(55,30), _pos, 3, Color.White);
+            stunFx.alpha = 0;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/prowler_walk"), new Vector2(55), new Vector2(55), _pos, 6, Color.White);
             anim.maxDelay = 2f;
+            stuntime = 0;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
+            stunFx.position = anim.position + new Vector2(27/2,-10);
+            stunFx.Update(_gt);
             switch (currentstate)
             {
                 case States.wander:
@@ -63,7 +69,10 @@ namespace ProjectMemoir.Sprites.Enemies
                             distance -= 10;
 
 
-                        if (distanceToTarget() < 350f && Math.Abs(target.anim.position.Y - anim.position.Y) < 20f && !target.invincible)
+                        if (distanceToTarget() < 200f && 
+                            canSeePlayer() && 
+                            !target.invincible && 
+                            Math.Sign(target.anim.position.X - anim.position.X) == facing )
                         {
                             facing = Math.Sign(target.anim.position.X - anim.position.X); currentstate = States.follow;
                         }
@@ -94,6 +103,23 @@ namespace ProjectMemoir.Sprites.Enemies
 
                         break;
                     }
+                case States.stunned:
+                    velocity = Vector2.Zero;
+                    Applygravity();
+                    stunFx.alpha = 1;
+                    anim.frames = 0;
+                    anim.currentframe = 0;
+                    anim.col = Color.White;
+                    if(stuntime > 0)
+                    {
+                        stuntime--;
+                    } else
+                    {
+                        stunFx.alpha = 0;
+                        currentstate = States.wander;
+                        anim.frames = 6;
+                    }
+                    break;
             }
 
             if(velocity.X > 0)
@@ -106,10 +132,21 @@ namespace ProjectMemoir.Sprites.Enemies
             Applygravity();
             base.Update(_gt, _sl);
         }
-
+        private bool canSeePlayer()
+        {
+            float playerPoint = target.anim.position.Y + target.anim.spriteSize.Y / 2,
+                anchor1 = anim.position.Y,
+                anchor2 = anim.position.Y + anim.spriteSize.Y;
+            return playerPoint < anchor2 && playerPoint > anchor1;
+        }
         public float distanceToTarget()
         {
             return Math.Abs(target.anim.position.X - anim.position.X);
+        }
+        public override void Draw(SpriteBatch _sb)
+        {
+            base.Draw(_sb);
+            stunFx.Draw(_sb);
         }
     }
 }

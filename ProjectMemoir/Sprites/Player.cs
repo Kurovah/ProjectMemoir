@@ -28,7 +28,7 @@ namespace ProjectMemoir.Sprites
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
-        bool g, UScanuse = true, startDive = false, SScanuse = false;
+        bool kunaiCreated,grounded, UScanuse = true, startDive = false, SScanuse = false;
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
         SoundEffect jumpEffect;
@@ -46,18 +46,20 @@ namespace ProjectMemoir.Sprites
             itimer = -1f;
             stuntimer = -1f;
             invincible = false;
+            grounded = true;
+            kunaiCreated = false;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-            g = IsGrounded(_sl);
+            grounded = IsGrounded(_sl);
             if (invincible) { anim.alpha = 0.75f; } else { anim.alpha = 1; }
             currentKS = Keyboard.GetState();
             #region state machine
             switch (currentState)
             {
                 case playerStates.normal:
-                    playerNormalState(_sl);
+                    playerNormalState();
                     break;
 
                 case playerStates.upspecial:
@@ -70,14 +72,14 @@ namespace ProjectMemoir.Sprites
 
                 case playerStates.neutralspecial:
 
-                    playerNeutralSpecial(_sl);
+                    playerNeutralSpecial();
                     break;
 
                 case playerStates.sidespecial:
-                    playerSideSpecial(_sl);
+                    playerSideSpecial();
                     break;
                 case playerStates.hurt:
-                    playerHurtState(_sl);
+                    playerHurtState();
                     break;
             }
             #endregion
@@ -113,7 +115,7 @@ namespace ProjectMemoir.Sprites
             if (!startDive)
             {
                 
-                if (IsGrounded(_sl))
+                if (grounded)
                 {
                     anim.tex = con.Load<Texture2D>("playersprites/player_ground_smash");
                     anim.frames = 4;
@@ -160,7 +162,7 @@ namespace ProjectMemoir.Sprites
                         }
                     }
 
-                    if (IsGrounded(_sl))
+                    if (grounded)
                     {
                         type = 3;
                         anim.currentframe = 0;
@@ -179,22 +181,25 @@ namespace ProjectMemoir.Sprites
             }
             
         }
-        private void playerNeutralSpecial(List<Sprite> _sl)
+        private void playerNeutralSpecial()
         {
             velocity = Vector2.Zero;
-            if (IsGrounded(_sl))
+            if (grounded)
             {
                 anim.tex = con.Load<Texture2D>("playersprites/player_kunai_toss_ground");
+                anim.frames = 4;
             }
             else
             {
                 anim.tex = con.Load<Texture2D>("playersprites/player_kunai_air");
+                anim.frames = 4;
             }
 
-            anim.frames = 4;
+            
 
-            if (anim.currentframe == 2)
+            if (anim.currentframe == 2  && !kunaiCreated)
             {
+                kunaiCreated = true;
                 kl.Add(new Kunai(con, new Vector2(anim.position.X+27+27*facing, anim.position.Y+27), facing));
             }
 
@@ -203,10 +208,10 @@ namespace ProjectMemoir.Sprites
                 currentState = playerStates.normal;
             }
         }
-        private void playerSideSpecial(List<Sprite> _sl)
+        private void playerSideSpecial()
         {
             SScanuse = false;
-            if (IsGrounded(_sl))
+            if (grounded)
             {
                 anim.tex = con.Load<Texture2D>("playersprites/player_dash_ground");
             }
@@ -253,7 +258,7 @@ namespace ProjectMemoir.Sprites
                 anim.spriteOrigin = new Vector2(0, 0);
             }
         }
-        public void playerNormalState(List<Sprite> _sl)
+        public void playerNormalState()
         {
             if (itimer > 0)
             {
@@ -287,9 +292,10 @@ namespace ProjectMemoir.Sprites
                 else if (currentKS.IsKeyDown(Keys.S) && ps.abilities["Down"]) //For dive
                 {
                     currentState = playerStates.downspecial;
-                } else if(ps.abilities["Neutral"])
+                } else if(ps.abilities["Neutral"] )
                 {
                     currentState = playerStates.neutralspecial;
+                    kunaiCreated = false;
                     anim.currentframe = 0;
                 }
             }
@@ -325,7 +331,7 @@ namespace ProjectMemoir.Sprites
             }
             #endregion
             #region allowing for jump and checking if the player is airborne
-            if (IsGrounded(_sl)) {
+            if (grounded) {
                 //jumping
                 if(UScanuse == false) { UScanuse = true; }
                 if (currentKS.IsKeyDown(Keys.J)) {
@@ -346,7 +352,7 @@ namespace ProjectMemoir.Sprites
             
            
         }
-        public void playerHurtState(List<Sprite> _sl)
+        public void playerHurtState()
         {
             Applygravity();
             if (stuntimer > 0)
@@ -357,7 +363,7 @@ namespace ProjectMemoir.Sprites
                 invincible = true;
                 stuntimer -= 0.1f;
                 //the stun ends prematurely when you land
-                if (IsGrounded(_sl) && velocity.Y > 0)
+                if (grounded && velocity.Y > 0)
                 {
                     stuntimer = 0;
                 }

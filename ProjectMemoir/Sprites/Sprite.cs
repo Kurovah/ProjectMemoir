@@ -22,8 +22,6 @@ namespace ProjectMemoir.Sprites
         {
             anim.Update(_gt);
         }
-
-
         public virtual void Draw(SpriteBatch _sb)
         {
             anim.Draw(_sb);

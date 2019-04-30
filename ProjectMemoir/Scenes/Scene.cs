@@ -13,7 +13,7 @@ namespace ProjectMemoir.Scenes
         public Game1 game;
         protected ContentManager con;
         public Cam cam;
-        public List<Sprite> spriteList = new List<Sprite>();
+        public List<Sprite> spriteList,spriteDraw;
         public bool pause;
         public Vector2 roomSize;
         public String id;
@@ -22,12 +22,22 @@ namespace ProjectMemoir.Scenes
         {
             con = _con;
             game = _game;
+            spriteList = spriteDraw = new List<Sprite>();
         }
         protected void checkToRemoveSprite()
         {
-            for(int i = 0; i < spriteList.Count; i++)
+            for (int i = 0; i < spriteDraw.Count; i++)
             {
-                if (!spriteList[i].isVisible) {spriteList.RemoveAt(i); i--; }
+                if (!spriteDraw[i].isVisible) { spriteDraw.RemoveAt(i); i--; }
+            }
+        }
+        protected void LoadtoList()
+        {
+            for (int i = 0; i < spriteList.Count; i++)
+            {
+                spriteDraw.Add(spriteList[i]);
+                spriteList.RemoveAt(i);
+                i--;
             }
         }
         public abstract void Load();

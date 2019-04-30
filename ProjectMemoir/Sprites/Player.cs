@@ -22,6 +22,7 @@ namespace ProjectMemoir.Sprites
             hurt
         };
         List<Kunai> kl;
+        List<Sprite> vfxList, vfxQ;
         KeyboardState currentKS;
         float spd = 5f;
         public int hp = 100, maxHp = 100, facing = 1, type = 0;

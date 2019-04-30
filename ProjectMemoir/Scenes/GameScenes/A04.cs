@@ -28,13 +28,13 @@ namespace ProjectMemoir.Scenes
             newSolid(1, 0, 19, 1);
             newSolid(0, 11, 20, 1);
             newSolid(19, 1, 1, 8);
-            newSolid(6, 8, 8, 3);
+            newSolid(5, 8, 9, 3);
 
             base.Load();
             //add anything that uses the player as a target after this
-            newSceneChanger(21, -1, 0, 12, "A3", new Vector2(2, 9));
-            newSceneChanger(0, -1, 0, 12, "A5", new Vector2(2, 9));
-            newProwler(10, 7);
+            newSceneChanger(21, -1, 0, 12, "A3", new Vector2(1, 9));
+            newSceneChanger(0, -1, 0, 12, "A5", new Vector2(18, 9));
+            newProwler(9, 7);
         }
 
         

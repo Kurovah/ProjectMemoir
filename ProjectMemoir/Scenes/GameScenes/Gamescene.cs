@@ -53,7 +53,7 @@ namespace ProjectMemoir.Scenes
             //put anything that's dependant on the roomsize here
             
             at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
-            spriteList.Add(player = new Player(this.con, newPos, this));
+            spriteList.Add(player = new Player(this.con, newPos + new Vector2(0,10/32), this));
             cam = new Cam(player, roomSize, new Vector2(1280, 720));
         }
 

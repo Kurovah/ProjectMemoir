@@ -10,7 +10,7 @@ namespace ProjectMemoir.Sprites
         public Rectangle sourceRect, desRect;
         public Vector2 spriteSize, sourcesize ,position, sourcePos,spriteOrigin = new Vector2(0,0);
         public int frames, currentframe;
-        public float delay = 0f,maxDelay = 1f, alpha;
+        public float delay,maxDelay, alpha;
         public Texture2D tex;
         public Color col;
         public int t;
@@ -27,6 +27,8 @@ namespace ProjectMemoir.Sprites
             sourcePos = new Vector2(0);
             mirrored = SpriteEffects.None;
             alpha = 1;
+            delay = 0f;
+            maxDelay = 1f;
             //rememeber the change source rects xy to 0 0
             sourceRect = new Rectangle((int)sourcePos.X,(int)sourcePos.Y, (int)sourcesize.X, (int)sourcesize.Y);
             desRect = new Rectangle((int)position.X, (int)position.Y, (int)spriteSize.X , (int)spriteSize.Y);

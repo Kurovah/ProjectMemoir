@@ -34,6 +34,7 @@ namespace ProjectMemoir.Sprites
         
         public Player(ContentManager _con, Vector2 _pos, Scene _parentScene):base(_con, _pos, _parentScene)
         {
+            txt = _con.Load<SpriteFont>("font");
             currentState = playerStates.normal;
             ps = _parentScene.game.ps;
             anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32, 4, Color.White);
@@ -44,7 +45,7 @@ namespace ProjectMemoir.Sprites
             invincible = false;
             grounded = true;
             kunaiCreated = false;
-            effectCreated = false;
+            
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
@@ -131,9 +132,9 @@ namespace ProjectMemoir.Sprites
             switch (type)
             {
                 case 0://grounded
-                    if (anim.currentframe == 4 && !effectCreated)
+                    if (anim.currentframe == 4 && this.anim.delay == 0f)
                     {
-                        effectCreated = true;
+                       
                         parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X, anim.position.Y - 39 + 55), this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59, 39), 4));
                     }
                     if (anim.isFinished())
@@ -173,9 +174,9 @@ namespace ProjectMemoir.Sprites
                 case 3:
                     anim.tex = con.Load<Texture2D>("playersprites/player_air_smash_end");
                     anim.frames = 2;
-                    if(anim.currentframe == 0 && !effectCreated)
+                    if(anim.currentframe == 0 && this.anim.delay == 0f)
                     {
-                        effectCreated = true;
+                       
                         parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X, anim.position.Y - 39 + 55),this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59,39),4));
                     }
 
@@ -183,7 +184,6 @@ namespace ProjectMemoir.Sprites
                     {
                         startDive = false;
                         currentState = playerStates.normal;
-                        
                     }
                     break;
             }
@@ -205,9 +205,8 @@ namespace ProjectMemoir.Sprites
 
             
 
-            if (anim.currentframe == 2  && !kunaiCreated)
+            if (anim.currentframe == 2  && anim.delay == 0)
             {
-                kunaiCreated = true;
                 kl.Add(new Kunai(con, new Vector2(anim.position.X+27+27*facing, anim.position.Y+27), facing, this.parentScene));
             }
 
@@ -290,22 +289,25 @@ namespace ProjectMemoir.Sprites
                 {
                     if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) { facing = -1; } else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1; }
                     currentState = playerStates.sidespecial;
+                    anim.delay = 0;
                     anim.currentframe = 0;
                 }
                 else if (currentKS.IsKeyDown(Keys.W) && UScanuse && ps.abilities["Up"]) //For double jump
                 {
                     currentState = playerStates.upspecial;
+                    anim.delay = 0;
                     anim.currentframe = 0;
                 }
                 else if (currentKS.IsKeyDown(Keys.S) && ps.abilities["Down"]) //For dive
                 {
-                    effectCreated = false;
                     currentState = playerStates.downspecial;
+                    anim.delay = 0;
                     anim.currentframe = 0;
+                    
                 } else if(ps.abilities["Neutral"] )
                 {
                     currentState = playerStates.neutralspecial;
-                    kunaiCreated = false;
+                    anim.delay = 0;
                     anim.currentframe = 0;
                 }
             }
@@ -315,7 +317,7 @@ namespace ProjectMemoir.Sprites
                 currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
             {
                 velocity.X = 0;
-                if (velocity.X != 0) { anim.currentframe = 0; }
+                if (velocity.X != 0) { anim.currentframe = 0; anim.delay = 0; }
                 anim.tex = con.Load<Texture2D>("playersprites/player_idle");
                 anim.frames = 4;
                 anim.maxDelay = 2f;
@@ -323,7 +325,7 @@ namespace ProjectMemoir.Sprites
                 if (currentKS.IsKeyDown(Keys.A))//left move
                 {
                     velocity.X = -spd;
-                    if (velocity.X >= 0) { anim.currentframe = 0; }
+                    if (velocity.X >= 0) { anim.currentframe = 0; anim.delay = 0; }
                     anim.tex = con.Load<Texture2D>("playersprites/player_run");
                     anim.frames = 8;
                     facing = -1;
@@ -332,7 +334,7 @@ namespace ProjectMemoir.Sprites
                 if (currentKS.IsKeyDown(Keys.D))//right move
                 {
                     velocity.X = spd;
-                    if (velocity.X <= 0) { anim.currentframe = 0; }
+                    if (velocity.X <= 0) { anim.currentframe = 0; anim.delay = 0; }
                     anim.tex = con.Load<Texture2D>("playersprites/player_run");
                     anim.frames = 8;
                     facing = 1;
@@ -399,6 +401,7 @@ namespace ProjectMemoir.Sprites
         }
         public override void Draw(SpriteBatch _sb)
         {
+            _sb.DrawString(txt, "anim.CurrentFrame:" + anim.currentframe + " anim.delay:" + anim.delay, anim.position + new Vector2(0,-20), Color.White);
             foreach (Kunai _k in kl)
             {
                 _k.Draw(_sb);

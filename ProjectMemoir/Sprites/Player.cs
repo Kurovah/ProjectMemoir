@@ -22,7 +22,6 @@ namespace ProjectMemoir.Sprites
             hurt
         };
         List<Kunai> kl;
-        List<Sprite> vfxList, vfxQ;
         KeyboardState currentKS;
         float spd = 5f;
         public int hp = 100, maxHp = 100, facing = 1, type = 0;
@@ -32,7 +31,6 @@ namespace ProjectMemoir.Sprites
         bool kunaiCreated,grounded, UScanuse = true, startDive = false, SScanuse = false;
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
-        SoundEffect jumpEffect;
         
         public Player(ContentManager _con, Vector2 _pos, Scene _parentScene):base(_con, _pos, _parentScene)
         {
@@ -40,8 +38,6 @@ namespace ProjectMemoir.Sprites
             ps = _parentScene.game.ps;
             anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32, 4, Color.White);
             anim.maxDelay = 3f;
-            jumpEffect = _con.Load<SoundEffect>("sounds/Jump");
-            txt = _con.Load<SpriteFont>("Font");
             kl = new List<Kunai>();
             itimer = -1f;
             stuntimer = -1f;

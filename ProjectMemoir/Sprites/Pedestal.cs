@@ -14,15 +14,15 @@ namespace ProjectMemoir.Sprites
         PlayerStats ps;
         Player player;
         Animation obj;
-        Gamescene parentScene;
         double a;
         Vector2 position;
-        public Pedestal(ContentManager _con, Vector2 _pos, PlayerStats _ps, String _type, Player _target, Gamescene _parentScene) : base(_con, _pos, _parentScene)
+        Gamescene parentScene;//this is needed to hide the original
+        public Pedestal(ContentManager _con, Vector2 _pos, String _type, Gamescene _parentScene) : base(_con, _pos, _parentScene)
         {
             a = 0;
             type = _type;
-            player = _target;
-            ps = _ps;
+            player = _parentScene.player;
+            ps = _parentScene.ps;
             parentScene = _parentScene;
             position = _pos;
             obj = new Animation(_con.Load<Texture2D>("collect"), new Vector2(32), new Vector2(32), position, 0, Color.White);

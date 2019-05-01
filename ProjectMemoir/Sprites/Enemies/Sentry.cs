@@ -18,13 +18,13 @@ namespace ProjectMemoir.Sprites.Enemies
         bool shot = false;
         states currentState;
         Player target;
-        ContentManager con;
         List<SentryProjectile> spl;
-        public Sentry(ContentManager _con, Vector2 _pos, Player _target, Scene _parentScene) : base(_con, _pos, _parentScene)
+        Gamescene parentScene;
+        public Sentry(ContentManager _con, Vector2 _pos,Gamescene _parentScene) : base(_con, _pos, _parentScene)
         {
             grav = 0;
             currentState = states.idle;
-            target = _target;
+            target = _parentScene.player;
             con = _con;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/sentry_idle"), new Vector2(71,45), new Vector2(71,45), _pos, 5, Color.White);
             anim.maxDelay = 1.5f;
@@ -49,7 +49,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     if (anim.currentframe == 4 && !shot)
                     {
                         shot = true;
-                        spl.Add(new SentryProjectile(con, anim.position + new Vector2(20,17), new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target, this.parentScene));
+                        spl.Add(new SentryProjectile(con, anim.position + new Vector2(20,17), new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, this.parentScene));
                     }
                     if(anim.currentframe == 0) { shot = false; }
                     break;

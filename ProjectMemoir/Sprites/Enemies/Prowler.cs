@@ -24,9 +24,9 @@ namespace ProjectMemoir.Sprites.Enemies
         private Animation stunFx;
 
 
-        public Prowler(ContentManager _con, Vector2 _pos, Player _target, Scene _parentScene) : base(_con, _pos, _parentScene)
+        public Prowler(ContentManager _con, Vector2 _pos, Gamescene _parentScene) : base(_con, _pos, _parentScene)
         {
-            target = _target;
+            target = _parentScene.player;
             pos = _pos;
             oldDistance = distance;
             right = true;

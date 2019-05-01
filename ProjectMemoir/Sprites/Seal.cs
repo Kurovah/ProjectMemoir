@@ -13,10 +13,11 @@ namespace ProjectMemoir.Sprites
 
 
         PlayerStats ps;
+        
         String type;
-        public Seal(ContentManager _con, Vector2 _pos, Vector2 _spriteSize, String _type, PlayerStats _ps, Scene _parentScene):base(_con, _pos,_spriteSize,_parentScene)
+        public Seal(ContentManager _con, Vector2 _pos, Vector2 _spriteSize, String _type, Gamescene _parentScene):base(_con, _pos,_spriteSize,_parentScene)
         {
-            ps = _ps;
+            ps = _parentScene.ps;
             type = _type;
             anim = new Animation(_con.Load<Texture2D>("seal"), new Vector2(32,64), new Vector2(32,64), _pos, 0, Color.White);
             anim.needsChange = false;

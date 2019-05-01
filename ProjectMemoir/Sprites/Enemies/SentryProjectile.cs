@@ -11,11 +11,11 @@ namespace ProjectMemoir.Sprites.Enemies
     public class SentryProjectile:PhysObject
     {
         Player target;
-        public SentryProjectile(ContentManager _con, Vector2 _pos, Vector2 _vel, Player _target, Scene _parentScene) :base(_con, _pos, _parentScene)
+        public SentryProjectile(ContentManager _con, Vector2 _pos, Vector2 _vel, Gamescene _parentScene) :base(_con, _pos, _parentScene)
         {
             grav = 0;
             velocity = _vel;
-            target = _target;
+            target = _parentScene.player;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/sentry_projectile"), new Vector2(15), new Vector2(10), _pos, 5, Color.White);
         }
 

@@ -26,6 +26,7 @@ namespace ProjectMemoir.Scenes
         Game1 g;
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
             newPos = _playerpos;
+            ps = _game.ps;
             pause = false;
             pmenu = new PauseMenu(_con, new List<string> { "Resume", "Quit" }, new Vector2(0, 0), this);
             roomSize = new Vector2(0);
@@ -64,15 +65,15 @@ namespace ProjectMemoir.Scenes
         }
         protected void newSentry(int _x, int _y)
         {
-            spriteList.Add(new Sentry(this.con, new Vector2(_x*32, _y*32), player,this));
+            spriteList.Add(new Sentry(this.con, new Vector2(_x*32, _y*32),this));
         }
         protected void newCharger(int _x, int _y)
         {
-            spriteList.Add(new Charger(this.con, new Vector2(_x * 32, _y * 32), player,this));
+            spriteList.Add(new Charger(this.con, new Vector2(_x * 32, _y * 32),this));
         }
         protected void newProwler(int _x, int _y)
         {
-            spriteList.Add(new Prowler(this.con, new Vector2(_x * 32, _y * 32), player,this));
+            spriteList.Add(new Prowler(this.con, new Vector2(_x * 32, _y * 32),this));
         }
         protected void newSceneChanger(int _x, int _y, int _width, int _height,string _scene, Vector2 _newPos)
         {
@@ -80,11 +81,11 @@ namespace ProjectMemoir.Scenes
         }
         protected void newPedestal(int _x, int _y, String _type)
         {
-            spriteList.Add(new Pedestal(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player, this));
+            spriteList.Add(new Pedestal(this.con, new Vector2(_x * 32, _y * 32), _type, this));
         }
         protected void newSeal(int _x, int _y, String _type)
         {
-            spriteList.Add(new Seal(this.con, new Vector2(_x * 32, _y * 32),new Vector2(32,64), _type, game.ps,this));
+            spriteList.Add(new Seal(this.con, new Vector2(_x * 32, _y * 32),new Vector2(32,64), _type, this));
         }
 
         protected void newBreakableBlock(int _x, int _y)

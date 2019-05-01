@@ -482,3 +482,9 @@
 /processorParam:TextureFormat=Color
 /build:Vfx/vfx_stun.png
 
+#begin Music/music_itemget.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/music_itemget.wav
+

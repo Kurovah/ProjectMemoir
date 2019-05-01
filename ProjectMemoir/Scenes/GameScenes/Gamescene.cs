@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using ProjectMemoir.Sprites;
 using ProjectMemoir.Sprites.Enemies;
 using ProjectMemoir.Components;
@@ -134,6 +135,7 @@ namespace ProjectMemoir.Scenes
                     cam.Update(_gt);
                 }
             }
+            soundManager.Update(_gt);
             PostUpdate(_gt);
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)

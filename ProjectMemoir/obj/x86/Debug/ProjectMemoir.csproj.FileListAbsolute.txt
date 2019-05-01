@@ -199,3 +199,5 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Win
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\backgrounds\title_screen.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Vfx\vfx_groundsmash.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Vfx\vfx_stun.xnb
+C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Music\music_itemget.xnb
+C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Music\music_itemget.wma

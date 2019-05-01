@@ -81,6 +81,7 @@ namespace ProjectMemoir.Sprites
                     ps.abilities[type] = true;
                     obj.alpha = 0;
                     parentScene.pu.active = true;
+                    parentScene.soundManager.nextState = SoundManger.Gamestate.itemget;
                     switch (type) {
                         case "Up":
                         parentScene.pu.text = "You have obtained the secret technique: 'Flash Flip' (UP + K)";

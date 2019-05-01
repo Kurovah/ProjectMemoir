@@ -28,7 +28,7 @@ namespace ProjectMemoir.Sprites
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
-        bool kunaiCreated,grounded, UScanuse = true, startDive = false, SScanuse = false;
+        bool kunaiCreated,effectCreated,grounded, UScanuse = true, startDive = false, SScanuse = false;
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
         
@@ -44,6 +44,7 @@ namespace ProjectMemoir.Sprites
             invincible = false;
             grounded = true;
             kunaiCreated = false;
+            effectCreated = false;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
@@ -130,6 +131,11 @@ namespace ProjectMemoir.Sprites
             switch (type)
             {
                 case 0://grounded
+                    if (anim.currentframe == 4 && !effectCreated)
+                    {
+                        effectCreated = true;
+                        parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X, anim.position.Y - 39 + 55), this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59, 39), 4));
+                    }
                     if (anim.isFinished())
                     {
                         currentState = playerStates.normal;
@@ -167,6 +173,12 @@ namespace ProjectMemoir.Sprites
                 case 3:
                     anim.tex = con.Load<Texture2D>("playersprites/player_air_smash_end");
                     anim.frames = 2;
+                    if(anim.currentframe == 0 && !effectCreated)
+                    {
+                        effectCreated = true;
+                        parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X, anim.position.Y - 39 + 55),this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59,39),4));
+                    }
+
                     if (anim.isFinished())
                     {
                         startDive = false;
@@ -270,8 +282,6 @@ namespace ProjectMemoir.Sprites
                 anim.sourcesize = anim.spriteSize = new Vector2(55);
             }
             #region using abilities
-            
-
             //checking if the player wants to do a special move
             if (currentKS.IsKeyDown(Keys.K)) //For projectile
             {
@@ -280,14 +290,18 @@ namespace ProjectMemoir.Sprites
                 {
                     if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) { facing = -1; } else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1; }
                     currentState = playerStates.sidespecial;
+                    anim.currentframe = 0;
                 }
                 else if (currentKS.IsKeyDown(Keys.W) && UScanuse && ps.abilities["Up"]) //For double jump
                 {
                     currentState = playerStates.upspecial;
+                    anim.currentframe = 0;
                 }
                 else if (currentKS.IsKeyDown(Keys.S) && ps.abilities["Down"]) //For dive
                 {
+                    effectCreated = false;
                     currentState = playerStates.downspecial;
+                    anim.currentframe = 0;
                 } else if(ps.abilities["Neutral"] )
                 {
                     currentState = playerStates.neutralspecial;

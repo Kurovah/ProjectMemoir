@@ -125,10 +125,16 @@ namespace ProjectMemoir.Scenes
                     {
                         _s.Update(_gt, spriteList);
                     }
+                    foreach (VFX _v in vfxList)
+                    {
+                        _v.Update(_gt, spriteList);
+                    }
                     checkToRemoveSprite();
+                    checkToRemoveVFX();
                     cam.Update(_gt);
                 }
             }
+            PostUpdate(_gt);
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {
@@ -144,6 +150,10 @@ namespace ProjectMemoir.Scenes
             foreach (Sprite _s in spriteList)
             {
                 _s.Draw(_sb);
+            }
+            foreach (VFX _v in vfxList)
+            {
+                _v.Draw(_sb);
             }
             at.Draw(_sb);
             _sb.End();

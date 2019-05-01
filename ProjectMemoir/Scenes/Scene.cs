@@ -20,12 +20,14 @@ namespace ProjectMemoir.Scenes
         public String id;
         public Texture2D background;
         public SoundManger soundManager;
+        public List<VFX> vfxQ, vfxList;
         protected Scene(Game1 _game, ContentManager _con)
         {
             con = _con;
             soundManager = new SoundManger(con);
             game = _game;
             spriteList = spriteDraw = new List<Sprite>();
+            vfxQ = vfxList = new List<VFX>();
         }
         protected void checkToRemoveSprite()
         {
@@ -34,17 +36,29 @@ namespace ProjectMemoir.Scenes
                 if (!spriteDraw[i].isVisible) { spriteDraw.RemoveAt(i); i--; }
             }
         }
+        protected void checkToRemoveVFX()
+        {
+            for (int i = 0; i < vfxList.Count; i++)
+            {
+                if (!vfxList[i].isVisible) { vfxList.RemoveAt(i); i--; }
+            }
+        }
         protected void LoadtoList()
         {
-            for (int i = 0; i < spriteList.Count; i++)
+            if(vfxQ.Count > 0)
             {
-                spriteDraw.Add(spriteList[i]);
-                spriteList.RemoveAt(i);
-                i--;
+                for (int i = 0; i < vfxQ.Count; i++)
+                {
+                    vfxList.Add(vfxQ[i]);
+                    vfxQ.RemoveAt(i);
+                }
             }
         }
         public abstract void Load();
         public abstract void Update(GameTime _gt);
+        public virtual void PostUpdate(GameTime _gt){
+            LoadtoList();
+        }
         public abstract void Draw(SpriteBatch _sb, GameTime _gt);
         
     }

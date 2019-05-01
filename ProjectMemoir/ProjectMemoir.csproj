@@ -83,6 +83,7 @@
     <Compile Include="Scenes\GameScenes\Gamescene.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\GameScenes\A01.cs" />
+    <Compile Include="Sprites\VFX.cs" />
     <Compile Include="Sprites\GriefTree.cs" />
     <Compile Include="Sprites\Seal.cs" />
     <Compile Include="Sprites\Pedestal.cs" />

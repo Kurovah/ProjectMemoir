@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using ProjectMemoir.Scenes;
 namespace ProjectMemoir.Sprites.Enemies
 {
     class Sentry:PhysObject
@@ -20,7 +20,7 @@ namespace ProjectMemoir.Sprites.Enemies
         Player target;
         ContentManager con;
         List<SentryProjectile> spl;
-        public Sentry(ContentManager _con, Vector2 _pos, Player _target) : base(_con, _pos)
+        public Sentry(ContentManager _con, Vector2 _pos, Player _target, Scene _parentScene) : base(_con, _pos, _parentScene)
         {
             grav = 0;
             currentState = states.idle;
@@ -49,7 +49,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     if (anim.currentframe == 4 && !shot)
                     {
                         shot = true;
-                        spl.Add(new SentryProjectile(con, anim.position + new Vector2(20,17), new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target));
+                        spl.Add(new SentryProjectile(con, anim.position + new Vector2(20,17), new Vector2(target.anim.position.X - anim.position.X, target.anim.position.Y - anim.position.Y) * 0.01f, target, this.parentScene));
                     }
                     if(anim.currentframe == 0) { shot = false; }
                     break;

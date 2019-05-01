@@ -33,12 +33,11 @@ namespace ProjectMemoir.Sprites
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
         SoundEffect jumpEffect;
-        private Scene parentScene;
-        public Player(ContentManager _con, Vector2 _pos, Scene _parentScene):base(_con, _pos)
+        
+        public Player(ContentManager _con, Vector2 _pos, Scene _parentScene):base(_con, _pos, _parentScene)
         {
             currentState = playerStates.normal;
             ps = _parentScene.game.ps;
-            parentScene = _parentScene;
             anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32, 4, Color.White);
             anim.maxDelay = 3f;
             jumpEffect = _con.Load<SoundEffect>("sounds/Jump");
@@ -201,7 +200,7 @@ namespace ProjectMemoir.Sprites
             if (anim.currentframe == 2  && !kunaiCreated)
             {
                 kunaiCreated = true;
-                kl.Add(new Kunai(con, new Vector2(anim.position.X+27+27*facing, anim.position.Y+27), facing));
+                kl.Add(new Kunai(con, new Vector2(anim.position.X+27+27*facing, anim.position.Y+27), facing, this.parentScene));
             }
 
             if (anim.isFinished())
@@ -337,7 +336,7 @@ namespace ProjectMemoir.Sprites
                 if(UScanuse == false) { UScanuse = true; }
                 if (currentKS.IsKeyDown(Keys.J)) {
                     velocity.Y += -9f;
-                    jumpEffect.Play();
+                    parentScene.soundManager.playerJump.Play();
                 }
                 
             }

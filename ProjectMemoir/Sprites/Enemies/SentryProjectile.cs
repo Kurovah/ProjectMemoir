@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectMemoir.Sprites;
-
+using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Sprites.Enemies
 {
     public class SentryProjectile:PhysObject
     {
         Player target;
-        public SentryProjectile(ContentManager _con, Vector2 _pos, Vector2 _vel, Player _target) :base(_con, _pos)
+        public SentryProjectile(ContentManager _con, Vector2 _pos, Vector2 _vel, Player _target, Scene _parentScene) :base(_con, _pos, _parentScene)
         {
             grav = 0;
             velocity = _vel;

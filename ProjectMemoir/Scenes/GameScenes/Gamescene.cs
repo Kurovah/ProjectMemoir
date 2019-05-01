@@ -13,13 +13,13 @@ namespace ProjectMemoir.Scenes
     public class Gamescene : Scene
     {
         //init shared variables
-        protected Player player;
+        public Player player;
         protected HUD hud;
         protected Vector2 newPos;
         protected KeyboardState currentK, lastK;
         protected PauseMenu pmenu;
         protected Autotiler at;
-        protected PlayerStats ps;
+        public PlayerStats ps;
         public PopUp pu;
         protected float palpha;
         
@@ -60,23 +60,23 @@ namespace ProjectMemoir.Scenes
         #region functions to create new objects in the game world
         protected void newSolid(int _x, int _y, int _width, int _height)
         {
-            spriteList.Add(new Solid(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32)));
+            spriteList.Add(new Solid(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), this));
         }
         protected void newSentry(int _x, int _y)
         {
-            spriteList.Add(new Sentry(this.con, new Vector2(_x*32, _y*32), player));
+            spriteList.Add(new Sentry(this.con, new Vector2(_x*32, _y*32), player,this));
         }
         protected void newCharger(int _x, int _y)
         {
-            spriteList.Add(new Charger(this.con, new Vector2(_x * 32, _y * 32), player));
+            spriteList.Add(new Charger(this.con, new Vector2(_x * 32, _y * 32), player,this));
         }
         protected void newProwler(int _x, int _y)
         {
-            spriteList.Add(new Prowler(this.con, new Vector2(_x * 32, _y * 32), player));
+            spriteList.Add(new Prowler(this.con, new Vector2(_x * 32, _y * 32), player,this));
         }
         protected void newSceneChanger(int _x, int _y, int _width, int _height,string _scene, Vector2 _newPos)
         {
-            spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene,_newPos));
+            spriteList.Add(new SceneChanger(this.con, new Vector2(_x*32, _y*32), new Vector2(_width * 32, _height * 32), player, this.game, _scene,_newPos, this));
         }
         protected void newPedestal(int _x, int _y, String _type)
         {
@@ -84,16 +84,16 @@ namespace ProjectMemoir.Scenes
         }
         protected void newSeal(int _x, int _y, String _type)
         {
-            spriteList.Add(new Seal(this.con, new Vector2(_x * 32, _y * 32),new Vector2(32,64), _type, game.ps));
+            spriteList.Add(new Seal(this.con, new Vector2(_x * 32, _y * 32),new Vector2(32,64), _type, game.ps,this));
         }
 
         protected void newBreakableBlock(int _x, int _y)
         {
-            spriteList.Add(new BreakableBlock(this.con, new Vector2(_x * 32, _y * 32), new Vector2(32)));
+            spriteList.Add(new BreakableBlock(this.con, new Vector2(_x * 32, _y * 32), new Vector2(32),this));
         }
        protected void newGriefTree(int _x, int _y, string _type)
         {
-            spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), game.ps, _type, player, this));
+            spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), _type, this));
         }
         #endregion
 

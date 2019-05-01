@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using ProjectMemoir.Scenes;
 namespace ProjectMemoir.Sprites.Enemies
 {
     public class Prowler:PhysObject
@@ -24,7 +24,7 @@ namespace ProjectMemoir.Sprites.Enemies
         private Animation stunFx;
 
 
-        public Prowler(ContentManager _con, Vector2 _pos, Player _target) : base(_con, _pos)
+        public Prowler(ContentManager _con, Vector2 _pos, Player _target, Scene _parentScene) : base(_con, _pos, _parentScene)
         {
             target = _target;
             pos = _pos;

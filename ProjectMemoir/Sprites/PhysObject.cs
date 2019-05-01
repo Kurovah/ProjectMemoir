@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Sprites
 {
@@ -11,7 +11,7 @@ namespace ProjectMemoir.Sprites
     {
         protected float grav = 0.35f;
         public Vector2 velocity;
-        public PhysObject(ContentManager _con, Vector2 _pos) : base(_con, _pos)
+        public PhysObject(ContentManager _con, Vector2 _pos, Scene _parentScene) : base(_con, _pos,_parentScene)
         {
             velocity = new Vector2(0);
         }

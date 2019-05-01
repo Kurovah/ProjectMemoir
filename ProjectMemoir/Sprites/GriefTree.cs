@@ -15,11 +15,11 @@ namespace ProjectMemoir.Sprites
         Player player;
         float initx;
         Gamescene gs;
-        public GriefTree(ContentManager _con, Vector2 _pos, PlayerStats _ps, String _type, Player _target, Gamescene _gs) : base(_con, _pos)
+        public GriefTree(ContentManager _con, Vector2 _pos, String _type, Gamescene _gs) : base(_con, _pos, _gs)
         {
             type = _type;
-            player = _target;
-            ps = _ps;
+            player = _gs.player;
+            ps = _gs.ps;
             initx = _pos.Y;
             anim = new Animation(_con.Load<Texture2D>("griefTree"), new Vector2(160), new Vector2(160), _pos, 0, Color.White);
             anim.needsChange = false;

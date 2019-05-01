@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectMemoir.Sprites;
 using ProjectMemoir.Components;
+using ProjectMemoir.Scenes;
 namespace ProjectMemoir.Sprites
 {
     public class Seal:Solid
@@ -13,7 +14,7 @@ namespace ProjectMemoir.Sprites
 
         PlayerStats ps;
         String type;
-        public Seal(ContentManager _con, Vector2 _pos, Vector2 _spriteSize, String _type, PlayerStats _ps):base(_con, _pos,_spriteSize)
+        public Seal(ContentManager _con, Vector2 _pos, Vector2 _spriteSize, String _type, PlayerStats _ps, Scene _parentScene):base(_con, _pos,_spriteSize,_parentScene)
         {
             ps = _ps;
             type = _type;

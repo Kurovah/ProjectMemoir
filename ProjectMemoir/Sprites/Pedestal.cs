@@ -17,7 +17,7 @@ namespace ProjectMemoir.Sprites
         Gamescene parentScene;
         double a;
         Vector2 position;
-        public Pedestal(ContentManager _con, Vector2 _pos, PlayerStats _ps, String _type, Player _target, Gamescene _parentScene) : base(_con, _pos)
+        public Pedestal(ContentManager _con, Vector2 _pos, PlayerStats _ps, String _type, Player _target, Gamescene _parentScene) : base(_con, _pos, _parentScene)
         {
             a = 0;
             type = _type;

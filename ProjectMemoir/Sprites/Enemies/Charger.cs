@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Sprites.Enemies
 {
@@ -19,7 +20,7 @@ namespace ProjectMemoir.Sprites.Enemies
         private Player target;
         private int facing;
         private States currentState;
-        public Charger(ContentManager _con, Vector2 _pos, Player _target) :base(_con, _pos)
+        public Charger(ContentManager _con, Vector2 _pos, Player _target,Scene _parentScene) :base(_con, _pos, _parentScene)
         {
             target = _target;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/charger_idle"), new Vector2(80), new Vector2(64), _pos, 0, Color.White);

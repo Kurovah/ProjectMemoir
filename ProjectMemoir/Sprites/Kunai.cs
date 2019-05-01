@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ProjectMemoir.Sprites.Enemies;
+using ProjectMemoir.Scenes;
 namespace ProjectMemoir.Sprites
 {
     public class Kunai:PhysObject
@@ -13,7 +14,7 @@ namespace ProjectMemoir.Sprites
         int facing;
         private bool checked_list;
         List<Prowler> hitList;
-        public Kunai(ContentManager _con, Vector2 _pos, int _side) : base(_con, _pos)
+        public Kunai(ContentManager _con, Vector2 _pos, int _side, Scene _parentScene) : base(_con, _pos,_parentScene)
         {
             facing = _side;
             velocity = new Vector2(20 * _side, 0);

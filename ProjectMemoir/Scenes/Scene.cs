@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,11 @@ namespace ProjectMemoir.Scenes
         public Vector2 roomSize;
         public String id;
         public Texture2D background;
+        public SoundManger soundManager;
         protected Scene(Game1 _game, ContentManager _con)
         {
             con = _con;
+            soundManager = new SoundManger(con);
             game = _game;
             spriteList = spriteDraw = new List<Sprite>();
         }

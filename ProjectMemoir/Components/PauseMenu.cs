@@ -27,9 +27,9 @@ namespace ProjectMemoir.Components
             mapSects = new List<Vector2>(){
                 new Vector2(_pos.X+5 + sectSize*4,_pos.Y+5 +sectSize*4),
                 new Vector2(_pos.X+5 + sectSize*4,_pos.Y+5 +sectSize*3),
-                new Vector2(_pos.X+5 + sectSize*3,_pos.Y+5 +sectSize*4),
+                new Vector2(_pos.X+5 + sectSize*3,_pos.Y+5 +sectSize*3),
                 new Vector2(_pos.X+5 + sectSize*2,_pos.Y+5 +sectSize*3),
-                new Vector2(_pos.X+5 + sectSize*1,_pos.Y+5 +sectSize*4),
+                new Vector2(_pos.X+5 + sectSize*1,_pos.Y+5 +sectSize*3),
                 new Vector2(_pos.X+5 + sectSize*0,_pos.Y+5 +sectSize*3),
                 new Vector2(_pos.X+5 + sectSize*5,_pos.Y+5 +sectSize*4),
                 new Vector2(_pos.X+5 + sectSize*6,_pos.Y+5 +sectSize*3),

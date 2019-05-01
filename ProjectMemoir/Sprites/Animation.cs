@@ -67,7 +67,7 @@ namespace ProjectMemoir.Sprites
         }
         public bool isFinished()
         {
-            return currentframe == frames;
+            return currentframe >= frames;
         }
         public void Draw(SpriteBatch _sb)
         {

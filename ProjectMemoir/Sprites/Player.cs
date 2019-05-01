@@ -119,6 +119,7 @@ namespace ProjectMemoir.Sprites
                     anim.frames = 4;
                     startDive = true;
                     type = 0;
+                    anim.delay = 0;
                 }
                 else
                 {
@@ -126,6 +127,7 @@ namespace ProjectMemoir.Sprites
                     anim.frames = 3;
                     type = 1;
                     startDive = true;
+                    anim.delay = 0;
                 }
             }
             //different phases of the smash
@@ -141,7 +143,8 @@ namespace ProjectMemoir.Sprites
                     {
                         currentState = playerStates.normal;
                         startDive = false;
-                        
+                        anim.delay = 0;
+
                     }
                     break;
                 case 1://air start
@@ -149,6 +152,7 @@ namespace ProjectMemoir.Sprites
                     if (anim.isFinished())
                     {
                         anim.currentframe = 0;
+                        anim.delay = 0;
                         type = 2;
                     }
                     break;
@@ -184,6 +188,7 @@ namespace ProjectMemoir.Sprites
                     {
                         startDive = false;
                         currentState = playerStates.normal;
+                        anim.delay = 0;
                     }
                     break;
             }
@@ -401,7 +406,8 @@ namespace ProjectMemoir.Sprites
         }
         public override void Draw(SpriteBatch _sb)
         {
-            _sb.DrawString(txt, "anim.CurrentFrame:" + anim.currentframe + " anim.delay:" + anim.delay, anim.position + new Vector2(0,-20), Color.White);
+            //_sb.DrawString(txt, "anim.CurrentFrame:" + anim.currentframe + " anim.delay:" + anim.delay, new Vector2(20,40), Color.White);
+            //_sb.DrawString(txt, "size:"+parentScene.vfxList.Count, new Vector2(20,60), Color.White);
             foreach (Kunai _k in kl)
             {
                 _k.Draw(_sb);

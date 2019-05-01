@@ -16,11 +16,12 @@ namespace ProjectMemoir.Sprites
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
+            
+            base.Update(_gt, _sl);
             if (anim.isFinished())
             {
                 isVisible = false;
             }
-            base.Update(_gt, _sl);
         }
     }
 }

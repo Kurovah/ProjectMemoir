@@ -49,6 +49,7 @@ namespace ProjectMemoir.Components
                     {
                         MediaPlayer.Play(itemGet);
                         musicPlaying = true;
+                        //r
                     }
                     break;
                 case Gamestate.none:

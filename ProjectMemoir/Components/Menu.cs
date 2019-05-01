@@ -29,7 +29,7 @@ namespace ProjectMemoir.Components
             startPos = _startpos;
             txt = _con.Load<SpriteFont>("Font");
             scene = _scene;
-            pointer = new Animation(_con.Load<Texture2D>("forP"), new Vector2(20), new Vector2(32), _startpos, 0, Color.Red);
+            pointer = new Animation(_con.Load<Texture2D>("menu_pointer"), new Vector2(150,20), new Vector2(100,20), _startpos, 0, Color.White);
             active = true;
             currentK = lastK = Keyboard.GetState();
         }

@@ -19,10 +19,8 @@ namespace ProjectMemoir.Components
         public GameOverMenu(ContentManager _con, List<string> _options, Vector2 _pos, Scene _scene) :base(_con, _options,_pos, _scene)
         {
             ps = scene.game.ps;
-            tex = _con.Load<Texture2D>("ForP");
+            tex = _con.Load<Texture2D>("menu_pointer");
             offset = new Vector2((1280 / 2) - (txt.MeasureString(options[pos]).X / 2), 720 / 2 + 10);
-            pointer.sourcePos.Y = 32;
-            pointer.col = Color.Red;
         }
         public override void Update(GameTime _gt)
         {
@@ -48,13 +46,14 @@ namespace ProjectMemoir.Components
 
         public override void Draw(SpriteBatch _sb)
         {
+            base.Draw(_sb);
             int P = 0;
             foreach (String _s in options)
             {
                 _sb.DrawString(txt, _s, startPos + new Vector2((1280/2) - (txt.MeasureString(_s).X/2), (720/2)+P * 30), Color.White);
                 P++;
             }
-            base.Draw(_sb);
+           
         }
     }
 }

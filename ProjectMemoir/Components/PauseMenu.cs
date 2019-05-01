@@ -23,8 +23,6 @@ namespace ProjectMemoir.Components
             tex3 = _con.Load<Texture2D>("forP");
             active = false;
             offset = new Vector2(432*2,10);
-            pointer.sourcePos.Y = 32;
-            pointer.col = Color.Red;
             #region list of vectors for drawing the map sector
             mapSects = new List<Vector2>(){
                 new Vector2(_pos.X+20 + sectSize*4,_pos.Y+20 +sectSize*4),
@@ -80,6 +78,7 @@ namespace ProjectMemoir.Components
 
         public override void Draw(SpriteBatch _sb)
         {
+            base.Draw(_sb);
             //draw the menu
             int P = 0;
             foreach (String _s in options)
@@ -89,7 +88,7 @@ namespace ProjectMemoir.Components
             }
             _sb.Draw(tex3,new Rectangle(20,20,864,480),new Rectangle(0,0,32,32),Color.Black *0.75f);
             _sb.Draw(tex3, new Rectangle(20, 536, 864, 128), new Rectangle(0, 0, 32, 32), Color.Black * 0.75f);
-            _sb.Draw(tex3, new Rectangle(904, 100, 356, 564), new Rectangle(0, 0, 32, 32), Color.Black * 0.75f);
+            _sb.Draw(tex3, new Rectangle(914, 100, 346, 564), new Rectangle(0, 0, 32, 32), Color.Black * 0.75f);
             //drawing the map
             for ( int i = 0; i < ps.mapPeices.Count; i++)
             {
@@ -115,9 +114,15 @@ namespace ProjectMemoir.Components
             }
 
             //draw the purified trees
-
-
-            base.Draw(_sb);
+            for (int i = 0; i < ps.treesPurified.Count; i++)
+            {
+                _sb.Draw(tex, new Rectangle(904 + 356/2 -32 , 130+110 *i, 64, 64), new Rectangle(64, 0, 32, 32), Color.White);
+                if (ps.treesPurified[ps.treesPurified.Keys.ElementAt(i)])
+                {
+                    _sb.Draw(tex2, new Rectangle(904 + 356 - 32, 110 + 96 * i, 64, 64), new Rectangle(96, 0, 32, 32), Color.White);
+                }
+            }
+       
         }
     }
 }

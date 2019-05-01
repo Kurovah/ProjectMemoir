@@ -161,12 +161,12 @@ namespace ProjectMemoir.Scenes
             _sb.End();
 
             //so the HUD isn't moved by the trans matrix
-            _sb.Begin();
+            _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
             hud.Draw(_sb);
             if (pause)
             {
                 //the black background
-                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Black * palpha);
+                _sb.Draw(con.Load<Texture2D>("forP"), new Rectangle(0, 0, 1280, 720), new Rectangle(0, 0, 32, 32), Color.Wheat * palpha);
 
                 //draw Pause menu
                 if (pmenu.active)

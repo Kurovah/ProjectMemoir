@@ -8,19 +8,19 @@ namespace ProjectMemoir.Components
 {
     public class PlayerStats
     {
-        public Dictionary<string, bool> abilities,mapPeices,sealBreakers,treesPurified;
+        public Dictionary<string, bool> abilities,mapPeices,treesPurified;
         public int hp;
         public PlayerStats()
         {
             //wether the player has collected the abilities
             abilities = new Dictionary<string, bool>
             {
+                ["Neutral"] = false,
                 ["Up"] = false,
                 ["Down"] = false,
                 ["Side"] = false,
-                ["Neutral"] = false,
-                ["Red"] = false,
                 ["Green"] = false,
+                ["Red"] = false,
                 ["Blue"] = false
             };
 
@@ -73,12 +73,12 @@ namespace ProjectMemoir.Components
             //wether the player has collected the abilities
             abilities = new Dictionary<string, bool>
             {
+                ["Neutral"] = false,
                 ["Up"] = false,
                 ["Down"] = false,
                 ["Side"] = false,
-                ["Neutral"] = false,
-                ["Red"] = false,
                 ["Green"] = false,
+                ["Red"] = false,
                 ["Blue"] = false
             };
 

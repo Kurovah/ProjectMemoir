@@ -44,7 +44,7 @@ namespace ProjectMemoir.Sprites
                 base.Update(_gt, _sl);
                 if (anim.isFinished())
                 {
-                    parentScene.game.nextScene = new Endscene(parentScene.game, parentScene);
+                    parentScene.game.nextScene = new Endscene(parentScene.game, parentScene.con);
                 }
             }
         }

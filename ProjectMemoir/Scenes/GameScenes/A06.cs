@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
 
-
+            background = con.Load<Texture2D>("backgrounds/VillageBK");
             //solids to collide with
             newSolid(0, 0, 1, 11);
             newSolid(1, 0, 19, 1);

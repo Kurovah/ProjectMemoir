@@ -20,7 +20,7 @@ namespace ProjectMemoir.Components
             credits,
             none
         }
-        public SoundEffect ChargerDash,kunaiToss,kunaiClink,playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush;
+        public SoundEffect ChargerDash, kunaiToss, kunaiClink, playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush;
         public Song mainMenu, gameOver, village, hellScape, icyMountain, itemGet;
         public Gamestate currentState, nextState;
         private bool musicPlaying;
@@ -47,12 +47,14 @@ namespace ProjectMemoir.Components
                     }
                     if (!musicPlaying)
                     {
+                        MediaPlayer.Volume = 0.1f;
                         MediaPlayer.Play(itemGet);
                         musicPlaying = true;
                         //r
                     }
                     break;
                 case Gamestate.none:
+                    MediaPlayer.Volume = 1f;
                     if (musicPlaying && nextState != Gamestate.none)
                     {
                         MediaPlayer.Stop();

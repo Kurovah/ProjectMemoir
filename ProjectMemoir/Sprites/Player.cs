@@ -22,13 +22,13 @@ namespace ProjectMemoir.Sprites
             hurt
         };
         List<Kunai> kl;
-        KeyboardState currentKS;
+        public KeyboardState currentKS;
         float spd = 5f;
         public int hp = 100, maxHp = 100, facing = 1, type = 0;
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
-        bool kunaiCreated,effectCreated,grounded, UScanuse = true, startDive = false, SScanuse = false;
+        bool grounded, UScanuse = true, startDive = false, SScanuse = false;
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
         
@@ -44,7 +44,6 @@ namespace ProjectMemoir.Sprites
             stuntimer = -1f;
             invincible = false;
             grounded = true;
-            kunaiCreated = false;
             
         }
 

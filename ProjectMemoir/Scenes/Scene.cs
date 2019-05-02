@@ -12,7 +12,7 @@ namespace ProjectMemoir.Scenes
     public abstract class Scene
     {
         public Game1 game;
-        protected ContentManager con;
+        public ContentManager con;
         public Cam cam;
         public List<Sprite> spriteList,spriteDraw;
         public bool pause;

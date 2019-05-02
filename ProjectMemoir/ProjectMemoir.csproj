@@ -51,6 +51,7 @@
     <Compile Include="Components\Menu.cs" />
     <Compile Include="Components\PauseMenu.cs" />
     <Compile Include="Components\PlayerStats.cs" />
+    <Compile Include="Scenes\Endscene.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Scenes\GameScenes\A17.cs" />
     <Compile Include="Scenes\GameScenes\A18.cs" />

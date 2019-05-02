@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Sprites
 {
     public class EndDoor:Sprite
     {
-        EndDoor() : base()
+        Gamescene parentScene;
+        EndDoor(ContentManager _con, Vector2 _pos, Gamescene _parentScene) : base(_con,_pos,_parentScene)
         {
 
         }

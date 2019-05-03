@@ -52,7 +52,7 @@ namespace ProjectMemoir.Sprites
                 {
                     if (checkLeftCol(_s) || checkRightCol(_s) || checkTopCol(_s) || checkBottomCol(_s))
                     {
-                        parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X + (20*facing), anim.position.Y + anim.spriteSize.Y - 25), this.parentScene, "Vfx/vfx_kunaiclink", new Vector2(25), 3));
+                        parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X + (20 * facing), anim.position.Y + anim.spriteSize.Y - 25), this.parentScene, "Vfx/vfx_kunaiclink", new Vector2(25), 3));
                         isVisible = false;
                     }
                 }

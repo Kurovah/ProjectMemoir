@@ -352,7 +352,7 @@ namespace ProjectMemoir.Sprites
                 //jumping
                 if (!lastgrounded)
                 {
-                    parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X+7, anim.position.Y + anim.spriteSize.Y-16), this.parentScene, "Vfx/vfx_landingdust", new Vector2(41, 17), 4));
+                    parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X + 7, anim.position.Y + anim.spriteSize.Y - 16), this.parentScene, "Vfx/vfx_landingdust", new Vector2(41, 17), 4));
                 }
                 if(UScanuse == false) { UScanuse = true; }
                 if (currentKS.IsKeyDown(Keys.J)) {

@@ -34,11 +34,13 @@ namespace ProjectMemoir.Sprites
 
             if (player.anim.desRect.Intersects(this.anim.desRect))
             {
+                if(ps.hp > 3) { ps.hp = 3; }
                 if (!ps.treesPurified[type])
                 {
                     ps.treesPurified[type] = true;
                     gs.pu.active = true;
                     gs.pu.text = "A portion of your grief has been cleansed, your heart grows lighter";
+                    parentScene.soundManager.nextState = SoundManger.Gamestate.itemget;
                 }
             }
 

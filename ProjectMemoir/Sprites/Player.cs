@@ -291,20 +291,20 @@ namespace ProjectMemoir.Sprites
             if (input.ActionInput) //For projectile
             {
                 
-                if ((input.LeftInput || input.RightInput) && ps.abilities["Side"]) //For roll
+                if ((input.LeftInputH || input.RightInputH) && ps.abilities["Side"]) //For roll
                 {
                     if (input.LeftInput && !input.RightInput) { facing = -1; } else if (input.RightInput && !input.LeftInput) { facing = 1; }
                     currentState = playerStates.sidespecial;
                     anim.delay = 0;
                     anim.currentframe = 0;
                 }
-                else if (input.UpInput && UScanuse && ps.abilities["Up"]) //For double jump
+                else if (input.UpInputH && UScanuse && ps.abilities["Up"]) //For double jump
                 {
                     currentState = playerStates.upspecial;
                     anim.delay = 0;
                     anim.currentframe = 0;
                 }
-                else if (input.DownInput && ps.abilities["Down"]) //For dive
+                else if (input.DownInputH && ps.abilities["Down"]) //For dive
                 {
                     currentState = playerStates.downspecial;
                     anim.delay = 0;
@@ -319,8 +319,8 @@ namespace ProjectMemoir.Sprites
             }
             #endregion;
             #region lateral movement
-            if (!input.RightInput && !input.LeftInput ||
-                input.RightInput && input.LeftInput)
+            if (!input.RightInputH && !input.LeftInputH ||
+                input.RightInputH && input.LeftInputH)
             {
                 velocity.X = 0;
                 if (velocity.X != 0) { anim.currentframe = 0; anim.delay = 0; }
@@ -328,7 +328,7 @@ namespace ProjectMemoir.Sprites
                 anim.frames = 4;
                 anim.maxDelay = 2f;
             } else {
-                if (input.LeftInput)//left move
+                if (input.LeftInputH)//left move
                 {
                     walkTime += 1;
                     velocity.X = -spd;
@@ -346,7 +346,7 @@ namespace ProjectMemoir.Sprites
                         }
                     }
                 }
-                if (input.RightInput)//right move
+                if (input.RightInputH)//right move
                 {
                     walkTime += 1;
                     velocity.X = spd;

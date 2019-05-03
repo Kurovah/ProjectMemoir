@@ -119,7 +119,7 @@ namespace ProjectMemoir.Components
                 _sb.Draw(tex, new Rectangle(904 + 356/2 -32 , 130+110 *i, 64, 64), new Rectangle(64, 0, 32, 32), Color.White);
                 if (ps.treesPurified[ps.treesPurified.Keys.ElementAt(i)])
                 {
-                    _sb.Draw(tex2, new Rectangle(904 + 356 - 32, 110 + 96 * i, 64, 64), new Rectangle(96, 0, 32, 32), Color.White);
+                    _sb.Draw(tex, new Rectangle(902 + 356 / 2 - 32, 130 + 110 * i, 64, 64), new Rectangle(96, 0, 32, 32), Color.White);
                 }
             }
        

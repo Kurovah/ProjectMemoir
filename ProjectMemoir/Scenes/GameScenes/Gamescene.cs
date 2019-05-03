@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         protected Autotiler at;
         public PlayerStats ps;
         public PopUp pu;
-        protected float palpha;
+        protected float palpha,forshader;
         
         Game1 g;
         public Gamescene(Game1 _game, ContentManager _con, Vector2 _playerpos) :base(_game, _con){
@@ -143,9 +143,8 @@ namespace ProjectMemoir.Scenes
             //drawing the background
             if(background != null)
             {
-                _sb.Begin();
-                    _sb.Draw(background, Vector2.Zero, Color.White);
-             
+                _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
+                _sb.Draw(background, new Vector2(0, 0), Color.White);
                 _sb.End();
             }
             _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.trans);

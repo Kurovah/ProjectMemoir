@@ -28,8 +28,8 @@ namespace ProjectMemoir.Components
         {
             playerJump = _con.Load<SoundEffect>("sounds/Jump");
             itemGet = _con.Load<Song>("Music/music_itemget");
-            kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
-            playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
+            //kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
+            //playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
             currentState = nextState = Gamestate.none;
             musicPlaying = true;
         }

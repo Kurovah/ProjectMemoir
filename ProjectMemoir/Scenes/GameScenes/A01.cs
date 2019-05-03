@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
             //the background
-            background = con.Load<Texture2D>("backgrounds/VillageBK");
+            
 
             //solids to collide with
             newSolid(0, 0, 1, 11);
@@ -36,6 +36,7 @@ namespace ProjectMemoir.Scenes
             newSolid(8, 5, 4, 1);
 
             base.Load();
+            background = con.Load<Texture2D>("backgrounds/VillageBK");
             //you can change the current tileset like this
             //at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this

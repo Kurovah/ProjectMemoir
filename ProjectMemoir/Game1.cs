@@ -18,6 +18,7 @@ namespace ProjectMemoir
         public PlayerStats ps;
         Texture2D transitionScreen;
         float talpha;
+        public InputManager input;
 
         public Scene currentScene, nextScene;
 
@@ -57,12 +58,13 @@ namespace ProjectMemoir
 
             ps = new PlayerStats();
             talpha = 0f;
+            input = new InputManager();
             transitionScreen = Content.Load<Texture2D>("ForP");
             // TODO: use this.Content to load your game content here
             currentScene = new MainMenu(this, Content);
             currentScene.Load();
             nextScene = null;
-
+            
         }
 
         /// <summary>
@@ -81,8 +83,8 @@ namespace ProjectMemoir
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime _gameTime)
         {
-            
-            
+
+            input.Update();
             if (nextScene == null)
             {
                 if(talpha > 0)

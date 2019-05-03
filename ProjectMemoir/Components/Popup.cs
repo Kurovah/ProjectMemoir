@@ -22,6 +22,7 @@ namespace ProjectMemoir.Components
         protected Scene scene;
         public bool active;
         public String text;
+        InputManager input;
         public PopUp(ContentManager _con, Scene _scene, String _text)
         {
             //set the position of the menu to zero (top option)
@@ -31,16 +32,15 @@ namespace ProjectMemoir.Components
             backboard = new Animation(_con.Load<Texture2D>("forP"),new Vector2(1088,50),new Vector2(31),new Vector2(96,720/2 - 25),0,Color.White);
             scene = _scene;
             active = false;
+            input = _scene.game.input;
         }
         public virtual void Update(GameTime _gt)
         {
-            currentK = Keyboard.GetState();
             scene.pause = active;
             if (active)
             {
-                if (currentK.IsKeyDown(Keys.J) && !lastK.IsKeyDown(Keys.J)) { active = false; }
+                if (input.JumpInput) { active = false; }
             }
-            lastK = currentK;
         }
 
         public virtual void Draw(SpriteBatch _sb)

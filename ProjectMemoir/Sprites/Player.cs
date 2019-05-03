@@ -31,7 +31,7 @@ namespace ProjectMemoir.Sprites
         bool grounded,lastgrounded, UScanuse = true, startDive = false, SScanuse = false;
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
-        
+        InputManager input;
         public Player(ContentManager _con, Vector2 _pos, Scene _parentScene):base(_con, _pos, _parentScene)
         {
             txt = _con.Load<SpriteFont>("font");
@@ -44,6 +44,7 @@ namespace ProjectMemoir.Sprites
             stuntimer = -1f;
             invincible = false;
             grounded = lastgrounded = true;
+            input = _parentScene.game.input;
             
         }
 
@@ -51,7 +52,6 @@ namespace ProjectMemoir.Sprites
         {
             grounded = IsGrounded(_sl);
             if (invincible) { anim.alpha = 0.75f; } else { anim.alpha = 1; }
-            currentKS = Keyboard.GetState();
             #region state machine
             switch (currentState)
             {
@@ -288,23 +288,23 @@ namespace ProjectMemoir.Sprites
             }
             #region using abilities
             //checking if the player wants to do a special move
-            if (currentKS.IsKeyDown(Keys.K)) //For projectile
+            if (input.ActionInput) //For projectile
             {
                 
-                if ((currentKS.IsKeyDown(Keys.A) || currentKS.IsKeyDown(Keys.D)) && ps.abilities["Side"]) //For roll
+                if ((input.LeftInput || input.RightInput) && ps.abilities["Side"]) //For roll
                 {
-                    if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) { facing = -1; } else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1; }
+                    if (input.LeftInput && !input.RightInput) { facing = -1; } else if (input.RightInput && !input.LeftInput) { facing = 1; }
                     currentState = playerStates.sidespecial;
                     anim.delay = 0;
                     anim.currentframe = 0;
                 }
-                else if (currentKS.IsKeyDown(Keys.W) && UScanuse && ps.abilities["Up"]) //For double jump
+                else if (input.UpInput && UScanuse && ps.abilities["Up"]) //For double jump
                 {
                     currentState = playerStates.upspecial;
                     anim.delay = 0;
                     anim.currentframe = 0;
                 }
-                else if (currentKS.IsKeyDown(Keys.S) && ps.abilities["Down"]) //For dive
+                else if (input.DownInput && ps.abilities["Down"]) //For dive
                 {
                     currentState = playerStates.downspecial;
                     anim.delay = 0;
@@ -319,8 +319,8 @@ namespace ProjectMemoir.Sprites
             }
             #endregion;
             #region lateral movement
-            if (!currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A) ||
-                currentKS.IsKeyDown(Keys.D) && currentKS.IsKeyDown(Keys.A))
+            if (!input.RightInput && !input.LeftInput ||
+                input.RightInput && input.LeftInput)
             {
                 velocity.X = 0;
                 if (velocity.X != 0) { anim.currentframe = 0; anim.delay = 0; }
@@ -328,7 +328,7 @@ namespace ProjectMemoir.Sprites
                 anim.frames = 4;
                 anim.maxDelay = 2f;
             } else {
-                if (currentKS.IsKeyDown(Keys.A))//left move
+                if (input.LeftInput)//left move
                 {
                     walkTime += 1;
                     velocity.X = -spd;
@@ -346,7 +346,7 @@ namespace ProjectMemoir.Sprites
                         }
                     }
                 }
-                if (currentKS.IsKeyDown(Keys.D))//right move
+                if (input.RightInput)//right move
                 {
                     walkTime += 1;
                     velocity.X = spd;
@@ -374,7 +374,7 @@ namespace ProjectMemoir.Sprites
                     parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X + 7, anim.position.Y + anim.spriteSize.Y - 16), this.parentScene, "Vfx/vfx_landingdust", new Vector2(41, 17), 4));
                 }
                 if(UScanuse == false) { UScanuse = true; }
-                if (currentKS.IsKeyDown(Keys.J)) {
+                if (input.JumpInput) {
                     velocity.Y += -9f;
                     parentScene.soundManager.playerJump.Play();
                 }
@@ -385,7 +385,7 @@ namespace ProjectMemoir.Sprites
                 anim.tex = con.Load<Texture2D>("playersprites/player_air");
                 anim.frames = 0;
                 anim.currentframe = 0;
-                if (currentKS.IsKeyDown(Keys.A) && !currentKS.IsKeyDown(Keys.D)) {facing = -1;} else if (currentKS.IsKeyDown(Keys.D) && !currentKS.IsKeyDown(Keys.A)) { facing = 1;}
+                if (input.LeftInput && !input.RightInput) {facing = -1;} else if (input.RightInput && !input.LeftInput) { facing = 1;}
                 Applygravity();
             }
             #endregion

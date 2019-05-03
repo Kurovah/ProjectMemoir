@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Components\Autotiler.cs" />
     <Compile Include="Components\Cam.cs" />
+    <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\SoundManger.cs" />
     <Compile Include="Components\MainMenuMenu .cs" />
     <Compile Include="Components\HUD.cs" />

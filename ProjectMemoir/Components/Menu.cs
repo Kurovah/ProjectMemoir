@@ -21,6 +21,7 @@ namespace ProjectMemoir.Components
         protected Game1 g;
         protected Scene scene;
         public bool active;
+        public InputManager input;
         public Menu(ContentManager _con, List<string> _options, Vector2 _startpos, Scene _scene)
         {
             //set the position of the menu to zero (top option)
@@ -31,31 +32,29 @@ namespace ProjectMemoir.Components
             scene = _scene;
             pointer = new Animation(_con.Load<Texture2D>("menu_pointer"), new Vector2(150,20), new Vector2(100,20), _startpos, 0, Color.White);
             active = true;
-            currentK = lastK = Keyboard.GetState();
+            input = _scene.game.input;
         }
         public virtual void Update(GameTime _gt)
         {
             if (active)
             {
-                currentK = Keyboard.GetState();
                 //going up
-                if (currentK.IsKeyDown(Keys.S) && !lastK.IsKeyDown(Keys.S))
+                if (input.DownInput)
                 {
                     if (pos < options.Count - 1) { pos++; } else { pos = 0; }
                 }
                 //going up
-                if (currentK.IsKeyDown(Keys.W) && !lastK.IsKeyDown(Keys.W))
+                if (input.UpInput)
                 {
                     if (pos > 0) { pos--; } else { pos = options.Count - 1; }
                 }
 
                 //select option
-                if (currentK.IsKeyDown(Keys.J) && !lastK.IsKeyDown(Keys.J))
+                if (input.JumpInput)
                 {
                     Selectoption(pos);
                 }
                 pointer.Update(_gt);
-                lastK = currentK;
             }
         }
 

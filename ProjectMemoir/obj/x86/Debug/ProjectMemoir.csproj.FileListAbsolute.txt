@@ -215,3 +215,4 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Win
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\end_door.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Vfx\vfx_kunaiclink.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Vfx\vfx_landingdust.xnb
+C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Vfx\vfx_heal.xnb

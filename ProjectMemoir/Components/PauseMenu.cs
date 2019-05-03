@@ -36,9 +36,9 @@ namespace ProjectMemoir.Components
                 new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*3),    //room 9
                 new Vector2(_pos.X+20 + sectSize*8,_pos.Y+20 +sectSize*3),    //room 10
                 new Vector2(_pos.X+20 + sectSize*9,_pos.Y+20 +sectSize*4),    //room 11
-                new Vector2(_pos.X+20 + sectSize*9,_pos.Y+20 +sectSize*10),    //room 12
-                new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*10),    //room 13
-                new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*10),    //room 14
+                new Vector2(_pos.X+20 + sectSize*9,_pos.Y+20 +sectSize*5),    //room 12
+                new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*5),    //room 13
+                new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*5),    //room 14
                 new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*4),    //room 15
                 new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*2),    //room 16
                 new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*1),    //room 17

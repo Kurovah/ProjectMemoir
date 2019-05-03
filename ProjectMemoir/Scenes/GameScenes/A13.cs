@@ -24,7 +24,7 @@ namespace ProjectMemoir.Scenes
 
             background = con.Load<Texture2D>("backgrounds/DesVillageBK");
             //solids to collide with
-            newSolid(0,0,1,11);
+            newSolid(0, 0, 1, 9);
             newSolid(1, 0, 19, 1);
             newSolid(0, 11, 19, 1);
             newSolid(19, 1, 1, 11);

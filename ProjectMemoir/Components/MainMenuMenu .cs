@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -36,6 +37,9 @@ namespace ProjectMemoir.Components
                     break;
                 case 1:
                     scene.game.Exit();
+                    break;
+                case 2:
+                    Process.Start("https://w1629904.wixsite.com/mysite");
                     break;
             }
         }

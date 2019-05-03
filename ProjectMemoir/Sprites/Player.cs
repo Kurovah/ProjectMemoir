@@ -235,7 +235,7 @@ namespace ProjectMemoir.Sprites
             
             anim.frames = 12;
 
-            if(anim.currentframe < 3 || anim.currentframe > 10)
+            if(anim.currentframe < 4 || anim.currentframe > 10)
             {
                 velocity = new Vector2(0);
                 invincible = false;

@@ -21,7 +21,7 @@ namespace ProjectMemoir.Sprites.Enemies
         private Vector2 pos;
         private float distance = 500, oldDistance, targetDistance;
         private bool right;
-        private Animation stunFx;
+        private Animation stunFx,sight;
 
 
         public Prowler(ContentManager _con, Vector2 _pos, Gamescene _parentScene) : base(_con, _pos, _parentScene)
@@ -37,12 +37,24 @@ namespace ProjectMemoir.Sprites.Enemies
             anim = new Animation(_con.Load<Texture2D>("enemySprites/prowler_walk"), new Vector2(55), new Vector2(55), _pos, 6, Color.White);
             anim.maxDelay = 2f;
             stuntime = 0;
+            sight = new Animation(_con.Load<Texture2D>("enemySprites/enemy_sightrect"), new Vector2(96, 64), new Vector2(96, 64), _pos, 0, Color.White);
+            sight.alpha = .15f;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
             stunFx.position = anim.position + new Vector2(27/2,-10);
             stunFx.Update(_gt);
+            sight.position.Y = anim.position.Y;
+            if(!right)
+            {
+                sight.position.X = anim.position.X - 96;
+            } else
+            {
+                sight.position.X = anim.position.X + 64;
+            }
+            sight.mirrored = anim.mirrored;
+            sight.Update(_gt);
             switch (currentstate)
             {
                 case States.wander:
@@ -69,10 +81,7 @@ namespace ProjectMemoir.Sprites.Enemies
                             distance -= 10;
 
 
-                        if (distanceToTarget() < 200f && 
-                            canSeePlayer() && 
-                            !target.invincible && 
-                            Math.Sign(target.anim.position.X - anim.position.X) == facing )
+                        if (canSeePlayer() && !target.invincible)
                         {
                             facing = Math.Sign(target.anim.position.X - anim.position.X); currentstate = States.follow;
                         }
@@ -96,7 +105,7 @@ namespace ProjectMemoir.Sprites.Enemies
                             target.getHurt(Math.Sign(target.anim.position.X - anim.position.X) * 4, -8);
                         }
 
-                        if (distanceToTarget() >= 400f || Math.Abs(target.anim.position.Y - anim.position.Y) > 70f || target.invincible)
+                        if (!canSeePlayer())
                         {
                             velocity.X = 0f; currentstate = States.wander;
                         }
@@ -134,10 +143,7 @@ namespace ProjectMemoir.Sprites.Enemies
         }
         private bool canSeePlayer()
         {
-            float playerPoint = target.anim.position.Y + target.anim.spriteSize.Y / 2,
-                anchor1 = anim.position.Y,
-                anchor2 = anim.position.Y + anim.spriteSize.Y;
-            return playerPoint < anchor2 && playerPoint > anchor1;
+            return sight.desRect.Intersects(target.anim.desRect);
         }
         public float distanceToTarget()
         {
@@ -145,6 +151,7 @@ namespace ProjectMemoir.Sprites.Enemies
         }
         public override void Draw(SpriteBatch _sb)
         {
+            sight.Draw(_sb);
             base.Draw(_sb);
             stunFx.Draw(_sb);
         }

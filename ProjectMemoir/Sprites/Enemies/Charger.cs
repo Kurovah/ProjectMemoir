@@ -20,12 +20,17 @@ namespace ProjectMemoir.Sprites.Enemies
         private Player target;
         private int facing;
         private States currentState;
+        private Animation sight;
+        private float turntime;
         public Charger(ContentManager _con, Vector2 _pos, Gamescene _parentScene) :base(_con, _pos, _parentScene)
         {
             target = _parentScene.player;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/charger_idle"), new Vector2(80), new Vector2(64), _pos, 0, Color.White);
+            sight = new Animation(_con.Load<Texture2D>("enemySprites/enemy_sightrect"), new Vector2(160,64), new Vector2(96,64), _pos, 0, Color.White);
+            sight.alpha = .15f;
             currentState = States.idle;
             facing = -1;
+            turntime = 1;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
@@ -33,14 +38,34 @@ namespace ProjectMemoir.Sprites.Enemies
             switch (currentState)
             {
                 case States.idle:
+                    if(turntime > 0)
+                    {
+                        turntime -= 0.01f;
+                    } else
+                    {
+                        turntime = 1;
+                        facing = -facing;
+                    }
                     anim.tex = con.Load<Texture2D>("enemySprites/charger_idle");
                     anim.frames = 0;
-
+                    sight.position.Y = anim.position.Y;
+                    sight.mirrored = anim.mirrored;
+                    if (facing == -1)
+                    {
+                        sight.position.X = anim.position.X - 160;
+                    }
+                    else
+                    {
+                        sight.position.X = anim.position.X + 80;
+                    }
+                    
+                    sight.Update(_gt);
                     //only attack player if they are not invincible
-                    if (distanceToTarget() < 250f && canSeePlayer() && !target.invincible) {
+                    if (canSeePlayer() && !target.invincible) {
                         facing = Math.Sign(target.anim.position.X - anim.position.X);
                         anim.currentframe = 0;
                         currentState = States.chargeup;
+                        sight.alpha = 0;
                     }
                     break;
 
@@ -51,6 +76,7 @@ namespace ProjectMemoir.Sprites.Enemies
                     {
                         anim.currentframe = 0;
                         currentState = States.charging;
+                        
                     }
                     break;
 
@@ -68,12 +94,15 @@ namespace ProjectMemoir.Sprites.Enemies
                             currentState = States.idle;
                             velocity.X = 0;
                             anim.position.X = _s.anim.desRect.Left - anim.spriteSize.X;
+                            sight.alpha = .15f;
+
                         }
                         else if (checkRightCol(_s))
                         {
                             currentState = States.idle;
                             velocity.X = 0;
                             anim.position.X = _s.anim.desRect.Right;
+                            sight.alpha = .15f;
                         }
                     }
 
@@ -83,6 +112,7 @@ namespace ProjectMemoir.Sprites.Enemies
                         velocity.X = 0;
                         currentState = States.idle;
                         target.getHurt(Math.Sign(target.anim.position.X - anim.position.X)*4, -8);
+                        sight.alpha = .15f;
                     }
                     break;
             }
@@ -92,14 +122,16 @@ namespace ProjectMemoir.Sprites.Enemies
         }
         private bool canSeePlayer()
         {
-            float playerPoint = target.anim.position.Y + target.anim.spriteSize.Y / 2,
-                anchor1 = anim.position.Y,
-                anchor2 = anim.position.Y + anim.spriteSize.Y;
-            return playerPoint < anchor2 && playerPoint > anchor1;
+            return sight.desRect.Intersects(target.anim.desRect);
         }
         public float distanceToTarget()
         {
             return Math.Abs(target.anim.position.X - anim.position.X);
+        }
+        public override void Draw(SpriteBatch _sb)
+        {
+            sight.Draw(_sb);
+            base.Draw(_sb);
         }
     }
 }

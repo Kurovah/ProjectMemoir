@@ -28,7 +28,7 @@ namespace ProjectMemoir.Sprites
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
-        bool grounded, UScanuse = true, startDive = false, SScanuse = false;
+        bool grounded,lastgrounded, UScanuse = true, startDive = false, SScanuse = false;
         public playerStates currentState = playerStates.normal;
         public PlayerStats ps;
         
@@ -43,7 +43,7 @@ namespace ProjectMemoir.Sprites
             itimer = -1f;
             stuntimer = -1f;
             invincible = false;
-            grounded = true;
+            grounded = lastgrounded = true;
             
         }
 
@@ -104,6 +104,7 @@ namespace ProjectMemoir.Sprites
                 }
             }
             #endregion
+            lastgrounded = grounded;
             base.Update(_gt, _sl);
         }
         private void playerDownSpecial(List<Sprite> _sl)
@@ -349,6 +350,10 @@ namespace ProjectMemoir.Sprites
             #region allowing for jump and checking if the player is airborne
             if (grounded) {
                 //jumping
+                if (!lastgrounded)
+                {
+                    parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X+7, anim.position.Y + anim.spriteSize.Y-16), this.parentScene, "Vfx/vfx_landingdust", new Vector2(41, 17), 4));
+                }
                 if(UScanuse == false) { UScanuse = true; }
                 if (currentKS.IsKeyDown(Keys.J)) {
                     velocity.Y += -9f;

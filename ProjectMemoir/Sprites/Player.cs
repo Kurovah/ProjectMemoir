@@ -24,7 +24,7 @@ namespace ProjectMemoir.Sprites
         List<Kunai> kl;
         public KeyboardState currentKS;
         float spd = 5f;
-        public int hp = 100, maxHp = 100, facing = 1, type = 0;
+        public int hp = 100, maxHp = 100, facing = 1, type = 0, count = 1;
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
@@ -99,6 +99,7 @@ namespace ProjectMemoir.Sprites
             {
                 if (!kl[i].isVisible)
                 {
+                    parentScene.soundManager.kunaiClink.Play();
                     kl.RemoveAt(i);
                     i--;
                 }
@@ -376,8 +377,14 @@ namespace ProjectMemoir.Sprites
         public void playerHurtState()
         {
             Applygravity();
+            if (count > 0)
+            {
+                count -= 1;
+                parentScene.soundManager.playerGetHurt.Play();
+            }
             if (stuntimer > 0)
             {
+                
                 anim.tex = con.Load<Texture2D>("playersprites/player_hurt");
                 anim.currentframe = 0;
                 anim.frames = 0;
@@ -388,10 +395,12 @@ namespace ProjectMemoir.Sprites
                 {
                     stuntimer = 0;
                 }
-            } else
+            }
+            else
             {
                 stuntimer = -1;
                 itimer = 10;
+                count = 1;
                 currentState = playerStates.normal;
             }
         }

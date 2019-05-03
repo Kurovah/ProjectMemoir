@@ -87,13 +87,13 @@ namespace ProjectMemoir.Sprites
                         parentScene.pu.text = "You have obtained the secret technique: 'Flash Flip' (UP + K)";
                             break;
                         case "Down":
-                        parentScene.pu.text = "you have obtained the secret technique: 'Gaia Crash' (Down + K)";
+                        parentScene.pu.text = "You have obtained the secret technique: 'Gaia Crash' (Down + K)";
                             break;
                         case "Side":
-                        parentScene.pu.text = "you have obtained the secret technique: 'Flow Rush' (Left/Right + K)";
+                        parentScene.pu.text = "You have obtained the secret technique: 'Flow Rush' (Left/Right + K)";
                             break;
                         case "Neutral":
-                            parentScene.pu.text = "you have obtained 'kunai' (K) ";
+                            parentScene.pu.text = "You have obtained 'Kunai' (K) ";
                             break;
                         case "Red":
                             parentScene.pu.text = "You have obtained the Red seal breaker, Red seals no longer impede your progress";

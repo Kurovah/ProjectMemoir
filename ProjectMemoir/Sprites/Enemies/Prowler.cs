@@ -38,7 +38,7 @@ namespace ProjectMemoir.Sprites.Enemies
             anim.maxDelay = 2f;
             stuntime = 0;
             sight = new Animation(_con.Load<Texture2D>("enemySprites/enemy_sightrect"), new Vector2(96, 64), new Vector2(96, 64), _pos, 0, Color.White);
-            sight.alpha = .15f;
+            sight.alpha = 1f;
         }
 
         public override void Update(GameTime _gt, List<Sprite> _sl)

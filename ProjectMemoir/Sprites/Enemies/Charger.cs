@@ -27,7 +27,7 @@ namespace ProjectMemoir.Sprites.Enemies
             target = _parentScene.player;
             anim = new Animation(_con.Load<Texture2D>("enemySprites/charger_idle"), new Vector2(80), new Vector2(64), _pos, 0, Color.White);
             sight = new Animation(_con.Load<Texture2D>("enemySprites/enemy_sightrect"), new Vector2(160,64), new Vector2(96,64), _pos, 0, Color.White);
-            sight.alpha = .15f;
+            sight.alpha = 1f;
             currentState = States.idle;
             facing = -1;
             turntime = 1;
@@ -94,7 +94,7 @@ namespace ProjectMemoir.Sprites.Enemies
                             currentState = States.idle;
                             velocity.X = 0;
                             anim.position.X = _s.anim.desRect.Left - anim.spriteSize.X;
-                            sight.alpha = .15f;
+                            sight.alpha = 1f;
 
                         }
                         else if (checkRightCol(_s))
@@ -102,7 +102,7 @@ namespace ProjectMemoir.Sprites.Enemies
                             currentState = States.idle;
                             velocity.X = 0;
                             anim.position.X = _s.anim.desRect.Right;
-                            sight.alpha = .15f;
+                            sight.alpha = 1f;
                         }
                     }
 
@@ -112,7 +112,7 @@ namespace ProjectMemoir.Sprites.Enemies
                         velocity.X = 0;
                         currentState = States.idle;
                         target.getHurt(Math.Sign(target.anim.position.X - anim.position.X)*4, -8);
-                        sight.alpha = .15f;
+                        sight.alpha = 1f;
                     }
                     break;
             }

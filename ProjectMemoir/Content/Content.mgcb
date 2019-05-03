@@ -476,12 +476,6 @@
 /processorParam:Quality=Best
 /build:sounds/KunaiClink.wav
 
-#begin sounds/PlayerWalk.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/PlayerWalk.wav
-
 #begin tilesets/hellscape.png
 /importer:TextureImporter
 /processor:TextureProcessor

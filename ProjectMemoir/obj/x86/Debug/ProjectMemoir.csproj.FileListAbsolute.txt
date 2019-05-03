@@ -218,5 +218,3 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.csproj.CopyComplete
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.exe
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.pdb
-C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\PlayerWalk.xnb
-C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\obj\x86\Debug\ProjectMemoir.csprojAssemblyReference.cache

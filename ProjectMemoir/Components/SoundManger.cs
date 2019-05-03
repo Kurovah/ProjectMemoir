@@ -30,7 +30,6 @@ namespace ProjectMemoir.Components
             itemGet = _con.Load<Song>("Music/music_itemget");
             kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
-            playerRun = _con.Load<SoundEffect>("sounds/PlayerWalk");
             currentState = nextState = Gamestate.none;
             musicPlaying = true;
         }
@@ -67,7 +66,8 @@ namespace ProjectMemoir.Components
 
                     }
                     break;
-            }     
+            }
+            
         }
     }
 }

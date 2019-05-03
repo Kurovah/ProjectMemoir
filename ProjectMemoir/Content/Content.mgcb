@@ -476,6 +476,12 @@
 /processorParam:Quality=Best
 /build:sounds/KunaiClink.wav
 
+#begin sounds/PlayerWalk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/PlayerWalk.wav
+
 #begin tilesets/hellscape.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -536,6 +542,18 @@
 /processorParam:TextureFormat=Color
 /build:Vfx/vfx_groundsmash.png
 
+#begin Vfx/vfx_heal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Vfx/vfx_heal.png
+
 #begin Vfx/vfx_kunaiclink.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -571,16 +589,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Vfx/vfx_stun.png
-
-#begin Vfx/vfx_heal.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Vfx/vfx_heal.png
 

@@ -24,7 +24,7 @@ namespace ProjectMemoir.Sprites
         List<Kunai> kl;
         public KeyboardState currentKS;
         float spd = 5f;
-        public int hp = 100, maxHp = 100, facing = 1, type = 0, count = 1;
+        public int hp = 100, maxHp = 100, facing = 1, type = 0, count = 1, walkTime = -1;
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
@@ -330,21 +330,37 @@ namespace ProjectMemoir.Sprites
             } else {
                 if (currentKS.IsKeyDown(Keys.A))//left move
                 {
+                    walkTime += 1;
                     velocity.X = -spd;
                     if (velocity.X >= 0) { anim.currentframe = 0; anim.delay = 0; }
                     anim.tex = con.Load<Texture2D>("playersprites/player_run");
                     anim.frames = 8;
                     facing = -1;
                     anim.maxDelay = 2f;
+                    if (grounded)
+                    {
+                        if ((walkTime % 18f) == 0)
+                        {
+                            parentScene.soundManager.playerRun.Play();
+                        }
+                    }
                 }
                 if (currentKS.IsKeyDown(Keys.D))//right move
                 {
+                    walkTime += 1;
                     velocity.X = spd;
                     if (velocity.X <= 0) { anim.currentframe = 0; anim.delay = 0; }
                     anim.tex = con.Load<Texture2D>("playersprites/player_run");
                     anim.frames = 8;
                     facing = 1;
                     anim.maxDelay = 2f;
+                    if (grounded)
+                    {
+                        if ((walkTime % 18f) == 0)
+                        {
+                            parentScene.soundManager.playerRun.Play();
+                        }
+                    }
                 }
             }
             #endregion

@@ -54,7 +54,7 @@ namespace ProjectMemoir.Components
                     }
                     break;
                 case Gamestate.none:
-                    MediaPlayer.Volume = 1f;
+                    //MediaPlayer.Volume = 0.5f;
                     if (musicPlaying && nextState != Gamestate.none)
                     {
                         MediaPlayer.Stop();

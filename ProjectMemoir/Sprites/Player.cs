@@ -261,7 +261,7 @@ namespace ProjectMemoir.Sprites
             {
                 anim.spriteOrigin = new Vector2(0,15);
             }else if (anim.currentframe == 2) {
-                    velocity.Y = -10f;
+                    velocity.Y = -8f;
             }
 
             if((anim.currentframe == anim.frames))

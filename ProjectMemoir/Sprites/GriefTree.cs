@@ -48,6 +48,7 @@ namespace ProjectMemoir.Sprites
                 }
                 if (!ps.treesPurified[type])
                 {
+                    //j
                     ps.treesPurified[type] = true;
                     gs.pu.active = true;
                     gs.pu.text = "A portion of your grief has been cleansed, your heart grows lighter";

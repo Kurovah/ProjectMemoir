@@ -20,7 +20,7 @@ namespace ProjectMemoir.Components
             credits,
             none
         }
-        public SoundEffect ChargerDash, kunaiToss, kunaiClink, playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush;
+        public SoundEffect ChargerDash, kunaiToss, kunaiClink, playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush, mainMenuSelect;
         public Song mainMenu, gameOver, village, hellScape, icyMountain, itemGet;
         public Gamestate currentState, nextState;
         private bool musicPlaying;
@@ -31,6 +31,7 @@ namespace ProjectMemoir.Components
             kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
             playerRun = _con.Load<SoundEffect>("sounds/PlayerWalk");
+            mainMenuSelect = _con.Load<SoundEffect>("sounds/Mainmenu");
             currentState = nextState = Gamestate.none;
             musicPlaying = true;
         }

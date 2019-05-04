@@ -157,6 +157,18 @@
 /processorParam:TextureFormat=Color
 /build:enemySprites/charger_idle.png
 
+#begin enemySprites/enemy_sightrect.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemySprites/enemy_sightrect.png
+
 #begin enemySprites/prowler_walk.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -476,6 +488,12 @@
 /processorParam:Quality=Best
 /build:sounds/KunaiClink.wav
 
+#begin sounds/Mainmenu.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/Mainmenu.wav
+
 #begin sounds/PlayerWalk.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -589,16 +607,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Vfx/vfx_stun.png
-
-#begin enemySprites/enemy_sightrect.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:enemySprites/enemy_sightrect.png
 

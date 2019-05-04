@@ -6,13 +6,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using ProjectMemoir.Scenes;
 
 namespace ProjectMemoir.Components
 {
     public class MainMenuMenu:Menu
     {
-        PlayerStats ps;
+        PlayerStats ps; 
         public MainMenuMenu(ContentManager _con, List<string> _options, Vector2 _pos, Scene _scene) :base(_con, _options,_pos, _scene)
         {
             ps = scene.game.ps;

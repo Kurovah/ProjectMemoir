@@ -41,11 +41,13 @@ namespace ProjectMemoir.Components
                 //going up
                 if (input.DownInput)
                 {
+                    scene.soundManager.mainMenuSelect.Play();
                     if (pos < options.Count - 1) { pos++; } else { pos = 0; }
                 }
                 //going up
                 if (input.UpInput)
                 {
+                    scene.soundManager.mainMenuSelect.Play();
                     if (pos > 0) { pos--; } else { pos = options.Count - 1; }
                 }
 

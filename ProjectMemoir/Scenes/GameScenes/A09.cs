@@ -35,13 +35,15 @@ namespace ProjectMemoir.Scenes
             newSolid(16, 5, 1, 1);
             newSolid(21, 5, 1, 1);
             newSolid(26, 5, 3, 1);
+            newSeal(27, -1, "Green");
+            newSeal(28, -1, "Green");
 
             base.Load();
             at.tex = con.Load<Texture2D>("tilesets/hellscape");
             //add anything that uses the player as a target after this
-            newSceneChanger(-1, -1, 0, 20, "A8", new Vector2(18, 12));
-            newSceneChanger(31, -1, 0, 20, "A10", new Vector2(1, 9));
-            newSceneChanger(24, -1, 4, 1, "A10", new Vector2(1, 9));
+            newSceneChanger(-1, -1, 1, 20, "A8", new Vector2(18, 12));
+            newSceneChanger(31, -1, 1, 20, "A10", new Vector2(1, 9));
+            newSceneChanger(24, -2, 4, 1, "A16", new Vector2(1, 9));
             newCharger(15, 9);
         }
 

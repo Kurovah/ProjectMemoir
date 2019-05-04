@@ -260,15 +260,16 @@ namespace ProjectMemoir.Sprites
             //aplying upward velocity
             if(anim.currentframe == 0)
             {
-                anim.spriteOrigin = new Vector2(0,15);
+                anim.spriteOrigin = new Vector2(15);
             }else if (anim.currentframe == 2) {
                     velocity.Y = -8f;
+                    anim.spriteOrigin = new Vector2(0, 0);
             }
 
             if((anim.currentframe == anim.frames))
             {
                 currentState = playerStates.normal;
-                anim.spriteOrigin = new Vector2(0, 0);
+                
             }
         }
         public void playerNormalState()

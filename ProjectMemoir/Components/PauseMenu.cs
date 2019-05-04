@@ -67,7 +67,8 @@ namespace ProjectMemoir.Components
         {
             switch (OP) {
                 case 0:
-                scene.pause = false;
+                    scene.pause = false;
+                    active = !active;
                     break;
                 case 1:
                     scene.game.nextScene = new MainMenu(scene.game, scene.game.Content);

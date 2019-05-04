@@ -37,7 +37,7 @@ namespace ProjectMemoir.Scenes
             newSolid(5, 9, 27, 1);
 
             newSolid(35, 5, 1, 6);
-            newSolid(21, 5, 1, 1);
+            newSolid(21, 5, 2, 1);
             newSolid(8, 5, 1, 1);
 
             newSolid(1, 14, 2, 3);

@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
 
-            background = con.Load<Texture2D>("backgrounds/Icymoutain_bk");
+            background = con.Load<Texture2D>("backgrounds/VillageBK");
             //solids to collide with
             newSolid(0,0,1,11);
             newSolid(1, 0, 19, 1);
@@ -30,7 +30,6 @@ namespace ProjectMemoir.Scenes
             newSolid(19, 1, 1, 11);
 
             base.Load();
-            at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
             newSceneChanger(0, -1, 1, 12, "A24", new Vector2(2, 9));
         }

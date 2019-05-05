@@ -73,7 +73,8 @@ namespace ProjectMemoir.Scenes
 
             //Segment 1
             newSentry(16, 1);
-            newSentry(28, 1);
+            newSentry(24, 1);
+            newSentry(32, 1);
             newSentry(40, 1);
 
             newProwler(24, 8);

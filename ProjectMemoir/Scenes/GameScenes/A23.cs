@@ -22,23 +22,51 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
             //solids to collide with
-            newSolid(0,0,1,11);
-            newSolid(1, 0, 19, 1);
-            newSolid(0, 11, 19, 1);
-            newSolid(19, 1, 1, 11);
+            newSolid(0, 0, 4, 31);
+            newSolid(4, 0, 4, 1);
+            newSolid(12, 0, 8, 1);
+            newSolid(0, 31, 8, 1);
+            newSolid(12, 31, 8, 1);
+            newSolid(16, 1, 4, 30);
 
-            newSolid(1, 7, 4, 1);
-            newSolid(15, 7, 4, 1);
             newSolid(7, 4, 6, 1);
-            newSolid(7, 10, 6, 1);
+            newSolid(4, 8, 4, 1);
+            newSolid(12, 8, 4, 1);
+            newBreakableBlock(8, 8);
+            newBreakableBlock(9, 8);
+            newBreakableBlock(10, 8);
+            newBreakableBlock(11, 8);
+
+            newSolid(4, 16, 4, 1);
+            newSolid(12, 16, 4, 1);
+            newBreakableBlock(8, 16);
+            newBreakableBlock(9, 16);
+            newBreakableBlock(10, 16);
+            newBreakableBlock(11, 16);
+
+            newSolid(4, 24, 4, 1);
+            newSolid(12, 24, 4, 1);
+            newBreakableBlock(8, 24);
+            newBreakableBlock(9, 24);
+            newBreakableBlock(10, 24);
+            newBreakableBlock(11, 24);
+
+            newBreakableBlock(8, 31);
+            newBreakableBlock(9, 31);
+            newBreakableBlock(10, 31);
+            newBreakableBlock(11, 31);
 
 
             base.Load();
             background = con.Load<Texture2D>("backgrounds/Icymoutain_bk");
             at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
-            newSceneChanger(0, -1, 1, 12, "A2", new Vector2(2, 9));
-            newSceneChanger(0, -1, 1, 12, "A22", new Vector2(2, 9));
+            newSceneChanger(0, 32, 20, 1, "A2", new Vector2(8, 2));
+            newSceneChanger(0, -1, 20, 1, "A22", new Vector2(8, 9));
+            newSentry(4, 13);
+            newSentry(14, 20);
+            newSentry(4, 28);
+            newSentry(14, 28);
         }
 
         

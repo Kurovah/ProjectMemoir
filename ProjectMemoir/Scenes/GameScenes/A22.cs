@@ -26,15 +26,17 @@ namespace ProjectMemoir.Scenes
             //solids to collide with
             newSolid(0,0,1,11);
             newSolid(1, 0, 19, 1);
-            newSolid(0, 11, 9, 1);
-            newSolid(11, 11, 9, 1);
+            newSolid(0, 11, 8, 1);
+            newSolid(12, 11, 8, 1);
             newSolid(19, 1, 1, 8);
 
             newSolid(1, 8, 4, 1);
             newSolid(15, 8, 4, 1);
             newSolid(7, 5, 6, 1);
+            newBreakableBlock(8, 11);
             newBreakableBlock(9, 11);
             newBreakableBlock(10, 11);
+            newBreakableBlock(11, 11);
 
             base.Load();
             background = con.Load<Texture2D>("backgrounds/Icymoutain_bk");

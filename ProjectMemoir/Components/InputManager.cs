@@ -23,12 +23,12 @@ namespace ProjectMemoir.Components
                 currentGPState = GamePad.GetState(PlayerIndex.One);
 
                 DownInput = (currentGPState.DPad.Down == ButtonState.Pressed && lastGPState.DPad.Down != ButtonState.Pressed) ||
-                    (currentGPState.ThumbSticks.Left.Y > 0.25f && !(lastGPState.ThumbSticks.Left.Y > 0.25f));
-                DownInputH = (currentGPState.DPad.Down == ButtonState.Pressed || currentGPState.ThumbSticks.Left.Y > 0.25f);
+                    (currentGPState.ThumbSticks.Left.Y < -0.25f && !(lastGPState.ThumbSticks.Left.Y < -0.25f));
+                DownInputH = (currentGPState.DPad.Down == ButtonState.Pressed || currentGPState.ThumbSticks.Left.Y < -0.25f);
 
                 UpInput = ((currentGPState.DPad.Up == ButtonState.Pressed && lastGPState.DPad.Up != ButtonState.Pressed) ||
-                    currentGPState.ThumbSticks.Left.Y < -0.25f && !(lastGPState.ThumbSticks.Left.Y < -0.25f));
-                UpInputH = (currentGPState.DPad.Up == ButtonState.Pressed || currentGPState.ThumbSticks.Left.Y < -0.25f);
+                    currentGPState.ThumbSticks.Left.Y > 0.25f && !(lastGPState.ThumbSticks.Left.Y > 0.25f));
+                UpInputH = (currentGPState.DPad.Up == ButtonState.Pressed || currentGPState.ThumbSticks.Left.Y > 0.25f);
 
                 LeftInput = ((currentGPState.DPad.Left == ButtonState.Pressed && lastGPState.DPad.Left != ButtonState.Pressed) ||
                     currentGPState.ThumbSticks.Left.X < -0.25f && !(lastGPState.ThumbSticks.Left.X < -0.25f));

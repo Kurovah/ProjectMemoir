@@ -31,15 +31,18 @@ namespace ProjectMemoir.Scenes
             newSolid(19, 1, 1, 8);
             newSeal(19, 9, "Red");
 
+
             base.Load();
             background = con.Load<Texture2D>("backgrounds/VillageBK");
             //add anything that uses the player as a target after this
             newSceneChanger(21, -1, 0, 12, "A7", new Vector2(1, 19));
             newSceneChanger(-1, -1, 0, 12, "A3", new Vector2(18, 9));
-            //newPedestal(7, 9, "Side");
-            //newPedestal(2, 9, "Red");
+            newPedestal(7, 9, "Side");
+            newPedestal(6, 9, "Up");
+            newPedestal(5, 9, "Blue");
+            newPedestal(4, 9, "Red");
         }
 
-        
+
     }
 }

@@ -30,19 +30,20 @@ namespace ProjectMemoir.Scenes
             newSolid(12, 0, 8, 1);
             newSolid(0, 21, 19, 1);
             newSolid(19, 1, 1, 21);
+            newSeal(0, 19, "Green");
 
             newSolid(7, 18, 6, 1);
-            newSolid(1, 11, 5, 1);
-            newSolid(14, 11, 5, 1);
+            newSolid(1, 11, 4, 1);
+            newSolid(15, 11, 4, 1);
             newSolid(7, 4, 6, 1);
 
 
             base.Load();
             at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
-            newSentry(16, 17);
+            newSentry(9, 10);
             newSceneChanger(-1, -1, 1, 30, "A7", new Vector2(18, 2));
-            newSceneChanger(0, -1, 20, 1, "A20", new Vector2(1, 9));
+            newSceneChanger(0, -1, 20, 1, "A20", new Vector2(58, 8));
         }
 
         

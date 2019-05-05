@@ -32,6 +32,7 @@ namespace ProjectMemoir.Scenes
             newSolid(7, 4, 6, 1);
             newSolid(7, 10, 6, 1);
 
+
             base.Load();
             background = con.Load<Texture2D>("backgrounds/Icymoutain_bk");
             at.tex = con.Load<Texture2D>("tilesets/Icetileset");

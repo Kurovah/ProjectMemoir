@@ -26,20 +26,24 @@ namespace ProjectMemoir.Scenes
             //solids to collide with
             newSolid(0,0,1,11);
             newSolid(1, 0, 19, 1);
-            newSolid(0, 11, 19, 1);
-            newSolid(19, 1, 1, 11);
+            newSolid(0, 11, 9, 1);
+            newSolid(11, 11, 9, 1);
+            newSolid(19, 1, 1, 8);
 
-            newSolid(1, 7, 4, 1);
-            newSolid(15, 7, 4, 1);
-            newSolid(7, 4, 6, 1);
-            newSolid(7, 10, 6, 1);
+            newSolid(1, 8, 4, 1);
+            newSolid(15, 8, 4, 1);
+            newSolid(7, 5, 6, 1);
+            newBreakableBlock(9, 11);
+            newBreakableBlock(10, 11);
 
             base.Load();
             background = con.Load<Texture2D>("backgrounds/Icymoutain_bk");
             at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
-            newSceneChanger(0, -1, 1, 12, "A20", new Vector2(2, 9));
-            newSceneChanger(0, -1, 1, 12, "A23", new Vector2(2, 9));
+            newSceneChanger(21, -1, 1, 20, "A20", new Vector2(1, 8));
+            newSceneChanger(0, 12, 20, 1, "A23", new Vector2(8, 2));
+            newPedestal(10, 3, "Down");
+
         }
 
         

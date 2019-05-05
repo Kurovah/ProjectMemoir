@@ -301,9 +301,12 @@ namespace ProjectMemoir.Sprites
                 }
                 else if (input.UpInputH && UScanuse && ps.abilities["Up"]) //For double jump
                 {
-                    currentState = playerStates.upspecial;
-                    anim.delay = 0;
-                    anim.currentframe = 0;
+                    if (grounded != true)
+                    {
+                        currentState = playerStates.upspecial;
+                        anim.delay = 0;
+                        anim.currentframe = 0;
+                    }
                 }
                 else if (input.DownInputH && ps.abilities["Down"]) //For dive
                 {

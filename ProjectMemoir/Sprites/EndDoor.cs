@@ -19,7 +19,7 @@ namespace ProjectMemoir.Sprites
         PlayerStats ps;
         Player target;
         bool active = false;
-        EndDoor(ContentManager _con, Vector2 _pos, Gamescene _parentScene) : base(_con,_pos,_parentScene)
+        public EndDoor(ContentManager _con, Vector2 _pos, Gamescene _parentScene) : base(_con,_pos,_parentScene)
         {
             parentScene = _parentScene;
             ps = _parentScene.ps;

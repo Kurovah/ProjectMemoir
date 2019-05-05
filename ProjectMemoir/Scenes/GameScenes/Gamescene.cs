@@ -97,6 +97,10 @@ namespace ProjectMemoir.Scenes
         {
             spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), _type, this));
         }
+        protected void newEndDoor(int _x, int _y)
+        {
+            spriteList.Add(new EndDoor(this.con, new Vector2(_x * 32, _y * 32), this));
+        }
         #endregion
 
         public override void Update(GameTime _gt)

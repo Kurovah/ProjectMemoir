@@ -137,7 +137,7 @@ namespace ProjectMemoir.Sprites
                 case 0://grounded
                     if (anim.currentframe == 4 && this.anim.delay == 0f)
                     {
-                       
+                        parentScene.soundManager.kunaiClink.Play();
                         parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X+55-59, anim.position.Y - 39 + 55), this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59, 39), 4));
                         foreach (Sprite _s in _sl)
                         {

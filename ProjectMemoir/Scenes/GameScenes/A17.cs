@@ -24,21 +24,46 @@ namespace ProjectMemoir.Scenes
 
             background = con.Load<Texture2D>("backgrounds/DesVillageBK");
             //solids to collide with
-            newSolid(0,0,1,11);
-            newSolid(1, 0, 19, 1);
-            newSolid(0, 11, 19, 1);
-            newSolid(19, 1, 1, 11);
+            newSolid(0, 0, 1, 13);
+            newSolid(1, 0, 39, 1);
+            newSolid(4, 12, 36, 1);
+            newSolid(39, 4, 1, 8);
 
-            newSolid(1, 7, 4, 1);
-            newSolid(15, 7, 4, 1);
-            newSolid(7, 4, 6, 1);
-            newSolid(7, 10, 6, 1);
+            //Segment 1
+            newSolid(8, 11, 1, 1);
+            newSolid(21, 11, 3, 1);
+            newSolid(34, 11, 1, 1);
+
+            //Segment 2
+            newSolid(1, 8, 35, 1);
+            newSolid(6, 7, 1, 1);
+            newSolid(19, 7, 3, 1);
+            newSolid(33, 7, 1, 1);
+
+            //Segment 3
+            newSolid(5, 4, 34, 1);
+            newSolid(8, 3, 1, 1);
+            newSolid(20, 3, 3, 1);
+            newSolid(35, 3, 1, 1);
 
             base.Load();
             at.tex = con.Load<Texture2D>("tilesets/hellscape");
             //add anything that uses the player as a target after this
-            newSceneChanger(0, -1, 1, 12, "A18", new Vector2(2, 9));
-            newSceneChanger(0, -1, 1, 12, "A16", new Vector2(2, 9));
+            newSceneChanger(40, -1, 1, 20, "A18", new Vector2(2, 1));
+            newSceneChanger(0, 13, 20, 1, "A16", new Vector2(8, 3));
+            //Segment 1
+            newProwler(14, 10);
+            newProwler(27, 10);
+
+            //Segment 2
+            newProwler(26, 6);
+            newCharger(12, 6);
+
+            //Segment 3
+            newProwler(14, 3);
+            newCharger(27, 3);
+
+
         }
 
         

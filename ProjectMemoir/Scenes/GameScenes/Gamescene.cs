@@ -37,6 +37,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
+
             if (id != null)
             {
                 g.ps.mapPeices[id] = true;
@@ -51,10 +52,10 @@ namespace ProjectMemoir.Scenes
                 if (roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X; }
                 if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y; }
             }
-            
+
             //put anything that's dependant on the roomsize here
-            
             at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
+
             spriteList.Add(player = new Player(this.con, newPos + new Vector2(0,10/32), this));
             cam = new Cam(player, roomSize, new Vector2(1280, 720));
         }
@@ -96,6 +97,10 @@ namespace ProjectMemoir.Scenes
        protected void newGriefTree(int _x, int _y, string _type)
         {
             spriteList.Add(new GriefTree(this.con, new Vector2(_x * 32, _y * 32), _type, this));
+        }
+        protected void newEndDoor(int _x, int _y)
+        {
+            spriteList.Add(new EndDoor(this.con, new Vector2(_x * 32, _y * 32), this));
         }
         #endregion
 
@@ -148,6 +153,7 @@ namespace ProjectMemoir.Scenes
                 _sb.End();
             }
             _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.trans);
+            at.Draw(_sb);
             foreach (Sprite _s in spriteList)
             {
                 _s.Draw(_sb);
@@ -156,7 +162,6 @@ namespace ProjectMemoir.Scenes
             {
                 _v.Draw(_sb);
             }
-            at.Draw(_sb);
             _sb.End();
 
             //so the HUD isn't moved by the trans matrix

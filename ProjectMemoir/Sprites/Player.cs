@@ -37,7 +37,7 @@ namespace ProjectMemoir.Sprites
             txt = _con.Load<SpriteFont>("font");
             currentState = playerStates.normal;
             ps = _parentScene.game.ps;
-            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32, 4, Color.White);
+            anim = new Animation(_con.Load<Texture2D>("playersprites/player_idle"), new Vector2(55), new Vector2(55),_pos*32 + new Vector2(0,9), 4, Color.White);
             anim.maxDelay = 3f;
             kl = new List<Kunai>();
             itimer = -1f;
@@ -435,6 +435,11 @@ namespace ProjectMemoir.Sprites
         }
         public void getHurt(float _xvel, float _yvel)
         {
+            if (anim.sourcesize != new Vector2(55))
+            {
+                anim.sourcesize = anim.spriteSize = new Vector2(55);
+            }
+            anim.spriteOrigin = new Vector2(0, 0);
             ps.hp -= 1;
             if (ps.hp <= 0) {
                 parentScene.game.nextScene = new GameOver(parentScene.game, con);

@@ -435,6 +435,11 @@ namespace ProjectMemoir.Sprites
         }
         public void getHurt(float _xvel, float _yvel)
         {
+            if (anim.sourcesize != new Vector2(55))
+            {
+                anim.sourcesize = anim.spriteSize = new Vector2(55);
+            }
+            anim.spriteOrigin = new Vector2(0, 0);
             ps.hp -= 1;
             if (ps.hp <= 0) {
                 parentScene.game.nextScene = new GameOver(parentScene.game, con);

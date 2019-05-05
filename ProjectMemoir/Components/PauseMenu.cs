@@ -33,22 +33,22 @@ namespace ProjectMemoir.Components
                 new Vector2(_pos.X+20 + sectSize*2,_pos.Y+20 +sectSize*3),    //room 4
                 new Vector2(_pos.X+20 + sectSize*1,_pos.Y+20 +sectSize*3),    //room 5
                 new Vector2(_pos.X+20 + sectSize*0,_pos.Y+20 +sectSize*3),    //room 6
-                new Vector2(_pos.X+20 + sectSize*5,_pos.Y+20 +sectSize*3),    //room 7
+                new Vector2(_pos.X+20 + sectSize*5,_pos.Y+20 +sectSize*2.5f),    //room 7
                 new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*3),    //room 8
                 new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*3),    //room 9
                 new Vector2(_pos.X+20 + sectSize*8,_pos.Y+20 +sectSize*3),    //room 10
                 new Vector2(_pos.X+20 + sectSize*9,_pos.Y+20 +sectSize*4),    //room 11
                 new Vector2(_pos.X+20 + sectSize*9,_pos.Y+20 +sectSize*5),    //room 12
-                new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*5),    //room 13
+                new Vector2(_pos.X+20 + sectSize*7.5f,_pos.Y+20 +sectSize*5),    //room 13
                 new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*5),    //room 14
                 new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*4),    //room 15
                 new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*2),    //room 16
                 new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*1),    //room 17
                 new Vector2(_pos.X+20 + sectSize*8,_pos.Y+20 +sectSize*1),    //room 18
                 new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*2),    //room 19
-                new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*0),    //room 20
-                new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*0),    //room 21
-                new Vector2(_pos.X+20 + sectSize*4,_pos.Y+20 +sectSize*0),    //room 22
+                new Vector2(_pos.X+20 + sectSize*6,_pos.Y+20 +sectSize*1),    //room 20
+                new Vector2(_pos.X+20 + sectSize*7,_pos.Y+20 +sectSize*1),    //room 21
+                new Vector2(_pos.X+20 + sectSize*4,_pos.Y+20 +sectSize*1),    //room 22
                 new Vector2(_pos.X+20 + sectSize*4,_pos.Y+20 +sectSize*2),    //room 23
                 new Vector2(_pos.X+20 + sectSize*3,_pos.Y+20 +sectSize*4),    //room 24
                 new Vector2(_pos.X+20 + sectSize*3,_pos.Y+20 +sectSize*10),    //room 25

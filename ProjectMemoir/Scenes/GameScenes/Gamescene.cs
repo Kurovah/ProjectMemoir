@@ -37,6 +37,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
+
             if (id != null)
             {
                 g.ps.mapPeices[id] = true;
@@ -51,10 +52,10 @@ namespace ProjectMemoir.Scenes
                 if (roomSize.X < _s.anim.position.X + _s.anim.spriteSize.X) { roomSize.X = _s.anim.position.X + _s.anim.spriteSize.X; }
                 if (roomSize.Y < _s.anim.position.Y + _s.anim.spriteSize.Y) { roomSize.Y = _s.anim.position.Y + _s.anim.spriteSize.Y; }
             }
-            
+
             //put anything that's dependant on the roomsize here
-            
             at = new Autotiler(con, "tilesets/VillageTiles", roomSize);
+
             spriteList.Add(player = new Player(this.con, newPos + new Vector2(0,10/32), this));
             cam = new Cam(player, roomSize, new Vector2(1280, 720));
         }

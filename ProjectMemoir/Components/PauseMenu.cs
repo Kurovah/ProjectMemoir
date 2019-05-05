@@ -14,7 +14,8 @@ namespace ProjectMemoir.Components
         List<Vector2> mapSects;
         PlayerStats ps;
         Texture2D tex,tex2,tex3;
-        int sectSize = 48, scale = 2;
+        int sectSize = 48;
+        float scale = 1.5f;
         InputManager input;
         public PauseMenu(ContentManager _con, List<string> _options, Vector2 _pos,Scene _scene) :base(_con, _options,_pos, _scene)
         {
@@ -96,11 +97,11 @@ namespace ProjectMemoir.Components
                 //draw the map section if the corresponding section is true
                 if (ps.mapPeices[ps.mapPeices.Keys.ElementAt(i)])
                 {
-                    _sb.Draw(tex,mapSects[i]*2, new Rectangle(0, 0, 32, 32), Color.White);
+                    _sb.Draw(tex,mapSects[i]*scale, new Rectangle(0, 0, 32, 32), Color.White);
                 }
                 if(ps.mapPeices.Keys.ElementAt(i) == scene.id)
                 {
-                    _sb.Draw(tex, mapSects[i] * scale, new Rectangle(32, 0, 32, 32), Color.White);
+                    _sb.Draw(tex, mapSects[i]*scale, new Rectangle(32, 0, 32, 32), Color.White);
                 }
             }
 

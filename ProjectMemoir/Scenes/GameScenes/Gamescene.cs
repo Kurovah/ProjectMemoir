@@ -153,6 +153,7 @@ namespace ProjectMemoir.Scenes
                 _sb.End();
             }
             _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.trans);
+            at.Draw(_sb);
             foreach (Sprite _s in spriteList)
             {
                 _s.Draw(_sb);
@@ -161,7 +162,6 @@ namespace ProjectMemoir.Scenes
             {
                 _v.Draw(_sb);
             }
-            at.Draw(_sb);
             _sb.End();
 
             //so the HUD isn't moved by the trans matrix

@@ -40,6 +40,7 @@ namespace ProjectMemoir.Scenes
             base.Load();
             at.tex = con.Load<Texture2D>("tilesets/Icetileset");
             //add anything that uses the player as a target after this
+            newSentry(16, 17);
             newSceneChanger(-1, -1, 1, 30, "A7", new Vector2(18, 2));
             newSceneChanger(0, -1, 20, 1, "A20", new Vector2(1, 9));
         }

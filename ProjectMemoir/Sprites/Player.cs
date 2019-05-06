@@ -99,7 +99,6 @@ namespace ProjectMemoir.Sprites
             {
                 if (!kl[i].isVisible)
                 {
-                    parentScene.soundManager.kunaiClink.Play();
                     kl.RemoveAt(i);
                     i--;
                 }

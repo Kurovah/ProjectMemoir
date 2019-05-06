@@ -230,3 +230,4 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Win
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\Mainmenu.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\Mainmenu.xnb
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\DownSmash.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\BrickBreak.xnb

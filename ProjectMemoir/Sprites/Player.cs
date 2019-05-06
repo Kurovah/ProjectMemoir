@@ -173,7 +173,7 @@ namespace ProjectMemoir.Sprites
                     {
                         if(checkTopCol(_s) && _s.GetType() == typeof(BreakableBlock))
                         {
-                            //parentScene.soundManager.playerCrush.Play();
+                            parentScene.soundManager.BrickCrush.Play();
                             _s.isVisible = false;
                         }
                     }

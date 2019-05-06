@@ -470,6 +470,12 @@
 /processorParam:TextureFormat=Color
 /build:seal.png
 
+#begin sounds/BrickBreak.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/BrickBreak.wav
+
 #begin sounds/DownSmash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

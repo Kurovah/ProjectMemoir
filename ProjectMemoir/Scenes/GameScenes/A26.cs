@@ -43,7 +43,7 @@ namespace ProjectMemoir.Scenes
             base.Load();
             //add anything that uses the player as a target after this
             newSceneChanger(41, -1, 1, 20, "A24", new Vector2(2, 22));
-            newSceneChanger(-1, 13, 20, 1, "A27", new Vector2(2, 9));
+            newSceneChanger(-1, 13, 20, 1, "A27", new Vector2(37, 2));
             newCharger(23, 9);
             newCharger(7, 9);
             newSentry(20, 9);

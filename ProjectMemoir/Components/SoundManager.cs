@@ -23,12 +23,10 @@ namespace ProjectMemoir.Components
             hellScape = _con.Load<Song>("Music/Destroyed_Village");
             icyMountain = _con.Load<Song>("Music/Ice_Mountain");
             mainMenu = _con.Load<Song>("Music/Main_Theme");
+            itemGet = _con.Load<SoundEffect>("Music/music_itemget");
 
             //sound effects
-            itemGet = _con.Load<SoundEffect>("Music/music_itemget");
             playerJump = _con.Load<SoundEffect>("sounds/Jump");
-            kunaiClink = _con.Load<SoundEffect>("sounds/DownSmash");
-            itemGet = _con.Load<SoundEffect>("Music/music_itemget");
             playerCrush = _con.Load<SoundEffect>("sounds/DownSmash");
             BrickCrush = _con.Load<SoundEffect>("sounds/BrickBreak");
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");

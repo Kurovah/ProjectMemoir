@@ -470,6 +470,12 @@
 /processorParam:TextureFormat=Color
 /build:seal.png
 
+#begin sounds/AquaDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/AquaDash.wav
+
 #begin sounds/BrickBreak.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

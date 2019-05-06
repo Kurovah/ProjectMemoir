@@ -24,7 +24,7 @@ namespace ProjectMemoir.Sprites
         List<Kunai> kl;
         public KeyboardState currentKS;
         float spd = 5f;
-        public int hp = 100, maxHp = 100, facing = 1, type = 0, count = 1, walkTime = -1;
+        public int hp = 100, maxHp = 100, facing = 1, type = 0, hurtcount = 1, sidecount = 1, walkTime = -1;
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
@@ -233,6 +233,7 @@ namespace ProjectMemoir.Sprites
         private void playerSideSpecial()
         {
             SScanuse = false;
+
             if (grounded)
             {
                 anim.tex = con.Load<Texture2D>("playersprites/player_dash_ground");
@@ -248,7 +249,13 @@ namespace ProjectMemoir.Sprites
             {
                 velocity = new Vector2(0);
                 invincible = false;
-            } else
+                if (sidecount == 1)
+                {
+                    parentScene.soundManager.playerAquaDash.Play();
+                    sidecount -= 1;
+                }
+            }
+            else
             {
                 velocity.X = 10 * facing;
                 invincible = true;
@@ -257,6 +264,7 @@ namespace ProjectMemoir.Sprites
             if (anim.isFinished())
             {
                 currentState = playerStates.normal;
+                sidecount = 1;
             }
         }
         private void playerUpSpecial()
@@ -408,9 +416,9 @@ namespace ProjectMemoir.Sprites
         public void playerHurtState()
         {
             Applygravity();
-            if (count > 0)
+            if (hurtcount > 0)
             {
-                count -= 1;
+                hurtcount -= 1;
                 parentScene.soundManager.playerGetHurt.Play();
             }
             if (stuntimer > 0)
@@ -431,7 +439,7 @@ namespace ProjectMemoir.Sprites
             {
                 stuntimer = -1;
                 itimer = 10;
-                count = 1;
+                hurtcount = 1;
                 currentState = playerStates.normal;
             }
         }

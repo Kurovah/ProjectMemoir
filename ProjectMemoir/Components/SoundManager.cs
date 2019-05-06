@@ -10,7 +10,7 @@ namespace ProjectMemoir.Components
    public  class SoundManager
     {
         
-        public SoundEffect ChargerDash, kunaiToss, kunaiClink, playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush, BrickCrush,mainMenuSelect, itemGet;
+        public SoundEffect ChargerDash, kunaiToss, kunaiClink, playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush, BrickCrush, mainMenuSelect, itemGet, griefTree;
         public Song mainMenu, gameOver, village, hellScape, icyMountain;
         public String currentState, lastState;
         public bool musicPlaying, gotItem, itemsongplaying;
@@ -35,6 +35,8 @@ namespace ProjectMemoir.Components
             kunaiToss = _con.Load<SoundEffect>("sounds/KunaiToss");
             kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
             mainMenuSelect = _con.Load<SoundEffect>("sounds/Mainmenu");
+            griefTree = _con.Load<SoundEffect>("sounds/GriefTree");
+
             currentState = lastState = "none";
             musicPlaying = false;
             gotItem = false;

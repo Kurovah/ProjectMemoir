@@ -518,6 +518,12 @@
 /processorParam:Quality=Best
 /build:sounds/DownSmash.wav
 
+#begin sounds/GriefTree.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/GriefTree.wav
+
 #begin sounds/Hurt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

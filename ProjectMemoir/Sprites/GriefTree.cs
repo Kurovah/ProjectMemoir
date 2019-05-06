@@ -14,6 +14,7 @@ namespace ProjectMemoir.Sprites
         PlayerStats ps;
         Player player;
         float initx;
+        int griefcount = 1;
         Gamescene gs;
         bool has_healed;
         public GriefTree(ContentManager _con, Vector2 _pos, String _type, Gamescene _gs) : base(_con, _pos, _gs)
@@ -43,6 +44,7 @@ namespace ProjectMemoir.Sprites
                         "Vfx/vfx_heal", 
                         new Vector2(40,39), 
                         4));
+                    parentScene.soundManager.griefTree.Play();
                     ps.hp = 3;
                     has_healed = true;
                 }
@@ -55,6 +57,7 @@ namespace ProjectMemoir.Sprites
                     if (!parentScene.soundManager.gotItem) { parentScene.soundManager.gotItem = true; }
                 }
             }
+
 
             if (ps.treesPurified[type])
             {  

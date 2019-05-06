@@ -40,7 +40,7 @@ namespace ProjectMemoir.Scenes
             //newPedestal(9, 9, "Down");
             //newPedestal(8, 9, "Neutral");
             newPedestal(7, 9, "Side");
-            //newPedestal(6, 9, "Up");
+            newPedestal(6, 9, "Up");
             //newPedestal(5, 9, "Blue");
             //newPedestal(4, 9, "Red");
             //newPedestal(3, 9, "Green");

@@ -25,6 +25,7 @@ namespace ProjectMemoir.Sprites.Enemies
             if (anim.desRect.Intersects(target.anim.desRect) && !target.invincible)
             {
                 target.getHurt(Math.Sign(target.anim.position.X - anim.position.X) * 4, -4);
+                parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X - 5, anim.position.Y - 5), this.parentScene, "Vfx/vf_sentry_shot_explode", new Vector2(30, 30), 4));
                 isVisible = false;
             }
 
@@ -33,7 +34,10 @@ namespace ProjectMemoir.Sprites.Enemies
             {
                 if(_s.GetType() != typeof(Solid)) { continue; }
                 if (checkLeftCol(_s) || checkRightCol(_s) || checkTopCol(_s) || checkBottomCol(_s))
+                {
+                    parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X-5, anim.position.Y-5), this.parentScene, "Vfx/vf_sentry_shot_explode", new Vector2(30, 30), 4));
                     isVisible = false;
+                }
             }
             base.Update(_gt, _sl);
         }

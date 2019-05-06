@@ -272,41 +272,11 @@
 /processorParam:TextureFormat=Color
 /build:menu_pointer.png
 
-#begin Music/Destroyed_Village.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/Destroyed_Village.mp3
-
-#begin Music/Game_Over.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/Game_Over.mp3
-
-#begin Music/Ice_Mountain.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/Ice_Mountain.mp3
-
-#begin Music/Main_Theme.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/Main_Theme.mp3
-
 #begin Music/music_itemget.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Music/music_itemget.wav
-
-#begin Music/Village.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/Village.mp3
 
 #begin pause_items.png
 /importer:TextureImporter
@@ -500,24 +470,6 @@
 /processorParam:TextureFormat=Color
 /build:seal.png
 
-#begin sounds/AquaDash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/AquaDash.wav
-
-#begin sounds/BrickBreak.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/BrickBreak.wav
-
-#begin sounds/DownSmash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/DownSmash.wav
-
 #begin sounds/Hurt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -535,12 +487,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sounds/KunaiClink.wav
-
-#begin sounds/KunaiToss.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/KunaiToss.wav
 
 #begin sounds/Mainmenu.wav
 /importer:WavImporter
@@ -661,4 +607,46 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Vfx/vfx_stun.png
+
+#begin Music/Destroyed_Village.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Destroyed_Village.mp3
+
+#begin Music/Game_Over.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Game_Over.mp3
+
+#begin Music/Ice_Mountain.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Ice_Mountain.mp3
+
+#begin Music/Main_Theme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Main_Theme.mp3
+
+#begin Music/Village.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Village.mp3
+
+#begin Vfx/vf_sentry_shot_explode.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Vfx/vf_sentry_shot_explode.png
 

@@ -39,12 +39,11 @@ namespace ProjectMemoir.Scenes
             newSceneChanger(-1, -1, 0, 12, "A3", new Vector2(18, 9));
             //newPedestal(9, 9, "Down");
             //newPedestal(8, 9, "Neutral");
-            newPedestal(7, 9, "Side");
-            newPedestal(6, 9, "Up");
+            //newPedestal(7, 9, "Side");
+            //newPedestal(6, 9, "Up");
             //newPedestal(5, 9, "Blue");
             //newPedestal(4, 9, "Red");
             //newPedestal(3, 9, "Green");
-            newSentry(9, 3);
         }
 
 

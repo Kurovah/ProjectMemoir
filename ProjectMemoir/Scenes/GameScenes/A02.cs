@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
 
-            
+            soundManager.currentState = SoundManger.Gamestate.plains;
             //solids to collide with
             newSolid(0, 0, 1, 9);
             newSolid(1, 0, 5, 1);

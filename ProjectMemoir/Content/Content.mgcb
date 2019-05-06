@@ -274,7 +274,7 @@
 
 #begin Music/music_itemget.wav
 /importer:WavImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Music/music_itemget.wav
 
@@ -607,4 +607,34 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Vfx/vfx_stun.png
+
+#begin Music/Destroyed_Village.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Destroyed_Village.mp3
+
+#begin Music/Game_Over.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Game_Over.mp3
+
+#begin Music/Ice_Mountain.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Ice_Mountain.mp3
+
+#begin Music/Main_Theme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Main_Theme.mp3
+
+#begin Music/Village.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Village.mp3
 

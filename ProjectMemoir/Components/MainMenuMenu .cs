@@ -13,10 +13,12 @@ namespace ProjectMemoir.Components
 {
     public class MainMenuMenu:Menu
     {
-        PlayerStats ps; 
+        PlayerStats ps;
+        Scene s;
         public MainMenuMenu(ContentManager _con, List<string> _options, Vector2 _pos, Scene _scene) :base(_con, _options,_pos, _scene)
         {
             ps = scene.game.ps;
+            s = _scene;
             offset = new Vector2((1280 / 2) - (txt.MeasureString(options[pos]).X / 2),720/2 + 10);
         }
         public override void Update(GameTime _gt)
@@ -26,6 +28,7 @@ namespace ProjectMemoir.Components
             if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; active = !active; }//if P is "pressed" pause the game 
             pointer.position = offset + new Vector2(-32, pos * 30);
             base.Update(_gt);
+            s.soundManager.Update(_gt);
             lastK = currentK;
         }
         public override void Selectoption(int OP)
@@ -35,6 +38,7 @@ namespace ProjectMemoir.Components
                 case 0:
                     ps.Reset();
                     scene.game.nextScene = new A01(scene.game, scene.game.Content, new Vector2(2, 9));
+                    s.soundManager.currentState = SoundManger.Gamestate.plains;
                     break;
                 case 1:
                     scene.game.Exit();

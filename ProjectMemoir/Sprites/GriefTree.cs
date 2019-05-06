@@ -52,7 +52,7 @@ namespace ProjectMemoir.Sprites
                     ps.treesPurified[type] = true;
                     gs.pu.active = true;
                     gs.pu.text = "A portion of your grief has been cleansed, your heart grows lighter";
-                    parentScene.soundManager.nextState = SoundManger.Gamestate.itemget;
+                    if (!parentScene.soundManager.gotItem) { parentScene.soundManager.gotItem = true; }
                 }
             }
 

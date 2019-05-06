@@ -156,6 +156,7 @@ namespace ProjectMemoir.Scenes
             at.Draw(_sb);
             foreach (Sprite _s in spriteList)
             {
+
                 _s.Draw(_sb);
             }
             foreach (VFX _v in vfxList)

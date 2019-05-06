@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
 
-
+            soundManager.currentState = SoundManger.Gamestate.icy;
             background = con.Load<Texture2D>("backgrounds/Icymoutain_bk");
             //solids to collide with
             newSolid(0, 0, 1, 19);

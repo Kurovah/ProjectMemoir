@@ -22,10 +22,11 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
+            soundManager.currentState = SoundManger.Gamestate.mainmenu;
         }
         public override void Update(GameTime _gt)
         {
-
+            soundManager.Update(_gt);
             gOMenu.Update(_gt);
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)

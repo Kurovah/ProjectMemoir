@@ -18,13 +18,16 @@ namespace ProjectMemoir.Scenes
         {
             background = _con.Load<Texture2D>("backgrounds/gameover_screen");
             gOMenu = new GameOverMenu(_con,new List<string> (){"Continue","Back to Main"}, new Vector2(5), this);
+
         }
 
         public override void Load()
         {
+            soundManager.currentState = SoundManger.Gamestate.mainmenu;
         }
         public override void Update(GameTime _gt)
         {
+            soundManager.Update(_gt);
             gOMenu.Update(_gt);
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)

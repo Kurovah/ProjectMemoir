@@ -33,9 +33,9 @@ namespace ProjectMemoir.Components
             BrickCrush = _con.Load<SoundEffect>("sounds/BrickBreak");
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
             playerRun = _con.Load<SoundEffect>("sounds/PlayerWalk");
-            playerAquaDash = _con.Load<SoundEffect>("sounds/AquaDash");
-            kunaiToss = _con.Load<SoundEffect>("sounds/KunaiToss");
+            playerAquaDash = _con.Load<SoundEffect>("sounds/AquaDash");           
             kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
+            kunaiToss = _con.Load<SoundEffect>("sounds/KunaiToss");
             mainMenuSelect = _con.Load<SoundEffect>("sounds/Mainmenu");
             griefTree = _con.Load<SoundEffect>("sounds/GriefTree");
             sentryShot = _con.Load<SoundEffect>("sounds/SentryShot");

@@ -18,7 +18,7 @@ namespace ProjectMemoir.Sprites.Enemies
             charging
         };
         private Player target;
-        private int facing;
+        private int facing, chargecount = 1;
         private States currentState;
         private Animation sight;
         private float turntime;
@@ -74,9 +74,9 @@ namespace ProjectMemoir.Sprites.Enemies
                     anim.frames = 6;
                     if (anim.isFinished())
                     {
+                        parentScene.soundManager.ChargerDash.Play();
                         anim.currentframe = 0;
-                        currentState = States.charging;
-                        
+                        currentState = States.charging;                        
                     }
                     break;
 

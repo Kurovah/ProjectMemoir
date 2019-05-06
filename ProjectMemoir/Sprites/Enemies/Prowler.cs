@@ -17,7 +17,7 @@ namespace ProjectMemoir.Sprites.Enemies
 
         private Player target;
         public States currentstate;
-        public int facing,stuntime;
+        public int facing, stuntime, chasecount = 1, stuncount = 1;
         private Vector2 pos;
         private float distance = 500, oldDistance, targetDistance;
         private bool right;
@@ -90,6 +90,11 @@ namespace ProjectMemoir.Sprites.Enemies
 
                 case States.follow:
                     {
+                        if (chasecount == 1)
+                        {
+                            parentScene.soundManager.chaseState.Play();
+                            chasecount -= 1;
+                        }
                         anim.maxDelay = 1f;
                         targetDistance = target.anim.position.X - anim.position.X;
                         anim.col = Color.Red;
@@ -108,6 +113,7 @@ namespace ProjectMemoir.Sprites.Enemies
                         if (!canSeePlayer())
                         {
                             velocity.X = 0f; currentstate = States.wander;
+                            chasecount = 1;
                         }
 
                         break;
@@ -119,7 +125,12 @@ namespace ProjectMemoir.Sprites.Enemies
                     anim.frames = 0;
                     anim.currentframe = 0;
                     anim.col = Color.White;
-                    if(stuntime > 0)
+                    if (stuncount == 1)
+                    {
+                        parentScene.soundManager.stunState.Play();
+                        stuncount -= 1;
+                    }
+                    if (stuntime > 0)
                     {
                         stuntime--;
                     } else
@@ -127,6 +138,8 @@ namespace ProjectMemoir.Sprites.Enemies
                         stunFx.alpha = 0;
                         currentstate = States.wander;
                         anim.frames = 6;
+                        chasecount = 1;
+                        stuncount = 1;
                     }
                     break;
             }

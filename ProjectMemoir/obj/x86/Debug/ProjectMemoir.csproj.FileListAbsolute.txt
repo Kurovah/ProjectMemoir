@@ -254,3 +254,9 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Win
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\KunaiToss.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\KunaiClink.xnb
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\Vfx\vf_sentry_shot_explode.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\GriefTree.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\SentryShot.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\ChaseState.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\StunNoise.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\StunState.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\ChargeStart.xnb

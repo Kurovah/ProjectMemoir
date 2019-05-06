@@ -99,6 +99,7 @@ namespace ProjectMemoir.Sprites
             {
                 if (!kl[i].isVisible)
                 {
+                    parentScene.soundManager.kunaiClink.Play();
                     kl.RemoveAt(i);
                     i--;
                 }
@@ -221,6 +222,7 @@ namespace ProjectMemoir.Sprites
 
             if (anim.currentframe == 2  && anim.delay == 0)
             {
+                parentScene.soundManager.kunaiToss.Play();
                 kl.Add(new Kunai(con, new Vector2(anim.position.X+27+27*facing, anim.position.Y+27), facing, this.parentScene));
             }
 

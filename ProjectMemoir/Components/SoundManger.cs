@@ -41,6 +41,8 @@ namespace ProjectMemoir.Components
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
             playerRun = _con.Load<SoundEffect>("sounds/PlayerWalk");
             playerAquaDash = _con.Load<SoundEffect>("sounds/AquaDash");
+            kunaiToss = _con.Load<SoundEffect>("sounds/KunaiToss");
+            kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
             mainMenuSelect = _con.Load<SoundEffect>("sounds/Mainmenu");
             currentState = lastState = Gamestate.none;
             musicPlaying = false;

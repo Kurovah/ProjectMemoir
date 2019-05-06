@@ -137,7 +137,7 @@ namespace ProjectMemoir.Sprites
                 case 0://grounded
                     if (anim.currentframe == 4 && this.anim.delay == 0f)
                     {
-                        parentScene.soundManager.kunaiClink.Play();
+                        parentScene.soundManager.playerCrush.Play();
                         parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X+55-59, anim.position.Y - 39 + 55), this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59, 39), 4));
                         foreach (Sprite _s in _sl)
                         {
@@ -173,12 +173,14 @@ namespace ProjectMemoir.Sprites
                     {
                         if(checkTopCol(_s) && _s.GetType() == typeof(BreakableBlock))
                         {
+                            //parentScene.soundManager.playerCrush.Play();
                             _s.isVisible = false;
                         }
                     }
 
                     if (grounded)
                     {
+                        parentScene.soundManager.playerCrush.Play();
                         type = 3;
                         anim.currentframe = 0;
                     }
@@ -188,7 +190,7 @@ namespace ProjectMemoir.Sprites
                     anim.frames = 2;
                     if(anim.currentframe == 0 && this.anim.delay == 0f)
                     {
-                       
+                        parentScene.soundManager.playerCrush.Play();
                         parentScene.vfxQ.Add(new VFX(this.con, new Vector2(anim.position.X, anim.position.Y - 39 + 55),this.parentScene, "Vfx/vfx_groundsmash", new Vector2(59,39),4));
                     }
 

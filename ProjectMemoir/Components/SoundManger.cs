@@ -28,7 +28,7 @@ namespace ProjectMemoir.Components
         {
             playerJump = _con.Load<SoundEffect>("sounds/Jump");
             itemGet = _con.Load<Song>("Music/music_itemget");
-            kunaiClink = _con.Load<SoundEffect>("sounds/KunaiClink");
+            playerCrush = _con.Load<SoundEffect>("sounds/DownSmash");
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");
             playerRun = _con.Load<SoundEffect>("sounds/PlayerWalk");
             mainMenuSelect = _con.Load<SoundEffect>("sounds/Mainmenu");

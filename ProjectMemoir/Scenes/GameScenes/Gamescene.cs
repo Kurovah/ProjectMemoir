@@ -106,6 +106,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Update(GameTime _gt)
         {
+            soundManager.Update(_gt);
             //nothing moves while the level is being tiled
             if (at.active)
             {
@@ -140,7 +141,7 @@ namespace ProjectMemoir.Scenes
                     cam.Update(_gt);
                 }
             }
-            soundManager.Update(_gt);
+            
             PostUpdate(_gt);
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)

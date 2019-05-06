@@ -7,24 +7,15 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ProjectMemoir.Components
 {
-   public  class SoundManger
+   public  class SoundManager
     {
-        public enum Gamestate
-        {
-            mainmenu,
-            gameoverscreen,
-            icy,
-            hell,
-            plains,
-            credits,
-            none
-        }
+        
         public SoundEffect ChargerDash, kunaiToss, kunaiClink, playerJump, playerRun, playerGetHurt, playerFlashFlip, playerAquaDash, playerCrush, BrickCrush,mainMenuSelect, itemGet;
         public Song mainMenu, gameOver, village, hellScape, icyMountain;
-        public Gamestate currentState, lastState;
+        public String currentState, lastState;
         public bool musicPlaying, gotItem, itemsongplaying;
         SoundEffectInstance Iinstance;
-        public SoundManger(ContentManager _con)
+        public SoundManager(ContentManager _con)
         {
             //songs
             gameOver = _con.Load<Song>("Music/Game_over");
@@ -44,7 +35,7 @@ namespace ProjectMemoir.Components
             playerRun = _con.Load<SoundEffect>("sounds/PlayerWalk");
             playerAquaDash = _con.Load<SoundEffect>("sounds/AquaDash");
             mainMenuSelect = _con.Load<SoundEffect>("sounds/Mainmenu");
-            currentState = lastState = Gamestate.none;
+            currentState = lastState = "none";
             musicPlaying = false;
             gotItem = false;
             itemsongplaying = false;
@@ -72,10 +63,12 @@ namespace ProjectMemoir.Components
                 }
             }
 
+            
+
             switch (currentState)
             { 
                 #region icy music
-                case Gamestate.icy:
+                case "icy":
                     if (musicPlaying  && lastState != currentState)
                     {
                         MediaPlayer.Stop();
@@ -91,7 +84,7 @@ namespace ProjectMemoir.Components
                 #endregion
 
                 #region main menu
-                case Gamestate.mainmenu:
+                case "mainmenu":
                     if (musicPlaying  && lastState != currentState)
                     {
                         MediaPlayer.Stop();
@@ -107,7 +100,7 @@ namespace ProjectMemoir.Components
                 #endregion
 
                 #region hell music
-                case Gamestate.hell:
+                case "hell":
                     if (musicPlaying  && lastState != currentState)
                     {
                         MediaPlayer.Stop();
@@ -123,7 +116,7 @@ namespace ProjectMemoir.Components
                 #endregion
 
                 #region village
-                case Gamestate.plains:
+                case "plains":
                     if (musicPlaying  && lastState != currentState)
                     {
                         MediaPlayer.Stop();
@@ -139,7 +132,7 @@ namespace ProjectMemoir.Components
                 #endregion
 
                 #region Gameover
-                case Gamestate.gameoverscreen:
+                case "gameover":
                     if (musicPlaying  && lastState != currentState)
                     {
                         MediaPlayer.Stop();
@@ -153,19 +146,9 @@ namespace ProjectMemoir.Components
                     }
                     break;
                 #endregion
-                case Gamestate.none:
-                    //MediaPlayer.Volume = 0.5f;
-                    if (musicPlaying )
-                    {
-                        MediaPlayer.Stop();
-                        musicPlaying = false;
-                        lastState = Gamestate.none;
-
-                    }
-                    break;
             }
+
             lastState = currentState;
-            
         }
     }
 }

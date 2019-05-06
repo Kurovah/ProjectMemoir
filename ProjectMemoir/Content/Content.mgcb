@@ -512,6 +512,12 @@
 /processorParam:Quality=Best
 /build:sounds/BrickBreak.wav
 
+#begin sounds/ChargeStart.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/ChargeStart.wav
+
 #begin sounds/ChaseState.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

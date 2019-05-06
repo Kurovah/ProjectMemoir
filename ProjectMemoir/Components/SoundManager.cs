@@ -40,6 +40,7 @@ namespace ProjectMemoir.Components
             sentryShot = _con.Load<SoundEffect>("sounds/SentryShot");
             chaseState = _con.Load<SoundEffect>("sounds/ChaseState");
             stunState = _con.Load<SoundEffect>("sounds/StunState");
+            ChargerDash = _con.Load<SoundEffect>("sounds/ChargeStart");
             currentState = lastState = "none";
             musicPlaying = false;
             gotItem = false;

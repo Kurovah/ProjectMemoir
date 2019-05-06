@@ -27,11 +27,12 @@ namespace ProjectMemoir.Scenes
             newSolid(0, 6, 1, 6);
             newSolid(0, 0, 20, 6);
             newSolid(0, 14, 13, 2);
-            newSolid(15, 14, 5, 2);
+            newSolid(16, 14, 4, 2);
             newSolid(19, 6, 1, 6);
             newSeal(12, 14, "Blue");
             newSeal(13, 14, "Blue");
             newSeal(14, 14, "Blue");
+            newSeal(15, 14, "Blue");
 
             base.Load();
             at.tex = con.Load<Texture2D>("tilesets/hellscape");

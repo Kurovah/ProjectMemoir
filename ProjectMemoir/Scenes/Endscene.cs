@@ -12,17 +12,22 @@ namespace ProjectMemoir.Scenes
 {
     class Endscene:Scene
     {
+        InputManager input;
         public Endscene(Game1 _game, ContentManager _con) : base(_game, _con)
         {
             background = _con.Load<Texture2D>("backgrounds/endofGame_bk");
+            input = _game.input;
+
         }
 
         public override void Load()
         {
+            soundManager.currentState = "mainmenu";
         }
         public override void Update(GameTime _gt)
         {
-           
+            soundManager.Update(_gt);
+            if (input.JumpInput) { game.nextScene = new MainMenu(game, con); }
         }
         public override void Draw(SpriteBatch _sb, GameTime _gt)
         {

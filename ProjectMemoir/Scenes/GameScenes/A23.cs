@@ -21,7 +21,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
-            soundManager.currentState = SoundManger.Gamestate.icy;
+            soundManager.currentState = "icy";
             //solids to collide with
             newSolid(0, 0, 4, 31);
             newSolid(4, 0, 4, 1);

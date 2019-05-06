@@ -19,6 +19,8 @@ namespace ProjectMemoir
         Texture2D transitionScreen;
         float talpha;
         public InputManager input;
+        public SoundManager soundManager;
+        
 
         public Scene currentScene, nextScene;
 
@@ -55,7 +57,7 @@ namespace ProjectMemoir
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            soundManager = new SoundManager(this.Content);
             ps = new PlayerStats();
             talpha = 0f;
             input = new InputManager();

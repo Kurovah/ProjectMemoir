@@ -19,13 +19,14 @@ namespace ProjectMemoir.Scenes
         public Vector2 roomSize;
         public String id;
         public Texture2D background;
-        public SoundManger soundManager;
+        public SoundManager soundManager;
         public List<VFX> vfxQ, vfxList;
         protected Scene(Game1 _game, ContentManager _con)
         {
             con = _con;
-            soundManager = new SoundManger(con);
+            
             game = _game;
+            soundManager = game.soundManager;
             spriteList = spriteDraw = new List<Sprite>();
             vfxQ = vfxList = new List<VFX>();
         }

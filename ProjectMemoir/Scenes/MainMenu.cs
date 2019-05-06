@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
-            soundManager.currentState = SoundManger.Gamestate.mainmenu;
+            soundManager.currentState = "mainmenu";
         }
         public override void Update(GameTime _gt)
         {

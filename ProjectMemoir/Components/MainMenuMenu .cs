@@ -38,7 +38,7 @@ namespace ProjectMemoir.Components
                 case 0:
                     ps.Reset();
                     scene.game.nextScene = new A01(scene.game, scene.game.Content, new Vector2(2, 9));
-                    s.soundManager.currentState = SoundManger.Gamestate.plains;
+                    s.soundManager.currentState = "plains";
                     break;
                 case 1:
                     scene.game.Exit();

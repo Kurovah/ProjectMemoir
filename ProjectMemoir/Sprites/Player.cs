@@ -24,7 +24,7 @@ namespace ProjectMemoir.Sprites
         List<Kunai> kl;
         public KeyboardState currentKS;
         float spd = 5f;
-        public int hp = 100, maxHp = 100, facing = 1, type = 0, hurtcount = 1, sidecount = 1, walkTime = -1;
+        public int hp = 100, maxHp = 100, facing = 1, type = 0, hurtcount = 1, sidecount = 1, walkTime = -1, upcount = 1;
         public float itimer, stuntimer;
         public bool invincible;
         SpriteFont txt;
@@ -275,11 +275,18 @@ namespace ProjectMemoir.Sprites
             anim.sourcesize = anim.spriteSize = new Vector2(70);
             anim.frames = 5;
 
+            if (upcount == 1)
+            {
+                //parentScene.soundManager.playerJump.Play();
+                parentScene.soundManager.playerFlashFlip.Play();
+                upcount -= 1;
+            }
             //aplying upward velocity
             if(anim.currentframe == 0)
             {
                 anim.spriteOrigin = new Vector2(15);
-            }else if (anim.currentframe == 2) {
+            }
+            else if (anim.currentframe == 2) {
                     velocity.Y = -8f;
                     anim.spriteOrigin = new Vector2(0, 0);
             }
@@ -287,7 +294,7 @@ namespace ProjectMemoir.Sprites
             if((anim.currentframe == anim.frames))
             {
                 currentState = playerStates.normal;
-                
+                upcount = 1;               
             }
         }
         public void playerNormalState()

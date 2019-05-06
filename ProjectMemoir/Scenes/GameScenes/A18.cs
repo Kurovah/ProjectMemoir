@@ -38,7 +38,7 @@ namespace ProjectMemoir.Scenes
             base.Load();
             at.tex = con.Load<Texture2D>("tilesets/hellscape");
             //add anything that uses the player as a target after this
-            newSceneChanger(-1, -1, 1, 20, "A17", new Vector2(39, 2));
+            newSceneChanger(-1, -1, 1, 20, "A17", new Vector2(39, 3));
             newSceneChanger(0, 12, 20, 1, "A11", new Vector2(8, 2));
             newGriefTree(3, 6, "4");
         }

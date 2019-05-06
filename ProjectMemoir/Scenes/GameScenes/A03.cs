@@ -26,19 +26,31 @@ namespace ProjectMemoir.Scenes
             //solids to collide with
             newSolid(0, 0, 1, 9);
             newSolid(1, 0, 19, 1);
-            newSolid(0, 11, 9, 1);
-            newSolid(7, 9, 2, 2);
-            newSolid(11, 9, 2, 2);
+            newSolid(0, 11, 8, 1);
+            newSolid(12, 11, 8, 1);
+            newSolid(19, 1, 1, 8);
+
+            newSolid(6, 9, 2, 2);
+            newSolid(12, 9, 2, 2);
+            newBreakableBlock(8, 9);
             newBreakableBlock(9, 9);
             newBreakableBlock(10, 9);
-            newSolid(11, 11, 9, 1);
-            newSolid(19, 1, 1, 8);
+            newBreakableBlock(11, 9);
+            newBreakableBlock(8, 10);
+            newBreakableBlock(9, 10);
+            newBreakableBlock(10, 10);
+            newBreakableBlock(11, 10);
+            newBreakableBlock(8, 11);
+            newBreakableBlock(9, 11);
+            newBreakableBlock(10, 11);
+            newBreakableBlock(11, 11);
+
 
             base.Load();
             //add anything that uses the player as a target after this
             newSceneChanger(21, -1, 0, 12, "A2", new Vector2(1, 9));
             newSceneChanger(-1, -1, 0, 12, "A4", new Vector2(18, 9));
-            newSceneChanger(8, 12, 2, 1, "A24", new Vector2(9, 2));
+            newSceneChanger(6, 12, 8, 1, "A24", new Vector2(9, 2));
         }
 
         

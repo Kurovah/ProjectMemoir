@@ -44,6 +44,7 @@ namespace ProjectMemoir.Scenes
             //newPedestal(5, 9, "Blue");
             //newPedestal(4, 9, "Red");
             //newPedestal(3, 9, "Green");
+            newSentry(9, 3);
         }
 
 

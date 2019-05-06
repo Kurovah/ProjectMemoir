@@ -560,6 +560,12 @@
 /processorParam:Quality=Best
 /build:sounds/PlayerWalk.wav
 
+#begin sounds/SentryShot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/SentryShot.wav
+
 #begin tilesets/hellscape.png
 /importer:TextureImporter
 /processor:TextureProcessor

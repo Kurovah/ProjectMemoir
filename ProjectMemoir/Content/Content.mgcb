@@ -536,6 +536,12 @@
 /processorParam:Quality=Best
 /build:sounds/DownSmash.wav
 
+#begin sounds/FlashFlip.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/FlashFlip.wav
+
 #begin sounds/GriefTree.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

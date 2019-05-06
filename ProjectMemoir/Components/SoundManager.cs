@@ -28,6 +28,7 @@ namespace ProjectMemoir.Components
 
             //sound effects
             playerJump = _con.Load<SoundEffect>("sounds/Jump");
+            playerFlashFlip = _con.Load<SoundEffect>("sounds/FlashFlip");
             playerCrush = _con.Load<SoundEffect>("sounds/DownSmash");
             BrickCrush = _con.Load<SoundEffect>("sounds/BrickBreak");
             playerGetHurt = _con.Load<SoundEffect>("sounds/Hurt");

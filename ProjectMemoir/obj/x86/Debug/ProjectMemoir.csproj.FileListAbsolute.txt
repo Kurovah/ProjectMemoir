@@ -261,3 +261,4 @@ C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Win
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\StunNoise.xnb
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\StunState.xnb
 C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\ChargeStart.xnb
+C:\Users\Omar.GAMERSDELIGHT\Documents\GitHub\ProjectMemoir\ProjectMemoir\bin\Windows\x86\Debug\Content\sounds\FlashFlip.xnb

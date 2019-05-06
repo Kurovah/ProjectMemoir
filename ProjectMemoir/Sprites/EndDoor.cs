@@ -18,26 +18,38 @@ namespace ProjectMemoir.Sprites
         Gamescene parentScene;
         PlayerStats ps;
         Player target;
-        bool active = false;
+        bool active = false, playerhastouched;
+        InputManager i;
         public EndDoor(ContentManager _con, Vector2 _pos, Gamescene _parentScene) : base(_con,_pos,_parentScene)
         {
             parentScene = _parentScene;
             ps = _parentScene.ps;
             target = _parentScene.player;
             anim = new Animation(_con.Load<Texture2D>("end_door"),new Vector2(128),new Vector2(128),_pos,18,Color.White);
+            i = _parentScene.game.input;
+            playerhastouched = false;
         }
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {
-            if (anim.desRect.Intersects(target.anim.desRect) && target.currentKS.IsKeyDown(Keys.K))
+            if (anim.desRect.Intersects(target.anim.desRect) )
             {
-                if (allSeedsCollected())
+                if (!playerhastouched)
                 {
-                    active = true;
-                } else
-                {
-                    parentScene.pu.active = true;
-                    parentScene.pu.text = "you haven't fully cleansed yourself of grief";
+                    if (allSeedsCollected())
+                    {
+                        active = true;
+                        playerhastouched = true;
+                    }
+                    else
+                    {
+                        parentScene.pu.active = true;
+                        parentScene.pu.text = "you haven't fully cleansed yourself of grief";
+                        playerhastouched = true;
+                    }
                 }
+            } else
+            {
+                playerhastouched = false;
             }
             if (active)
             {
@@ -50,15 +62,14 @@ namespace ProjectMemoir.Sprites
         }
         private bool allSeedsCollected()
         {
-            bool ret = true;
-            for(int i = 0; i > ps.treesPurified.Count; i++)
+            for(int i = 0; i < ps.treesPurified.Count; i++)
             {
                 if (!ps.treesPurified[ps.treesPurified.Keys.ElementAt(i)])
                 {
-                    ret = false;
+                    return false;
                 }
             }
-            return ret;
+            return true;
         }
     }
 }

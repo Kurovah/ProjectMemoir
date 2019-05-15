@@ -52,6 +52,7 @@ namespace ProjectMemoir.Sprites
                 {
                     //j
                     ps.treesPurified[type] = true;
+                    ps.checkpoint = type;
                     gs.pu.active = true;
                     gs.pu.text = "A portion of your grief has been cleansed, your heart grows lighter";
                     if (!parentScene.soundManager.gotItem) { parentScene.soundManager.gotItem = true; }

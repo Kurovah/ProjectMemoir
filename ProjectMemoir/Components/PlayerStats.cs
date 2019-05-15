@@ -10,8 +10,10 @@ namespace ProjectMemoir.Components
     {
         public Dictionary<string, bool> abilities,mapPeices,treesPurified;
         public int hp;
+        public string checkpoint;
         public PlayerStats()
         {
+            checkpoint = null;
             //wether the player has collected the abilities
             abilities = new Dictionary<string, bool>
             {
@@ -71,6 +73,7 @@ namespace ProjectMemoir.Components
         public void Reset()
         {
             //wether the player has collected the abilities
+            checkpoint = null;
             abilities = new Dictionary<string, bool>
             {
                 ["Neutral"] = false,

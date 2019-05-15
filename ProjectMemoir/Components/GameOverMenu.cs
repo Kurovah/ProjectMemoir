@@ -32,11 +32,35 @@ namespace ProjectMemoir.Components
         }
         public override void Selectoption(int OP)
         {
-            switch(OP)
+            switch (OP)
             {
                 case 0:
-                    ps.Reset();
-                    scene.game.nextScene = new A01(scene.game, scene.game.Content, new Vector2(2, 9));
+                    switch (ps.checkpoint) {
+                        case  "1":
+                            scene.game.nextScene = new A08(scene.game, scene.game.Content, new Vector2(9, 12));
+                            ps.hp = 3;
+                            break;
+                        case "2":
+                            scene.game.nextScene = new A12(scene.game, scene.game.Content, new Vector2(16, 4));
+                            ps.hp = 3;
+                            break;
+                        case "3":
+                            scene.game.nextScene = new A21(scene.game, scene.game.Content, new Vector2(9, 8));
+                            ps.hp = 3;
+                            break;
+                        case "4":
+                            scene.game.nextScene = new A18(scene.game, scene.game.Content, new Vector2(5, 9));
+                            ps.hp = 3;
+                            break;
+                        case "5":
+                            scene.game.nextScene = new A25(scene.game, scene.game.Content, new Vector2(10, 9));
+                            ps.hp = 3;
+                            break;
+                        default:
+                        ps.Reset();
+                        scene.game.nextScene = new A01(scene.game, scene.game.Content, new Vector2(2, 9));
+                            break;
+                    }
                     break;
                 case 1:
                     scene.game.nextScene = new MainMenu(scene.game, scene.game.Content);

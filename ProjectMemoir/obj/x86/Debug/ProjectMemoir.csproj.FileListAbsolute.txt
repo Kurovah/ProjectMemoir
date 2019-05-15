@@ -272,3 +272,4 @@ C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\obj\x86\Debug\ProjectMe
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\obj\x86\Debug\ProjectMemoir.csproj.CopyComplete
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\obj\x86\Debug\ProjectMemoir.exe
 C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\obj\x86\Debug\ProjectMemoir.pdb
+C:\Users\danny\Source\Repos\ProjectMemoir2\ProjectMemoir\bin\Windows\x86\Debug\Content\instructions.xnb

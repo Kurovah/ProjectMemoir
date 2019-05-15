@@ -56,11 +56,12 @@ namespace ProjectMemoir.Components
                     instructionsShowing = true;
                     break;
                 case 2:
-                    scene.game.Exit();
-                    break;
-                case 3:
                     Process.Start("https://w1629904.wixsite.com/mysite");
                     break;
+                case 3:
+                    scene.game.Exit();
+                    break;
+                
             }
         }
 

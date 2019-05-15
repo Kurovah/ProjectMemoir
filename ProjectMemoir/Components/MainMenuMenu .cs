@@ -15,21 +15,33 @@ namespace ProjectMemoir.Components
     {
         PlayerStats ps;
         Scene s;
+        Texture2D tex;
+        bool instructionsShowing;
         public MainMenuMenu(ContentManager _con, List<string> _options, Vector2 _pos, Scene _scene) :base(_con, _options,_pos, _scene)
         {
             ps = scene.game.ps;
             s = _scene;
             offset = new Vector2((1280 / 2) - (txt.MeasureString(options[pos]).X / 2),720/2 + 10);
+            tex = _con.Load<Texture2D>("instructions");
+            instructionsShowing = false;
         }
         public override void Update(GameTime _gt)
         {
-            active = true;
-            currentK = Keyboard.GetState();
-            if (currentK.IsKeyDown(Keys.P) && !lastK.IsKeyDown(Keys.P)) { scene.pause = !scene.pause; active = !active; }//if P is "pressed" pause the game 
-            pointer.position = offset + new Vector2(-32, pos * 30);
-            base.Update(_gt);
-            s.soundManager.Update(_gt);
-            lastK = currentK;
+            if (!instructionsShowing)
+            {
+                active = true;
+                pointer.position = offset + new Vector2(-32, pos * 30);
+                base.Update(_gt);
+                s.soundManager.Update(_gt);
+            }
+            else
+            {
+                if (input.JumpInput)
+                {
+                    instructionsShowing = false;
+                }
+            }
+            
         }
         public override void Selectoption(int OP)
         {
@@ -41,9 +53,12 @@ namespace ProjectMemoir.Components
                     s.soundManager.currentState = "plains";
                     break;
                 case 1:
-                    scene.game.Exit();
+                    instructionsShowing = true;
                     break;
                 case 2:
+                    scene.game.Exit();
+                    break;
+                case 3:
                     Process.Start("https://w1629904.wixsite.com/mysite");
                     break;
             }
@@ -57,6 +72,10 @@ namespace ProjectMemoir.Components
             {
                 _sb.DrawString(txt, _s, startPos + new Vector2((1280/2) - (txt.MeasureString(_s).X/2), (720/2)+P * 30), Color.White);
                 P++;
+            }
+            if (instructionsShowing)
+            {
+                _sb.Draw(tex,new Vector2(20),Color.White);
             }
         }
     }

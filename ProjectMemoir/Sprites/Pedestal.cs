@@ -27,6 +27,7 @@ namespace ProjectMemoir.Sprites
             position = _pos;
             obj = new Animation(_con.Load<Texture2D>("collect"), new Vector2(32), new Vector2(32), position, 0, Color.White);
             anim = new Animation(_con.Load<Texture2D>("collect"), new Vector2(32), new Vector2(32), position+new Vector2(0,32), 0, Color.White);
+            anim.layer = 1;
             obj.needsChange = anim.needsChange = false;
 
             //obj sprites

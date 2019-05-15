@@ -12,7 +12,9 @@ namespace ProjectMemoir.Sprites
         public VFX(ContentManager _con, Vector2 _pos, Scene _parentScene,String _texName, Vector2 _size, int _frameCount):base(_con, _pos, _parentScene)
         {
             anim = new Animation(_con.Load<Texture2D>(_texName),_size,_size,_pos,_frameCount,Color.White);
+            anim.layer = -1;
         }
+
 
         public override void Update(GameTime _gt, List<Sprite> _sl)
         {

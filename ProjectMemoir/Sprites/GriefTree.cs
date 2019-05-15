@@ -26,6 +26,7 @@ namespace ProjectMemoir.Sprites
             gs = _gs;
             anim = new Animation(_con.Load<Texture2D>("griefTree"), new Vector2(160), new Vector2(160), _pos, 0, Color.White);
             anim.needsChange = false;
+            anim.layer = 1;
             has_healed = false;
             gs = _gs;
         }

@@ -152,6 +152,7 @@ namespace ProjectMemoir.Components
                                 a.t = bw;
                                 a.sourcePos = texCoord;
                                 a.needsChange = false;
+                                a.layer = 2;
                                 tiles.Add(a);
                             }
                         }

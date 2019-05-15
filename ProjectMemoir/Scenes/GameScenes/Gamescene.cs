@@ -153,7 +153,7 @@ namespace ProjectMemoir.Scenes
                 _sb.Draw(background, new Vector2(0, 0), Color.White);
                 _sb.End();
             }
-            _sb.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.trans);
+            _sb.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null, cam.trans);
             at.Draw(_sb);
             foreach (Sprite _s in spriteList)
             {

@@ -22,7 +22,7 @@ namespace ProjectMemoir.Scenes
         public override void Load()
         {
 
-            
+            if (soundManager.currentState != "icy") { soundManager.currentState = "icy"; }
             //solids to collide with
             newSolid(0, 0, 1, 9);
             newSolid(1, 0, 19, 1);

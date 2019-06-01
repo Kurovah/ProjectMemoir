@@ -32,6 +32,7 @@ namespace ProjectMemoir.Scenes
 
             newSolid(6, 9, 2, 2);
             newSolid(12, 9, 2, 2);
+
             newBreakableBlock(8, 9);
             newBreakableBlock(9, 9);
             newBreakableBlock(10, 9);

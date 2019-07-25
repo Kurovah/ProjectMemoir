@@ -21,7 +21,7 @@ namespace ProjectMemoir.Scenes
 
         public override void Load()
         {
-
+            if (soundManager.currentState != "plains") { soundManager.currentState = "plains"; }
             background = con.Load<Texture2D>("backgrounds/VillageBK");
             //solids to collide with
             newSolid(0, 0, 1, 11);

@@ -41,11 +41,6 @@ namespace ProjectMemoir.Scenes
             newSolid(42, 1, 2, 3);
 
             //Segment 2
-            newSeal(42, 4, "Green");
-            newSeal(42, 6, "Green");
-            newSeal(43, 4, "Green");
-            newSeal(43, 6, "Green");
-
             newSolid(56, 8, 2, 2);
             newSolid(56, 1, 2, 3);
             newSolid(65, 8, 2, 2);

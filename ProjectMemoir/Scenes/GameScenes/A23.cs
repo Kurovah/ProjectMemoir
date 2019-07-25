@@ -38,19 +38,17 @@ namespace ProjectMemoir.Scenes
             newBreakableBlock(10, 8);
             newBreakableBlock(11, 8);
 
-            newSolid(4, 16, 4, 1);
-            newSolid(12, 16, 4, 1);
-            newBreakableBlock(8, 16);
-            newBreakableBlock(9, 16);
-            newBreakableBlock(10, 16);
-            newBreakableBlock(11, 16);
+            newSolid(8, 16, 8, 1);
+            newBreakableBlock(4, 16);
+            newBreakableBlock(5, 16);
+            newBreakableBlock(6, 16);
+            newBreakableBlock(7, 16);
 
-            newSolid(4, 24, 4, 1);
-            newSolid(12, 24, 4, 1);
-            newBreakableBlock(8, 24);
-            newBreakableBlock(9, 24);
-            newBreakableBlock(10, 24);
-            newBreakableBlock(11, 24);
+            newSolid(4, 24, 8, 1);
+            newBreakableBlock(12, 24);
+            newBreakableBlock(13, 24);
+            newBreakableBlock(14, 24);
+            newBreakableBlock(15, 24);
 
             newBreakableBlock(8, 31);
             newBreakableBlock(9, 31);
@@ -64,10 +62,10 @@ namespace ProjectMemoir.Scenes
             //add anything that uses the player as a target after this
             newSceneChanger(0, 32, 20, 1, "A2", new Vector2(8, 2));
             newSceneChanger(0, -1, 20, 1, "A22", new Vector2(8, 9));
-            newSentry(4, 13);
-            newSentry(14, 20);
-            newSentry(4, 28);
-            newSentry(14, 28);
+            newSentry(4, 9);
+            newSentry(14, 17);
+            newSentry(4, 29);
+            newSentry(4, 25);
         }
 
         

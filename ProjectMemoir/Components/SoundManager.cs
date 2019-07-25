@@ -83,7 +83,7 @@ namespace ProjectMemoir.Components
                     }
                     if (!musicPlaying)
                     {
-                        MediaPlayer.Volume = 0.1f;
+                        MediaPlayer.Volume = 0.5f;
                         MediaPlayer.Play(icyMountain);
                         musicPlaying = true;
                     }
@@ -99,7 +99,7 @@ namespace ProjectMemoir.Components
                     }
                     if (!musicPlaying)
                     {
-                        MediaPlayer.Volume = 0.1f;
+                        MediaPlayer.Volume = 0.5f;
                         MediaPlayer.Play(mainMenu);
                         musicPlaying = true;
                     }
@@ -115,7 +115,7 @@ namespace ProjectMemoir.Components
                     }
                     if (!musicPlaying)
                     {
-                        MediaPlayer.Volume = 0.1f;
+                        MediaPlayer.Volume = 0.5f;
                         MediaPlayer.Play(hellScape);
                         musicPlaying = true;
                     }
@@ -131,7 +131,7 @@ namespace ProjectMemoir.Components
                     }
                     if (!musicPlaying)
                     {
-                        MediaPlayer.Volume = 0.1f;
+                        MediaPlayer.Volume = 0.5f;
                         MediaPlayer.Play(village);
                         musicPlaying = true;
                     }
@@ -147,7 +147,7 @@ namespace ProjectMemoir.Components
                     }
                     if (!musicPlaying)
                     {
-                        MediaPlayer.Volume = 0.1f;
+                        MediaPlayer.Volume = 0.5f;
                         MediaPlayer.Play(gameOver);
                         musicPlaying = true;
                     }

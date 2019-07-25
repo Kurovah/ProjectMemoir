@@ -47,7 +47,7 @@ namespace ProjectMemoir.Components
             gotItem = false;
             itemsongplaying = false;
             Iinstance = itemGet.CreateInstance();
-            Iinstance.Volume = 0.1f;
+            Iinstance.Volume = 0.5f;
 
         }
 
